@@ -125,7 +125,7 @@ public:
 	TYPE DistanceManhattan(const p2Point& v) const
 	{
 		return abs(v.x - x) + abs(v.y - y);
-	}
+	}//
 };
 
 typedef p2Point<int> iPoint;
