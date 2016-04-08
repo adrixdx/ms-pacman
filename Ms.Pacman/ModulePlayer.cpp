@@ -61,29 +61,66 @@ update_status ModulePlayer::Update()
 	Animation* current_animation = &idle;
 
 	float speed = 2.5;
-
+	static int direction = -1;
 	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
 	{
+		direction = 0;
+		//current_animation = &right;
+		//position.x += speed;
+	}
+	if (direction == 0){
 		current_animation = &right;
 		position.x += speed;
+				
 	}
-
+	
+	
 	if (App->input->keyboard[SDL_SCANCODE_LEFT] == 1)
 	{
+		direction = 1;
+		//current_animation = &left;
+		//position.x -= speed;
+	}
+	if(direction == 1){
 		current_animation = &left;
 		position.x -= speed;
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_UP] == 1)
 	{
+		direction = 2;
+		//current_animation = &up;
+		//position.y -= speed;
+	}
+	if (direction == 2){
 		current_animation = &up;
 		position.y -= speed;
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_DOWN] == 1)
 	{
+		direction = 3;
+		//current_animation = &down;
+		//position.y += speed;
+	}
+	if(direction == 3){
 		current_animation = &down;
 		position.y += speed;
+	}
+
+	//Position max
+	
+	if (position.y >= 536){
+		position.y = 536;
+	}
+	if (position.y <= 89){
+		position.y = 89;
+	}
+	if (position.x <= 9){
+		position.x = 9;
+	}
+	if (position.x >= 409){
+		position.x = 409;
 	}
 
 	// Draw everything --------------------------------------
