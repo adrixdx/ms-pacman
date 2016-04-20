@@ -14,40 +14,45 @@
 
 ModuleStartScreen::ModuleStartScreen()
 {
-	// ground
-/*	ground.x = 0;
-	ground.y = 0;
-	ground.w = 480;
-	ground.h = 640;
-	*/
-	ground = { 0, 0, 450, 532 };
-	/*// foreground
-	foreground.x = 8;
-	foreground.y = 24;
-	foreground.w = 521;
-	foreground.h = 181;
 
-	// Background / sky
-	background.x = 72;
-	background.y = 208;
-	background.w = 768;
-	background.h = 176;
+	ground = { 30, 0, 481, 639 };
 
-	// flag animation
-	flag.PushBack({848, 208, 40, 40});
-	flag.PushBack({848, 256, 40, 40});
-	flag.PushBack({848, 304, 40, 40});
-	flag.speed = 0.08f;
 
-	// Girl Animation
-	girl.PushBack({624, 16, 32, 56});
-	girl.PushBack({624, 80, 32, 56});
-	girl.PushBack({624, 144, 32, 56});
-	girl.speed = 0.05f;*/
+	// square lights animation
+	square.PushBack({ 492, 7, 299, 152,});
+	square.PushBack({ 492, 163, 299 , 152, });
+	square.PushBack({ 492, 320, 299, 152, });
+	square.PushBack({ 492, 479, 299, 152, });
 
-	// for moving the foreground
-	//foreground_pos = 0;
-	//forward = true;
+	square.PushBack({ 805, 7, 299, 152, });
+	square.PushBack({ 805, 163, 299, 152, });
+	square.PushBack({ 805, 320, 299, 152, });
+	square.PushBack({ 805, 479, 299, 152, });
+
+	square.PushBack({ 1117, 7, 299, 152, });
+	square.PushBack({ 1117, 163, 299, 152, });
+	square.PushBack({ 1117, 320, 299, 152, });
+	square.PushBack({ 1117, 479, 299, 152, });
+
+	square.PushBack({ 1430, 7, 299, 152, });
+	square.PushBack({ 1430, 163, 299, 152, });
+	square.PushBack({ 1430, 320, 299, 152, });
+	square.PushBack({ 1430, 479, 299, 152, });
+
+	square.speed = 0.85f;
+	
+	// ghost name animation
+	gname.PushBack({ 1742, 16, 216, 98, });
+	gname.PushBack({ 1742, 117, 234, 108, });
+	gname.PushBack({ 1745, 224, 241, 108, });
+	gname.PushBack({ 1746, 322, 226, 93, });
+	gname.PushBack({ 1960, 16, 216, 98, });
+	
+	gname.speed = 0.004f;
+
+	//ghosts
+	blinky.PushBack({ 1742, 16, 216, 98, });
+
 }
 
 ModuleStartScreen::~ModuleStartScreen()
@@ -58,9 +63,8 @@ bool ModuleStartScreen::Start()
 {
 	LOG("Loading ken scene");
 	
-	graphics = App->textures->Load("Start.png");
+	graphics = App->textures->Load("game/start.png");
 
-	// TODO 1: Enable (and properly disable) the player module
 	App->player->Disable();
 	return true;
 }
@@ -69,37 +73,20 @@ bool ModuleStartScreen::Start()
 bool ModuleStartScreen::CleanUp()
 {
 	LOG("Unloading ken scene");
-	//App->player->Disable();
 	return true;
 }
 
 // Update: draw background
 update_status ModuleStartScreen::Update()
 {
-	// Calculate boat Y position -----------------------------
-	/*if(foreground_pos < -6.0f)
-		forward = false;
-	else if(foreground_pos > 0.0f)
-		forward = true;
-	
-	if(forward)
-		foreground_pos -= 0.02f;
-	else
-		foreground_pos += 0.02f;
-*/
-	// Draw everything --------------------------------------
-	/*App->render->Blit(graphics, 0, 0, &background, 0.75f); // sea and sky
-	/*App->render->Blit(graphics, 560, 8, &(flag.GetCurrentFrame()), 0.75f); // flag animation
+	//Animations
+	App->render->Blit(graphics, 0, -20, &ground);
+	App->render->Blit(graphics, 90, 167, &(square.GetCurrentFrame()), 0.75f); // square animation
+	App->render->Blit(graphics, 110, 190, &(gname.GetCurrentFrame()), 0.75f); // ghost name animation
 
-	App->render->Blit(graphics, 0, (int)foreground_pos, &foreground, 0.92f);
-	App->render->Blit(graphics, 192, 104 + (int)foreground_pos, &(girl.GetCurrentFrame()), 0.92f); // girl animation
-	
-	*/
-	App->render->Blit(graphics, 0, 0, &ground);
-
-	// TODO 3: make so pressing SPACE the HONDA stage is loaded
+	//FADE TO BLACK
 	if (App->input->keyboard[SDL_SCANCODE_SPACE]){
-		///////////////////////////////
+
 		App->fade->FadeToBlack(App->start, App->level_one, 1);
 
 	}

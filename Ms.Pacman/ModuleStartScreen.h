@@ -21,7 +21,10 @@ public:
 	
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect ground;
-	
+
+	Animation square;
+	Animation gname;
+	Animation blinky;
 
 	float foreground_pos;
 	bool forward;
