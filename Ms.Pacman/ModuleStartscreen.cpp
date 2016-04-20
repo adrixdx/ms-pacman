@@ -19,27 +19,27 @@ ModuleStartScreen::ModuleStartScreen()
 
 
 	// square lights animation
-	square.PushBack({ 492, 7, 299, 152,});
-	square.PushBack({ 492, 163, 299 , 152, });
-	square.PushBack({ 492, 320, 299, 152, });
-	square.PushBack({ 492, 479, 299, 152, });
+	square.PushBack({ 488, 2, 310, 157,});
+	square.PushBack({ 488, 161, 310, 157, });
+	square.PushBack({ 488, 319, 310, 157, });
+	square.PushBack({ 488, 478, 310, 157, });
 
-	square.PushBack({ 805, 7, 299, 152, });
-	square.PushBack({ 805, 163, 299, 152, });
-	square.PushBack({ 805, 320, 299, 152, });
-	square.PushBack({ 805, 479, 299, 152, });
+	square.PushBack({ 803, 2, 310, 157,});
+	square.PushBack({ 803, 161, 310, 157, });
+	square.PushBack({ 803, 319, 310, 157, });
+	square.PushBack({ 803, 478, 310, 157, });
 
-	square.PushBack({ 1117, 7, 299, 152, });
-	square.PushBack({ 1117, 163, 299, 152, });
-	square.PushBack({ 1117, 320, 299, 152, });
-	square.PushBack({ 1117, 479, 299, 152, });
+	square.PushBack({ 1116, 2, 310, 157, });
+	square.PushBack({ 1116, 161, 310, 157, });
+	square.PushBack({ 1116, 319, 310, 157, });
+	square.PushBack({ 1116, 478, 310, 157, });
 
-	square.PushBack({ 1430, 7, 299, 152, });
-	square.PushBack({ 1430, 163, 299, 152, });
-	square.PushBack({ 1430, 320, 299, 152, });
-	square.PushBack({ 1430, 479, 299, 152, });
+	square.PushBack({ 1430, 2, 310, 157, });
+	square.PushBack({ 1430, 161, 310, 157, });
+	square.PushBack({ 1430, 319, 310, 157, });
+	square.PushBack({ 1430, 478, 310, 157, });
 
-	square.speed = 0.85f;
+	square.speed = 0.81f;
 	
 	// ghost name animation
 	gname.PushBack({ 1742, 16, 216, 98, });
