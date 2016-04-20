@@ -19,9 +19,12 @@ public:
 
 public:
 
-	SDL_Texture* graphics = nullptr;
+	SDL_Texture* graphics1 = nullptr;
+	SDL_Texture* graphics2 = nullptr;
 	SDL_Rect ground;
 	SDL_Rect roof;
+	SDL_Rect pellet;
+	SDL_Rect powerpellet;
 	SDL_Rect foreground;
 	SDL_Rect background;
 	Animation water;
