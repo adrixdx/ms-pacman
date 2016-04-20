@@ -7,6 +7,8 @@
 #include "ModuleLevelOne.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleParticles.h"
+
 
 Application::Application()
 {
@@ -18,6 +20,8 @@ Application::Application()
 	modules[5] = start = new ModuleStartScreen();
 	modules[6] = player = new ModulePlayer();
 	modules[7] = fade = new ModuleFadeToBlack();
+	modules[8] = particles = new ModuleParticles();
+	modules[9] = collision = new ModuleCollision();
 }	
 
 Application::~Application()
