@@ -7,7 +7,7 @@
 #include "p2Point.h"
 #include "ModuleCollision.h"
 
-#define MAX_ACTIVE_PARTICLES 100
+#define MAX_ACTIVE_PARTICLES 300
 
 struct SDL_Texture;
 struct Collider;
@@ -22,6 +22,7 @@ struct Particle
 	iPoint speed;
 	Uint32 born = 0;
 	Uint32 life = 0;
+
 	bool fx_played = false;
 
 	Particle();
@@ -53,6 +54,7 @@ public:
 	Particle explosion;
 	Particle laser;
 	Particle powerpellet;
+	Particle pellet;
 };
 
 #endif // __MODULEPARTICLES_H__

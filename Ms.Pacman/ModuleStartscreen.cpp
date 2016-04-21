@@ -60,7 +60,7 @@ ModuleStartScreen::~ModuleStartScreen()
 
 // Load assets
 bool ModuleStartScreen::Start()
-{
+ {
 	LOG("Loading ken scene");
 	
 	graphics = App->textures->Load("game/start.png");

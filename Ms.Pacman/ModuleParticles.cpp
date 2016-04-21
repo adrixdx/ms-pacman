@@ -27,6 +27,10 @@ ModuleParticles::ModuleParticles()
 	powerpellet.anim.PushBack({22,62,20,20});
 	powerpellet.anim.PushBack({ 22, 42, 20, 20 });
 	powerpellet.anim.speed = 0.1f;
+
+	pellet.anim.PushBack({ 12, 46, 8, 8 });
+	pellet.anim.speed = 0.0f;
+
 		/*
 	laser.anim.speed = 0.2f;
 	laser.speed.x = 5;
@@ -123,9 +127,9 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{
-			//AddParticle(explosion, active[i]->position.x, active[i]->position.y);
+			/*//AddParticle(explosion, active[i]->position.x, active[i]->position.y);
 			delete active[i];
-			active[i] = nullptr;
+			active[i] = nullptr;*/
 			break;
 		}
 	}
@@ -149,6 +153,7 @@ Particle::~Particle()
 {
 	if (collider != nullptr)
 		App->collision->EraseCollider(collider);
+	
 }
 
 bool Particle::Update()

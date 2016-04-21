@@ -30,7 +30,7 @@ ModuleLevelOne::~ModuleLevelOne()
 
 // Load assets
 bool ModuleLevelOne::Start()
-{
+ {
 	LOG("Loading background assets");
 	bool ret = true;
 	graphics1 = App->textures->Load("Maze1.png");
@@ -97,13 +97,17 @@ update_status ModuleLevelOne::Update()
 	for (int i = 0; i < 28; i++){
 		for (int n = 0; n < 35; n++){
 			if (map[n][i] == 1){
-				App->render->Blit(graphics2, i*16+3, n*16 + 3, &pellet);
+				App->particles->AddParticle(App->particles->pellet, i * 16 + 3, n*16 + 3, COLLIDER_PELLET, 0);
+				//App->render->Blit(graphics2, i*16+3, n*16 + 3, &pellet);
 			}
 			if (map[n][i] == 2){
 				App->render->Blit(graphics2, i * 16 -1, n * 16 -1, &powerpellet);
 			}
 		}
 	}
+
+
+	
 	App->particles->AddParticle(App->particles->powerpellet, 15 , 78, COLLIDER_POWERPELLET, 0);
 	App->particles->AddParticle(App->particles->powerpellet, 15, 479, COLLIDER_POWERPELLET, 0);
 	App->particles->AddParticle(App->particles->powerpellet, 415, 78, COLLIDER_POWERPELLET, 0);
