@@ -104,10 +104,10 @@ update_status ModuleLevelOne::Update()
 			}
 		}
 	}
-	App->particles->AddParticle(App->particles->powerpellet, 15 , 78, COLLIDER_PLAYER, 0);
-	App->particles->AddParticle(App->particles->powerpellet, 15, 479, COLLIDER_PLAYER, 0);
-	App->particles->AddParticle(App->particles->powerpellet, 415, 78, COLLIDER_PLAYER, 0);
-	App->particles->AddParticle(App->particles->powerpellet, 415, 479, COLLIDER_PLAYER, 0);
+	App->particles->AddParticle(App->particles->powerpellet, 15 , 78, COLLIDER_POWERPELLET, 0);
+	App->particles->AddParticle(App->particles->powerpellet, 15, 479, COLLIDER_POWERPELLET, 0);
+	App->particles->AddParticle(App->particles->powerpellet, 415, 78, COLLIDER_POWERPELLET, 0);
+	App->particles->AddParticle(App->particles->powerpellet, 415, 479, COLLIDER_POWERPELLET, 0);
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE]){
 
