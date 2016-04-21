@@ -1,21 +1,25 @@
-#include "Globals.h"
 #include "Application.h"
-#include "ModuleTextures.h"
 #include "ModuleInput.h"
-#include "ModuleParticles.h"
 #include "ModuleRender.h"
-#include "ModuleCollision.h"
-#include "ModuleFadeToBlack.h"
-#include "ModulePlayer.h"
+#include "ModuleEnemies.h"
+#include "ModuleParticles.h"
+#include "ModuleTextures.h"
+#include "ModuleGhost.h"
+#include "ModuleGhost_Blinky.h"
+#include "ModuleGhost_Inky.h"
+#include "ModuleGhost_Pinky.h"
+#include "ModuleGhost_Sue.h"
+
+
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
-ModulePlayer::ModulePlayer()
+ModuleEnemies::ModuleEnemies()
 {
-	
+
 
 	// idle animation (arcade sprite sheet)
-	idle.PushBack({ 32, 32, 32, 32}); 
+	idle.PushBack({ 32, 32, 32, 32 });
 
 
 	// Right
@@ -28,7 +32,7 @@ ModulePlayer::ModulePlayer()
 	left.PushBack({ 192, 0, 32, 32 });
 	left.PushBack({ 224, 0, 32, 32 });
 	left.PushBack({ 0, 32, 32, 32 });
-	
+
 	left.speed = 0.2f;
 
 	// Up
@@ -45,11 +49,11 @@ ModulePlayer::ModulePlayer()
 
 }
 
-ModulePlayer::~ModulePlayer()
+ModuleEnemies::~ModuleEnemies()
 {}
 
 // Load assets
-bool ModulePlayer::Start()
+bool ModuleEnemies::Start()
 {
 
 	position.x = 208;
@@ -62,7 +66,7 @@ bool ModulePlayer::Start()
 	col = App->collision->AddCollider({ position.x, position.y, 16, 16 }, COLLIDER_PLAYER, this);
 	return ret;
 }
-bool ModulePlayer::CleanUp()
+bool ModuleEnemies::CleanUp()
 {
 	LOG("Unloading player");
 
@@ -73,7 +77,7 @@ bool ModulePlayer::CleanUp()
 }
 
 // Update: draw background
-update_status ModulePlayer::Update()
+update_status ModuleEnemies::Update()
 {
 	Animation* current_animation = &idle;
 
@@ -88,17 +92,17 @@ update_status ModulePlayer::Update()
 	if (direction == 0){
 		current_animation = &right;
 		position.x += speed;
-				
+
 	}
-	
-	
+
+
 	if (App->input->keyboard[SDL_SCANCODE_LEFT] == 1)
 	{
 		direction = 1;
 		//current_animation = &left;
 		//position.x -= speed;
 	}
-	if(direction == 1){
+	if (direction == 1){
 		current_animation = &left;
 		position.x -= speed;
 	}
@@ -120,13 +124,13 @@ update_status ModulePlayer::Update()
 		//current_animation = &down;
 		//position.y += speed;
 	}
-	if(direction == 3){
+	if (direction == 3){
 		current_animation = &down;
 		position.y += speed;
 	}
 
 	//Position max
-	
+
 	if (position.y >= 536){
 		position.y = 536;
 	}
@@ -142,7 +146,7 @@ update_status ModulePlayer::Update()
 
 	// Collider--------------
 
-col->SetPos(position.x, position.y);
+	col->SetPos(position.x, position.y);
 	if (destroyed == false)
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 
@@ -156,18 +160,18 @@ col->SetPos(position.x, position.y);
 }
 
 
-void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
+void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 {/*
-	if (c1 == col && destroyed == false && App->fade->IsFading() == false)
-	{
-		App->fade->FadeToBlack((Module*)App->scene_space, (Module*)App->scene_intro);
+ if (c1 == col && destroyed == false && App->fade->IsFading() == false)
+ {
+ App->fade->FadeToBlack((Module*)App->scene_space, (Module*)App->scene_intro);
 
-		App->particles->AddParticle(App->particles->explosion, position.x, position.y, COLLIDER_NONE, 150);
-		App->particles->AddParticle(App->particles->explosion, position.x + 8, position.y + 11, COLLIDER_NONE, 220);
-		App->particles->AddParticle(App->particles->explosion, position.x - 7, position.y + 12, COLLIDER_NONE, 670);
-		App->particles->AddParticle(App->particles->explosion, position.x + 5, position.y - 5, COLLIDER_NONE, 480);
-		App->particles->AddParticle(App->particles->explosion, position.x - 4, position.y - 4, COLLIDER_NONE, 350);
+ App->particles->AddParticle(App->particles->explosion, position.x, position.y, COLLIDER_NONE, 150);
+ App->particles->AddParticle(App->particles->explosion, position.x + 8, position.y + 11, COLLIDER_NONE, 220);
+ App->particles->AddParticle(App->particles->explosion, position.x - 7, position.y + 12, COLLIDER_NONE, 670);
+ App->particles->AddParticle(App->particles->explosion, position.x + 5, position.y - 5, COLLIDER_NONE, 480);
+ App->particles->AddParticle(App->particles->explosion, position.x - 4, position.y - 4, COLLIDER_NONE, 350);
 
-		destroyed = true;
-	}*/
+ destroyed = true;
+ }*/
 }
