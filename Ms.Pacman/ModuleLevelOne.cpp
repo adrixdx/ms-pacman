@@ -9,6 +9,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleStartScreen.h"
 #include "ModuleParticles.h"
+#include "ModuleAudio.h"
 
 // Reference at https://youtu.be/6OlenbCC4WI?t=382
 
@@ -36,6 +37,8 @@ bool ModuleLevelOne::Start()
 	graphics1 = App->textures->Load("Maze1.png");
 
 	graphics2 = App->textures->Load("puntos.png");
+
+	fx = App->audio->LoadFx("starting.wav");
 	
 	App->player->Enable();
 	
@@ -48,6 +51,7 @@ bool ModuleLevelOne::CleanUp()
 {
 	LOG("Unloading honda stage");
 	App->player->Disable();
+	App->audio->UnLoadFx(fx);
 
 	return true;
 }

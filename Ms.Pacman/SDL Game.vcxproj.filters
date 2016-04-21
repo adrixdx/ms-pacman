@@ -12,6 +12,9 @@
     <Filter Include="Containers">
       <UniqueIdentifier>{78a7f487-1d77-4fdc-9f51-f067eccd6239}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Ghosts">
+      <UniqueIdentifier>{79efbbde-369f-42d1-9b0f-e58a60603d32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -62,6 +65,27 @@
     <ClInclude Include="ModuleCollision.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleAudio.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleGhost.h">
+      <Filter>Modules\Ghosts</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleGhost_Blinky.h">
+      <Filter>Modules\Ghosts</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleGhost_Inky.h">
+      <Filter>Modules\Ghosts</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleGhost_Pinky.h">
+      <Filter>Modules\Ghosts</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleGhost_Sue.h">
+      <Filter>Modules\Ghosts</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleEnemies.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -101,6 +125,27 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleCollision.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleAudio.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleGhost.cpp">
+      <Filter>Modules\Ghosts</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleGhost_Blinky.cpp">
+      <Filter>Modules\Ghosts</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleGhost_Inky.cpp">
+      <Filter>Modules\Ghosts</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleGhost_Pinky.cpp">
+      <Filter>Modules\Ghosts</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleGhost_Sue.cpp">
+      <Filter>Modules\Ghosts</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleEnemies.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
