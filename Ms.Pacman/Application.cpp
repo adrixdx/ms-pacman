@@ -22,11 +22,11 @@ Application::Application()
 	modules[3] = textures = new ModuleTextures();
 	modules[4] = level_one = new ModuleLevelOne();
 	modules[5] = start = new ModuleStartScreen();
-	modules[6] = player = new ModulePlayer();
+	modules[10] = player = new ModulePlayer();
 	modules[7] = fade = new ModuleFadeToBlack();
 	modules[8] = particles = new ModuleParticles();
 	modules[9] = collision = new ModuleCollision();
-	modules[10] = audio = new ModuleAudio();
+	modules[6] = audio = new ModuleAudio();
 	modules[11] = enemies = new ModuleEnemies();
 }	
 

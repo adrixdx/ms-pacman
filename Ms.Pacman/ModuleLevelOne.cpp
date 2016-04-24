@@ -10,6 +10,7 @@
 #include "ModuleStartScreen.h"
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
+#include "ModuleEnemies.h"
 
 // Reference at https://youtu.be/6OlenbCC4WI?t=382
 
@@ -34,34 +35,15 @@ bool ModuleLevelOne::Start()
  {
 	LOG("Loading background assets");
 	bool ret = true;
+
 	graphics1 = App->textures->Load("Maze1.png");
 
 	graphics2 = App->textures->Load("puntos.png");
 
 	fx = App->audio->LoadFx("starting.wav");
-	
-	App->player->Enable();
-	
 
-	return ret;
-}
-
-// Load assets
-bool ModuleLevelOne::CleanUp()
-{
-	LOG("Unloading honda stage");
-	App->player->Disable();
-	App->audio->UnLoadFx(fx);
-
-	return true;
-}
-
-// Update: draw background
-update_status ModuleLevelOne::Update()
-{
-	App->render->Blit(graphics1, 0, 0, &ground);
-
-	int map[35][28] = { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	int map[35][28] = 
+{   { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -101,21 +83,42 @@ update_status ModuleLevelOne::Update()
 	for (int i = 0; i < 28; i++){
 		for (int n = 0; n < 35; n++){
 			if (map[n][i] == 1){
-				App->particles->AddParticle(App->particles->pellet, i * 16 + 3, n*16 + 3, COLLIDER_PELLET, 0);
-				//App->render->Blit(graphics2, i*16+3, n*16 + 3, &pellet);
+				App->particles->AddParticle(App->particles->pellet, i * 16 + 3, n * 16 + 3, COLLIDER_PELLET, 0);
+				
 			}
-			if (map[n][i] == 2){
-				App->render->Blit(graphics2, i * 16 -1, n * 16 -1, &powerpellet);
-			}
+			
 		}
 	}
 
 
-	
-	App->particles->AddParticle(App->particles->powerpellet, 15 , 78, COLLIDER_POWERPELLET, 0);
+
+	App->particles->AddParticle(App->particles->powerpellet, 15, 78, COLLIDER_POWERPELLET, 0);
 	App->particles->AddParticle(App->particles->powerpellet, 15, 479, COLLIDER_POWERPELLET, 0);
 	App->particles->AddParticle(App->particles->powerpellet, 415, 78, COLLIDER_POWERPELLET, 0);
 	App->particles->AddParticle(App->particles->powerpellet, 415, 479, COLLIDER_POWERPELLET, 0);
+	
+	App->player->Enable();
+	App->enemies->Enable();
+
+	return ret;
+}
+
+// Load assets
+bool ModuleLevelOne::CleanUp()
+{
+	LOG("Unloading honda stage");
+	App->player->Disable();
+	App->enemies->Disable();
+	App->audio->UnLoadFx(fx);
+
+	return true;
+}
+
+// Update: draw background
+update_status ModuleLevelOne::Update()
+{
+	App->render->Blit(graphics1, 0, 0, &ground);
+
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE]){
 

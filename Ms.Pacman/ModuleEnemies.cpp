@@ -14,11 +14,11 @@
 
 
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
+
 
 ModuleEnemies::ModuleEnemies()
 {
-
+	
 	
 	//int direction;
 	//direction = rand()%4;
@@ -67,7 +67,7 @@ bool ModuleEnemies::Start()
 	graphics = App->textures->Load("characters.png"); // arcade version
 	
 
-	col = App->collision->AddCollider({ position.x, position.y, 16, 16 }, COLLIDER_PLAYER, this);
+	col = App->collision->AddCollider({ position.x, position.y, 32, 32 }, COLLIDER_ENEMY, this);
 	return ret;
 }
 bool ModuleEnemies::CleanUp()

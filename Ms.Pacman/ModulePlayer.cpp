@@ -158,11 +158,10 @@ col->SetPos(position.x, position.y);
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	bool colision = false;
+	
 	if (c1 == col && destroyed == false )
 	{
-		colision = true;
-
-		//destroyed = true;
+		
+		
 	}
 }

@@ -8,6 +8,7 @@
 #include "SDL/include/SDL.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleLevelOne.h"
+#include "ModuleEnemies.h"
 
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
@@ -66,6 +67,7 @@ bool ModuleStartScreen::Start()
 	graphics = App->textures->Load("game/start.png");
 
 	App->player->Disable();
+	App->enemies->Disable();
 	return true;
 }
 

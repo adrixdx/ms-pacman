@@ -4,7 +4,7 @@
 //#include "ModuleAudio.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
-//#include "ModuleCollision.h"
+#include "ModuleCollision.h"
 #include "ModuleParticles.h"
 
 #include "SDL/include/SDL_timer.h"
@@ -13,16 +13,7 @@ ModuleParticles::ModuleParticles()
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 		active[i] = nullptr;
-	/*
-	explosion.anim.PushBack({ 274, 296, 33, 30 });
-	explosion.anim.PushBack({ 313, 296, 33, 30 });
-	explosion.anim.PushBack({ 346, 296, 33, 30 });
-	explosion.anim.PushBack({ 382, 296, 33, 30 });
-	explosion.anim.PushBack({ 419, 296, 33, 30 });
-	explosion.anim.PushBack({ 457, 296, 33, 30 });
-	explosion.anim.loop = false;
-	explosion.anim.speed = 0.3f;
-	*/
+
 
 	powerpellet.anim.PushBack({22,62,20,20});
 	powerpellet.anim.PushBack({ 22, 42, 20, 20 });
@@ -31,10 +22,6 @@ ModuleParticles::ModuleParticles()
 	pellet.anim.PushBack({ 12, 46, 8, 8 });
 	pellet.anim.speed = 0.0f;
 
-		/*
-	laser.anim.speed = 0.2f;
-	laser.speed.x = 5;
-	laser.life = 3000;*/
 }
 
 ModuleParticles::~ModuleParticles()
@@ -127,9 +114,9 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{
-			/*//AddParticle(explosion, active[i]->position.x, active[i]->position.y);
+			//AddParticle(explosion, active[i]->position.x, active[i]->position.y);
 			delete active[i];
-			active[i] = nullptr;*/
+			active[i] = nullptr;
 			break;
 		}
 	}
