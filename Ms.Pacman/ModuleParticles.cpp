@@ -6,6 +6,7 @@
 #include "ModuleRender.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
+#include "ModuleLevelOne.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -117,6 +118,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 			//AddParticle(explosion, active[i]->position.x, active[i]->position.y);
 			delete active[i];
 			active[i] = nullptr;
+			App->level_one->pellets--;
 			break;
 		}
 	}

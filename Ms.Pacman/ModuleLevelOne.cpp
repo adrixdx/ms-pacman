@@ -33,6 +33,11 @@ ModuleLevelOne::~ModuleLevelOne()
 // Load assets
 bool ModuleLevelOne::Start()
  {
+	
+	 App->player->position.x = 208;
+
+	 App->player->position.y = 408;
+
 	LOG("Loading background assets");
 	bool ret = true;
 
@@ -125,11 +130,18 @@ bool ModuleLevelOne::CleanUp()
 update_status ModuleLevelOne::Update()
 {
 	App->render->Blit(graphics1, 0, 0, &ground);
-
+	
+ 	/*if (pellets == 0){
+		App->fade->FadeToBlack(App->level_one, App->start, 1);
+	}*/
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE]){
-
-		App->fade->FadeToBlack(App->level_one,App->start,1);
+		
+		for (int i = 0; i < MAX_ACTIVE_PARTICLES; i++){
+			delete App->particles->active[i];
+			App->particles->active[i] = nullptr;
+		}
+		App->fade->FadeToBlack(App->level_one, App->start, 1);
 		
 	}
 

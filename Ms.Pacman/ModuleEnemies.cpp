@@ -61,13 +61,13 @@ bool ModuleEnemies::Start()
 {
 
 	position.x = 208;
-	position.y = 200;
+	position.y = 102;
 	LOG("Loading player textures");
 	bool ret = true;
 	graphics = App->textures->Load("characters.png"); // arcade version
 	
 
-	col = App->collision->AddCollider({ position.x, position.y, 32, 32 }, COLLIDER_ENEMY, this);
+	col = App->collision->AddCollider({ position.x + 8, position.y + 8, 16, 16 }, COLLIDER_ENEMY, this);
 	return ret;
 }
 bool ModuleEnemies::CleanUp()
@@ -87,50 +87,142 @@ update_status ModuleEnemies::Update()
 
 	srand(time(NULL));
 
-	float speed = 2.5;
+	float speed = 3;
 	int direction = rand()%4;
 
 
 	if (direction == 0){
 		current_animation = &right;
-		position.x += speed;
+		//position.x += speed;
 
 	}
 	
 	if (direction == 1){
 		current_animation = &left;
-		position.x -= speed;
+		//position.x -= speed;
 	}
 
 
 	if (direction == 2){
 		current_animation = &up;
-		position.y -= speed;
+		//position.y -= speed;
 	}
 
 	if (direction == 3){
 		current_animation = &down;
-		position.y += speed;
+		//position.y += speed;
 	}
 
 	//Position max
 
-	if (position.y >= 536){
-		position.y = 536;
+	static int position_x = position.x;
+	static int position_y = position.y;
+
+	int tilepos_x = ((position_x + 16) / 16) * 16;
+	int tilepos_y = ((position_y + 16) / 16) * 16;
+
+	int map[36][28] =
+	{
+		{ 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 },//1
+		{ 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 },//2
+		{ 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 },//3
+		{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },//4
+		{ 2, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2 },//5
+		{ 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2 },//6
+		{ 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2 },//7
+		{ 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 }, //8
+		{ 2, 2, 2, 1, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2 },//9
+		{ 2, 0, 2, 1, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 0, 2 },//10
+		{ 2, 2, 2, 1, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2 },//11
+		{ 2, 0, 0, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 2 },//12
+		{ 2, 2, 2, 1, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 2, 2 },//13
+		{ 0, 0, 2, 1, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 0, 2 },//14
+		{ 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2 },//15
+		{ 0, 0, 2, 1, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 0, 2 },//16
+		{ 0, 0, 2, 1, 2, 2, 2, 2, 2, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 2, 2, 2, 2, 2, 0, 2, 0, 2 },//17
+		{ 0, 0, 2, 1, 2, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 2, 0, 2, 0, 2 },//18
+		{ 0, 0, 2, 1, 2, 2, 0, 2, 2, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 2, 2, 0, 2, 2, 0, 2, 2, 2 },//19
+		{ 2, 2, 2, 1, 2, 2, 0, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 0, 2, 2, 2 },//20
+		{ 0, 0, 0, 1, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0 },//21
+		{ 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2 },//22
+		{ 0, 0, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 0, 2 },//23
+		{ 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2 },//24
+		{ 0, 0, 2, 1, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 0, 2 },//25
+		{ 2, 2, 2, 1, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 2, 2 },//26
+		{ 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 },//27
+		{ 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2 },//28
+		{ 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2 },//29
+		{ 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2 },//30
+		{ 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2 },//31
+		{ 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2 },//32
+		{ 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 },//33
+		{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },//34
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },//35
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },//36
+	};
+
+	
+	if (direction == 0 && map[tilepos_y / 16][(tilepos_x / 16)] != 2){
+
+		position_x = position_x + speed;
+		position.x = position_x + 8;
+		position.y = (position_y / 16) * 16 + 8;
 	}
-	if (position.y <= 89){
-		position.y = 89;
+	if (direction == 1 && map[tilepos_y / 16][(tilepos_x / 16)] != 2){
+
+		position_x = position_x - speed;
+		position.x = position_x - 8;
+		position.y = (position_y / 16) * 16 + 8;
+
 	}
-	if (position.x <= 9){
-		position.x = 9;
+	if (direction == 2 && map[tilepos_y / 16][(tilepos_x / 16)] != 2){
+
+		position_y = position_y - speed;
+		position.y = position_y - 8;
+		position.x = (position_x / 16) * 16 + 8;
 	}
-	if (position.x >= 409){
-		position.x = 409;
+	if (direction == 3 && map[tilepos_y / 16][(tilepos_x / 16)] != 2){
+
+		position_y = position_y + speed;
+		position.y = position_y + 8;
+		position.x = (position_x / 16) * 16 + 8;
 	}
+
+
+	if (direction == 0 && map[tilepos_y / 16][(tilepos_x / 16) + 1] == 2){
+
+		position_x = position_x - speed;
+		position.x = (position_x / 16) * 16 + 8;
+
+	}
+
+
+	if (direction == 1 && map[tilepos_y / 16][(tilepos_x / 16) - 1] == 2){
+
+		position_x = position_x + speed;
+		position.x = (position_x / 16) * 16 + 8;
+	}
+
+
+	if (direction == 2 && map[(tilepos_y / 16) - 1][(tilepos_x / 16)] == 2){
+
+		position_y = position_y + speed;
+		position.y = (position_y / 16) * 16 + 8;
+
+
+	}
+
+	if (direction == 3 && map[(tilepos_y / 16) + 1][(tilepos_x / 16)] == 2){
+		position_y = position_y - speed;
+		position.y = (position_y / 16) * 16 + 8;
+
+	}
+
+
 
 	// Collider--------------
 
-	col->SetPos(position.x, position.y);
+	col->SetPos(tilepos_x, tilepos_y);
 	if (destroyed == false)
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 

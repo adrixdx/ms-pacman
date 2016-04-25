@@ -33,8 +33,8 @@ struct Collider
 	{}
 
 	void SetPos(int x, int y)
-	{
-		rect.x = x;
+  	{
+ 		rect.x = x;
 		rect.y = y;
 	}
 
