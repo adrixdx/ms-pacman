@@ -29,6 +29,7 @@ public:
 	Animation down;
 	iPoint position;
 	Collider* col;
+	Collider* col2;
 	bool destroyed = false;
 
 };
