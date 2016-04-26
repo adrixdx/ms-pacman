@@ -69,7 +69,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ModuleEnemies.h" />
+    <ClInclude Include="ModuleBlinky.h" />
     <ClInclude Include="ModuleGhost.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
@@ -94,7 +94,7 @@
     <ClInclude Include="ModuleGhost_Sue.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ModuleEnemies.cpp" />
+    <ClCompile Include="ModuleBlinky.cpp" />
     <ClCompile Include="ModuleGhost.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="ModuleGhost_Blinky.cpp" />

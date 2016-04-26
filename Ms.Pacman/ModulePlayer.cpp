@@ -8,6 +8,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModulePlayer.h"
 #include "ModuleLevelOne.h"
+#include "ModuleBlinky.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -53,7 +54,9 @@ ModulePlayer::~ModulePlayer()
 // Load assets
 bool ModulePlayer::Start()
 {
-	int map[36][28] = {};
+	position.x = 208;
+
+	position.y = 408;
 	
 	LOG("Loading player textures");
 	bool ret = true;
@@ -80,10 +83,10 @@ update_status ModulePlayer::Update()
 {
 	Animation* current_animation = &idle;
 	bool colision = false;
-	float speed = 3;
+	float speed = 2;
 	static int direction = -1;
-	static int position_x = position.x;
-	static int position_y = position.y;
+	int position_x = position.x;
+	int position_y = position.y;
 	static int dir[2] = { -1, -1 };
 	static int i = 0;
 
@@ -150,91 +153,50 @@ update_status ModulePlayer::Update()
 	col->SetPos(tilepos_x, tilepos_y);
 
 	
- 	int map[36][28] = 
-	{
-		{ 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 },//1
-		{ 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 },//2
-		{ 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 },//3
-		{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },//4
-		{ 2, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2 },//5
-		{ 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2 },//6
-		{ 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2 },//7
-		{ 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 }, //8
-		{ 2, 2, 2, 1, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2 },//9
-		{ 2, 0, 2, 1, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 0, 2 },//10
-		{ 2, 2, 2, 1, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2 },//11
-		{ 2, 0, 0, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 2 },//12
-		{ 2, 2, 2, 1, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 2, 2 },//13
-		{ 0, 0, 2, 1, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 0, 2 },//14
-		{ 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2 },//15
-		{ 0, 0, 2, 1, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 0, 2 },//16
-		{ 0, 0, 2, 1, 2, 2, 2, 2, 2, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 2, 2, 2, 2, 2, 0, 2, 0, 2 },//17
-		{ 0, 0, 2, 1, 2, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 2, 0, 2, 0, 2 },//18
-		{ 0, 0, 2, 1, 2, 2, 0, 2, 2, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 2, 2, 0, 2, 2, 0, 2, 2, 2 },//19
-		{ 2, 2, 2, 1, 2, 2, 0, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 0, 2, 2, 2 },//20
-		{ 0, 0, 0, 1, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0 },//21
-		{ 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2 },//22
-		{ 0, 0, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 0, 2 },//23
-		{ 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2 },//24
-		{ 0, 0, 2, 1, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 0, 2 },//25
-		{ 2, 2, 2, 1, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 2, 2 },//26
-		{ 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 },//27
-		{ 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2 },//28
-		{ 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2 },//29
-		{ 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2 },//30
-		{ 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2 },//31
-		{ 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2 },//32
-		{ 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 },//33
-		{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },//34
-		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },//35
-		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },//36
-		
-	};
-
-
-	if (dir[(i - 1) % 2] == 0 && map[tilepos_y / 16][(tilepos_x / 16)] != 2){
+	if (dir[(i - 1) % 2] == 0 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] != 2){
 
 		position_x = position_x + speed;
-		position.x = position_x + 8;
+		position.x = position_x;
 		position.y = (position_y / 16) * 16 + 8;
 	}
-	if (dir[(i - 1) % 2] == 1 && map[tilepos_y / 16][(tilepos_x / 16)] != 2){
+	if (dir[(i - 1) % 2] == 1 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] != 2){
 
 		position_x = position_x - speed;
-		position.x = position_x - 8;
+		position.x = position_x;
 		position.y = (position_y / 16) * 16 + 8;
 
 	}
-	if (dir[(i - 1) % 2] == 2 && map[tilepos_y / 16][(tilepos_x / 16)] != 2){
+	if (dir[(i - 1) % 2] == 2 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] != 2){
 
 		position_y = position_y - speed;
-		position.y = position_y - 8;
+		position.y = position_y;
 		position.x = (position_x / 16) * 16 + 8;
 	}
-	if (dir[(i - 1) % 2] == 3 && map[tilepos_y / 16][(tilepos_x / 16)] != 2){
+	if (dir[(i - 1) % 2] == 3 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] != 2){
 
 		position_y = position_y + speed;
-		position.y = position_y + 8;
+		position.y = position_y;
 		position.x = (position_x / 16) * 16 + 8;
 	}
 
 
-	if (dir[(i - 1) % 2] == 0 && map[tilepos_y / 16][(tilepos_x / 16) + 1] == 2){
+	if (dir[(i - 1) % 2] == 0 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16) + 1] == 2){
 
 		position_x = position_x - speed;
-		position.x = (position_x / 16) * 16 + 8;
+		position.x = (position_x / 16) * 16 +8;
+		
 		
 	}
 
 
-	if (dir[(i - 1) % 2] == 1 && map[tilepos_y / 16][(tilepos_x / 16) - 1] == 2){
+	if (dir[(i - 1) % 2] == 1 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16) - 1] == 2){
 
 		position_x = position_x + speed;
 		position.x = (position_x / 16) * 16 + 8;
 	}
 			
 	
-	if (dir[(i - 1) % 2] == 2 && map[(tilepos_y / 16) - 1][(tilepos_x / 16)] == 2){
+	if (dir[(i - 1) % 2] == 2 && App->level_one->map[(tilepos_y / 16) - 1][(tilepos_x / 16)] == 2){
 
 			position_y = position_y + speed;
 			position.y = (position_y / 16) * 16 + 8;
@@ -242,7 +204,7 @@ update_status ModulePlayer::Update()
 			
 		}
 
-	if (dir[(i - 1) % 2] == 3 && map[(tilepos_y / 16) + 1][(tilepos_x / 16)] == 2){
+	if (dir[(i - 1) % 2] == 3 && App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] == 2){
 		position_y = position_y - speed;
 		position.y = (position_y / 16) * 16 + 8;
 				
@@ -268,7 +230,17 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	
 	if (c1 == col && destroyed == false )
 	{
-		
+		if (c2->type == COLLIDER_ENEMY ){
+			if (power == false){
+				destroyed = true;
+			}
+			else { App->enemies->position.x = 208;
+			App->enemies->position.y = 408;
+			}
+		}
+		if (c2->type == COLLIDER_POWERPELLET){
+			power = true;
+		}
 		
 	}
 }

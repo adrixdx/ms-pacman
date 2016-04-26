@@ -29,7 +29,8 @@ public:
 	SDL_Rect background;
 	Animation water;
 	uint fx=0;
-	int pellets = 5;
+	static int map[36][28];
+	int pellets = 228;
 };
 
 #endif // __MODULESCENEHONDA_H__

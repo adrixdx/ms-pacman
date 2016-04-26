@@ -31,6 +31,7 @@ public:
 	Collider* col;
 	Collider* col2;
 	bool destroyed = false;
+	bool power = false;
 
 };
 

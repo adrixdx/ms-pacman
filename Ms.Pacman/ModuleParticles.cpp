@@ -118,7 +118,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 			//AddParticle(explosion, active[i]->position.x, active[i]->position.y);
 			delete active[i];
 			active[i] = nullptr;
-			App->level_one->pellets--;
+			App->level_one->pellets -= 1 ;
 			break;
 		}
 	}

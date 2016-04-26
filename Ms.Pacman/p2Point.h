@@ -13,7 +13,7 @@ class p2Point
 {
 public:
 
-	int x, y;
+	float x, y;
 
 	p2Point()
 	{}

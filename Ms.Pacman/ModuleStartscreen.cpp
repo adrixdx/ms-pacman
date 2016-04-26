@@ -8,7 +8,7 @@
 #include "SDL/include/SDL.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleLevelOne.h"
-#include "ModuleEnemies.h"
+#include "ModuleBlinky.h"
 
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA

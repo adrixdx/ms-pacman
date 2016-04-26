@@ -10,44 +10,10 @@
 #include "ModuleStartScreen.h"
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
-#include "ModuleEnemies.h"
+#include "ModuleBlinky.h"
 
 // Reference at https://youtu.be/6OlenbCC4WI?t=382
-
-ModuleLevelOne::ModuleLevelOne()
-{
-	// ground
-	ground = {0, 0, 448, 576};
-
-	//pellet
-	pellet = { 12, 46, 8, 8 };
-
-	//powerpellet
-	powerpellet = { 22, 42, 20, 20 };
-
-}
-
-ModuleLevelOne::~ModuleLevelOne()
-{}
-
-// Load assets
-bool ModuleLevelOne::Start()
- {
-	
-	 App->player->position.x = 208;
-
-	 App->player->position.y = 408;
-
-	LOG("Loading background assets");
-	bool ret = true;
-
-	graphics1 = App->textures->Load("Maze1.png");
-
-	graphics2 = App->textures->Load("puntos.png");
-
-	fx = App->audio->LoadFx("starting.wav");
-
-	int map[36][28] = {
+int ModuleLevelOne::map[36][28] = {
 
 	{ 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 },//1
 	{ 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 },//2
@@ -89,7 +55,40 @@ bool ModuleLevelOne::Start()
 
 
 
-	}; 
+};
+
+ModuleLevelOne::ModuleLevelOne()
+{
+	// ground
+	ground = {0, 0, 448, 576};
+
+	//pellet
+	pellet = { 12, 46, 8, 8 };
+
+	//powerpellet
+	powerpellet = { 22, 42, 20, 20 };
+
+}
+
+ModuleLevelOne::~ModuleLevelOne()
+{}
+
+// Load assets
+bool ModuleLevelOne::Start()
+ {
+	
+	 App->player->position.x = 208;
+
+	 App->player->position.y = 408;
+
+	LOG("Loading background assets");
+	bool ret = true;
+
+	graphics1 = App->textures->Load("Maze1.png");
+
+	graphics2 = App->textures->Load("puntos.png");
+
+	fx = App->audio->LoadFx("starting.wav");
 
 
 	for (int i = 0; i < 28; i++){
@@ -131,9 +130,15 @@ update_status ModuleLevelOne::Update()
 {
 	App->render->Blit(graphics1, 0, 0, &ground);
 	
- 	/*if (pellets == 0){
-		App->fade->FadeToBlack(App->level_one, App->start, 1);
-	}*/
+ 	if (pellets == 0 || App->player->destroyed == true){
+		App->level_one->Disable();
+		App->start->Enable();
+		//App->fade->FadeToBlack(App->level_one, App->start, 1);
+		for (int i = 0; i < MAX_ACTIVE_PARTICLES; i++){
+			delete App->particles->active[i];
+			App->particles->active[i] = nullptr;
+		}
+	}
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE]){
 		

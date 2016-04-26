@@ -83,7 +83,7 @@
     <ClInclude Include="ModuleGhost_Sue.h">
       <Filter>Modules\Ghosts</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleEnemies.h">
+    <ClInclude Include="ModuleBlinky.h">
       <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
@@ -145,7 +145,7 @@
     <ClCompile Include="ModuleGhost_Sue.cpp">
       <Filter>Modules\Ghosts</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleEnemies.cpp">
+    <ClCompile Include="ModuleBlinky.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
