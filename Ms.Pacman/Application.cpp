@@ -12,8 +12,15 @@
 #include "ModuleGhost.h"
 #include "ModuleEnemies.h"
 #include "ModuleBlinky.h"
+#include "ModuleSue.h"
+#include "ModulePinky.h"
+#include "ModuleInky.h"
 #include "ModuleGameOver.h"
+
+#include "ModuleReady.h"
+
 #include "ModuleWin.h"
+
 
 
 
@@ -32,8 +39,13 @@ Application::Application()
 	modules[6] = audio = new ModuleAudio();
 	modules[11] = enemies = new ModuleEnemies();
 	modules[12] = blinky = new ModuleBlinky();
-	modules[13] = gameover = new ModuleGameOver();
-	modules[14] = win = new ModuleWin();
+	modules[13] = inky = new ModuleInky();
+	modules[14] = sue = new ModuleSue();
+	modules[15] = pinky = new ModulePinky();
+	modules[16] = gameover = new ModuleGameOver();
+	modules[17] = ready = new ModuleReady();	
+	modules[18] = win = new ModuleWin();
+
 
 }	
 

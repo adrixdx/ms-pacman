@@ -10,31 +10,54 @@ ModuleCollision::ModuleCollision()
 
 	matrix[COLLIDER_WALL][COLLIDER_WALL] = false;
 	matrix[COLLIDER_WALL][COLLIDER_PLAYER] = true;
-	matrix[COLLIDER_WALL][COLLIDER_ENEMY] = false;
 	matrix[COLLIDER_WALL][COLLIDER_PELLET] = false;
 	matrix[COLLIDER_WALL][COLLIDER_POWERPELLET] = false;
 
 	matrix[COLLIDER_PLAYER][COLLIDER_WALL] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_PLAYER] = false;
-	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_PINKY] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_PELLET] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_POWERPELLET] = true;
 
-	matrix[COLLIDER_ENEMY][COLLIDER_WALL] = false;
-	matrix[COLLIDER_ENEMY][COLLIDER_PLAYER] = true;
-	matrix[COLLIDER_ENEMY][COLLIDER_ENEMY] = false;
-	matrix[COLLIDER_ENEMY][COLLIDER_PELLET] = false;
-	matrix[COLLIDER_ENEMY][COLLIDER_POWERPELLET] = false;
+	matrix[COLLIDER_PINKY][COLLIDER_WALL] = false;
+	matrix[COLLIDER_PINKY][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_PINKY][COLLIDER_PINKY] = false;
+	matrix[COLLIDER_PINKY][COLLIDER_PELLET] = false;
+	matrix[COLLIDER_PINKY][COLLIDER_POWERPELLET] = false;
 
+	matrix[COLLIDER_INKY][COLLIDER_WALL] = false;
+	matrix[COLLIDER_INKY][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_INKY][COLLIDER_INKY] = false;
+	matrix[COLLIDER_INKY][COLLIDER_PELLET] = false;
+	matrix[COLLIDER_INKY][COLLIDER_POWERPELLET] = false;
+
+	matrix[COLLIDER_BLINKY][COLLIDER_WALL] = false;
+	matrix[COLLIDER_BLINKY][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_BLINKY][COLLIDER_BLINKY] = false;
+	matrix[COLLIDER_BLINKY][COLLIDER_PELLET] = false;
+	matrix[COLLIDER_BLINKY][COLLIDER_POWERPELLET] = false;
+
+	matrix[COLLIDER_SUE][COLLIDER_WALL] = false;
+	matrix[COLLIDER_SUE][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_SUE][COLLIDER_SUE] = false;
+	matrix[COLLIDER_SUE][COLLIDER_PELLET] = false;
+	matrix[COLLIDER_SUE][COLLIDER_POWERPELLET] = false;
+	
 	matrix[COLLIDER_PELLET][COLLIDER_WALL] = false;
 	matrix[COLLIDER_PELLET][COLLIDER_PLAYER] = true;
-	matrix[COLLIDER_PELLET][COLLIDER_ENEMY] = false;
+	matrix[COLLIDER_PELLET][COLLIDER_PINKY] = false;
+	matrix[COLLIDER_PELLET][COLLIDER_INKY] = false;
+	matrix[COLLIDER_PELLET][COLLIDER_BLINKY] = false;
+	matrix[COLLIDER_PELLET][COLLIDER_SUE] = false;
 	matrix[COLLIDER_PELLET][COLLIDER_PELLET] = false;
 	matrix[COLLIDER_PELLET][COLLIDER_POWERPELLET] = false;
 
 	matrix[COLLIDER_POWERPELLET][COLLIDER_WALL] = false;
 	matrix[COLLIDER_POWERPELLET][COLLIDER_PLAYER] = true;
-	matrix[COLLIDER_POWERPELLET][COLLIDER_ENEMY] = false;
+	matrix[COLLIDER_POWERPELLET][COLLIDER_PINKY] = false;
+	matrix[COLLIDER_POWERPELLET][COLLIDER_INKY] = false;
+	matrix[COLLIDER_POWERPELLET][COLLIDER_SUE] = false;
+	matrix[COLLIDER_POWERPELLET][COLLIDER_BLINKY] = false;
 	matrix[COLLIDER_POWERPELLET][COLLIDER_PELLET] = false;
 	matrix[COLLIDER_POWERPELLET][COLLIDER_POWERPELLET] = false;
 }
@@ -122,7 +145,16 @@ void ModuleCollision::DebugDraw()
 		case COLLIDER_PLAYER: // green
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
 			break;
-		case COLLIDER_ENEMY: // red
+		case COLLIDER_PINKY: // red
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+			break;
+		case COLLIDER_BLINKY: // red
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+			break;
+		case COLLIDER_INKY: // red
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+			break;
+		case COLLIDER_SUE: // red
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;
 		case COLLIDER_PELLET: // yellow

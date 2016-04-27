@@ -10,6 +10,9 @@
 #include "ModuleLevelOne.h"
 #include "ModuleEnemies.h"
 #include "ModuleBlinky.h"
+#include "ModuleSue.h"
+#include "ModulePinky.h"
+#include "ModuleInky.h"
 
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
@@ -250,12 +253,39 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	
 	if (c1 == col && destroyed == false )
 	{
-		if (c2->type == COLLIDER_ENEMY ){
+		if (c2->type == COLLIDER_BLINKY ){
 			if (power == false){
 				destroyed = true;
 			}
 			else { App->blinky->position.x = 208;
 			App->blinky->position.y = 408;
+			}
+		}
+		if (c2->type == COLLIDER_INKY){
+			if (power == false){
+				destroyed = true;
+			}
+			else {
+				App->inky->position.x = 208;
+				App->inky->position.y = 408;
+			}
+		}
+		if (c2->type == COLLIDER_PINKY){
+			if (power == false){
+				destroyed = true;
+			}
+			else {
+				App->pinky->position.x = 208;
+				App->pinky->position.y = 408;
+			}
+		}
+		if (c2->type == COLLIDER_SUE){
+			if (power == false){
+				destroyed = true;
+			}
+			else {
+				App->sue->position.x = 208;
+				App->sue->position.y = 408;
 			}
 		}
 		if (c2->type == COLLIDER_POWERPELLET){

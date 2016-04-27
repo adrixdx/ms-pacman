@@ -32,7 +32,7 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	graphics = App->textures->Load("puntos.png");
+	graphics = App->textures->Load("game/puntos.png");
 
 	// Load particles fx particle
 	//explosion.fx = App->audio->LoadFx("rtype/explosion.wav");

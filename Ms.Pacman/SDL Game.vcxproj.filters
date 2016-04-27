@@ -26,9 +26,6 @@
     <ClInclude Include="MemLeaks.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Globals.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Application.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -68,29 +65,29 @@
     <ClInclude Include="ModuleAudio.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleGhost.h">
-      <Filter>Modules\Ghosts</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleGhost_Blinky.h">
-      <Filter>Modules\Ghosts</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleGhost_Inky.h">
-      <Filter>Modules\Ghosts</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleGhost_Pinky.h">
-      <Filter>Modules\Ghosts</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleGhost_Sue.h">
-      <Filter>Modules\Ghosts</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleEnemies.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleBlinky.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModuleGameOver.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleReady.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleBlinky.h">
+      <Filter>Modules\Ghosts</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleInky.h">
+      <Filter>Modules\Ghosts</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePinky.h">
+      <Filter>Modules\Ghosts</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSue.h">
+      <Filter>Modules\Ghosts</Filter>
     </ClInclude>
     <ClInclude Include="ModuleWin.h">
       <Filter>Modules</Filter>
@@ -139,29 +136,26 @@
     <ClCompile Include="ModuleAudio.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleGhost.cpp">
-      <Filter>Modules\Ghosts</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleGhost_Blinky.cpp">
-      <Filter>Modules\Ghosts</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleGhost_Inky.cpp">
-      <Filter>Modules\Ghosts</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleGhost_Pinky.cpp">
-      <Filter>Modules\Ghosts</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleGhost_Sue.cpp">
-      <Filter>Modules\Ghosts</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleEnemies.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleBlinky.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleGameOver.cpp">
       <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleReady.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleBlinky.cpp">
+      <Filter>Modules\Ghosts</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleInky.cpp">
+      <Filter>Modules\Ghosts</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePinky.cpp">
+      <Filter>Modules\Ghosts</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSue.cpp">
+      <Filter>Modules\Ghosts</Filter>
     </ClCompile>
     <ClCompile Include="ModuleWin.cpp">
       <Filter>Modules</Filter>

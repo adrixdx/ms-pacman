@@ -10,8 +10,12 @@
 #include "ModuleLevelOne.h"
 #include "ModuleEnemies.h"
 #include "ModuleBlinky.h"
+#include "ModuleSue.h"
+#include "ModulePinky.h"
+#include "ModuleInky.h"
 #include "ModuleAudio.h"
 #include "ModuleGameOver.h"
+#include "ModuleReady.h"
 
 
 
@@ -91,12 +95,22 @@ ModuleStartScreen::~ModuleStartScreen()
 bool ModuleStartScreen::Start()
  {
 
-	graphics = App->textures->Load("start.png");
-	App->audio->PlayMusic("game-start.ogg", 1.0f);
+	LOG("Loading ken scene");
+	
+	graphics = App->textures->Load("game/start.png");
+	App->audio->PlayMusic("nothing.ogg", 1.0f);
+
 
 	App->player->Disable();
+
 	App->blinky->Disable();
+	App->sue->Disable();
+	App->pinky->Disable();
+	App->inky->Disable();
+
 	App->gameover->Disable();
+	App->level_one->Disable();
+	App->ready->Disable();
 	return true;
 }
 
@@ -124,7 +138,7 @@ update_status ModuleStartScreen::Update()
 	//FADE TO BLACK
 	if (App->input->keyboard[SDL_SCANCODE_SPACE]){
 
-		App->fade->FadeToBlack(App->start, App->level_one, 1);
+		App->fade->FadeToBlack(App->start, App->ready, 1);
 
 	}
 

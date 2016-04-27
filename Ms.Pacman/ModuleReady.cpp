@@ -11,54 +11,52 @@
 #include "ModuleEnemies.h"
 #include "ModuleBlinky.h"
 #include "ModuleAudio.h"
-#include "ModuleGameOver.h"
-#include "ModuleWin.h"
+#include "ModuleReady.h"
 
 
 
-ModuleGameOver::ModuleGameOver()
+ModuleReady::ModuleReady()
 {
 	ground = { 0, 0, 448, 576 };
 
 }
 
-ModuleGameOver::~ModuleGameOver()
+ModuleReady::~ModuleReady()
 {}
 
 // Load assets
-bool ModuleGameOver::Start()
+bool ModuleReady::Start()
 {
+	time = SDL_GetTicks();
+	graphics = App->textures->Load("game/P1Ready.png");
+	App->audio->PlayMusic("game-start.ogg", 1.0f);
 
-	graphics = App->textures->Load("game/GameOver.png");
-	App->audio->PlayMusic("nothing.ogg", 1.0f);
-
-	
-	App->audio->Disable();
 	App->player->Disable();
 	App->blinky->Disable();
 	return true;
 }
 
 // UnLoad assets
-bool ModuleGameOver::CleanUp()
+bool ModuleReady::CleanUp()
 {
 	LOG("Unloading gameover scene");
 	App->audio->Disable();
-	
-	
 	return true;
 }
 
 // Update: draw background
-update_status ModuleGameOver::Update()
+update_status ModuleReady::Update()
 {
 	App->render->Blit(graphics, 0, 0, &ground);
 
 
 	//FADE TO BLACK
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN){
+	//if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN){
+	if (SDL_GetTicks() - time > 3500){
 
-		App->fade->FadeToBlack(this, App->start, 1);
+		App->ready->Disable();
+		App->level_one->Enable();
+		//App->fade->FadeToBlack(this, App->level_one, 1);
 
 	}
 

@@ -11,7 +11,7 @@
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModuleEnemies.h"
-#include "ModuleBlinky.h"
+#include "ModulePinky.h"
 #include <stdlib.h>
 #include<time.h>
 
@@ -19,74 +19,74 @@
 
 
 
-ModuleBlinky::ModuleBlinky()
+ModulePinky::ModulePinky()
 {
 
-	
+
 	//int direction;
 	//direction = rand()%4;
 	// idle animation (arcade sprite sheet)
 
-	
+
 }
 
-ModuleBlinky::~ModuleBlinky()
+ModulePinky::~ModulePinky()
 {}
 
 // Load assets
-bool ModuleBlinky::Start()
+bool ModulePinky::Start()
 {
 	turn = true;
-	
+
 	srand(time(NULL));
 	direction = rand() % 4;
 
 
-		// Right
-		right.PushBack({ 192, 64, 32, 32 });
-		right.PushBack({ 224, 64, 32, 32 });
+	// Right
+	right.PushBack({ 192, 96, 32, 32 });
+	right.PushBack({ 224, 96, 32, 32 });
 
-		right.speed = 0.1f;
+	right.speed = 0.1f;
 
-		// Left
-		left.PushBack({ 128, 64, 32, 32 });
-		left.PushBack({ 160, 64, 32, 32 });
-
-
-		left.speed = 0.1f;
-
-		// Up
-		up.PushBack({ 0, 64, 32, 32 });
-		up.PushBack({ 32, 64, 32, 32 });
-
-		up.speed = 0.1f;
-
-		//Down
-		down.PushBack({ 64, 64, 32, 32 });
-		down.PushBack({ 96, 64, 32, 32 });
-
-		down.speed = 0.1f;
-	
+	// Left
+	left.PushBack({ 128, 96, 32, 32 });
+	left.PushBack({ 160, 96, 32, 32 });
 
 
-		scared.PushBack({ 128, 32, 32, 32 });
-		scared.PushBack({ 160, 32, 32, 32 });
+	left.speed = 0.1f;
+
+	// Up
+	up.PushBack({ 0, 96, 32, 32 });
+	up.PushBack({ 32, 96, 32, 32 });
+
+	up.speed = 0.1f;
+
+	//Down
+	down.PushBack({ 64, 96, 32, 32 });
+	down.PushBack({ 96, 96, 32, 32 });
+
+	down.speed = 0.1f;
 
 
-		scared.speed = 0.1f;
 
-		scared2.PushBack({ 192, 32, 32, 32 });
-		scared2.PushBack({ 128, 32, 32, 32 });
-		scared2.PushBack({ 224, 32, 32, 32 });
-		scared2.PushBack({ 160, 32, 32, 32 });
+	scared.PushBack({ 128, 32, 32, 32 });
+	scared.PushBack({ 160, 32, 32, 32 });
 
 
-		scared2.speed = 0.1f;
+	scared.speed = 0.1f;
+
+	scared2.PushBack({ 192, 32, 32, 32 });
+	scared2.PushBack({ 128, 32, 32, 32 });
+	scared2.PushBack({ 224, 32, 32, 32 });
+	scared2.PushBack({ 160, 32, 32, 32 });
 
 
-	
+	scared2.speed = 0.1f;
 
-	
+
+
+
+
 
 	position.x = 208;
 	position.y = 250;
@@ -95,10 +95,10 @@ bool ModuleBlinky::Start()
 	graphics = App->textures->Load("characters.png"); // arcade version
 
 
-	col = App->collision->AddCollider({ position.x + 8, position.y + 8, 16, 16 }, COLLIDER_BLINKY, this);
+	col = App->collision->AddCollider({ position.x + 8, position.y + 8, 16, 16 }, COLLIDER_PINKY, this);
 	return ret;
 }
-bool ModuleBlinky::CleanUp()
+bool ModulePinky::CleanUp()
 {
 	LOG("Unloading player");
 
@@ -109,7 +109,7 @@ bool ModuleBlinky::CleanUp()
 }
 
 // Update: draw background
-update_status ModuleBlinky::Update()
+update_status ModulePinky::Update()
 {
 	Animation* current_animation = &idle;
 	int position_x = position.x;
@@ -117,9 +117,9 @@ update_status ModuleBlinky::Update()
 
 	int tilepos_x = ((position_x + 16) / 16) * 16;
 	int tilepos_y = ((position_y + 16) / 16) * 16;
-	
 
-	
+
+
 	float speed = 2;
 	if (turn == true){
 		if (direction == 0 && (App->level_one->map[(tilepos_y / 16) - 1][(tilepos_x / 16)] != 2 || App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] != 2)){
@@ -131,12 +131,12 @@ update_status ModuleBlinky::Update()
 			direction = rand() % 4;
 			turn = false;
 		}
-		else if (direction == 2 && (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) - 1] != 2 || App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) + 1] != 2 )){
+		else if (direction == 2 && (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) - 1] != 2 || App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) + 1] != 2)){
 			direction = rand() % 4;
 			turn = false;
 		}
 
-		else if (direction == 3 && (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) - 1] != 2 || App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) + 1] != 2 )){
+		else if (direction == 3 && (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) - 1] != 2 || App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) + 1] != 2)){
 			direction = rand() % 4;
 			turn = false;
 		}
@@ -160,42 +160,42 @@ update_status ModuleBlinky::Update()
 		}
 	}
 
-		if (App->player->power == true){
-			if (SDL_GetTicks() - App->player->time > 2000 && SDL_GetTicks() - App->player->time < 4000){
-				current_animation = &scared2;
-			}
-			else
-				current_animation = &scared;
+	if (App->player->power == true){
+		if (SDL_GetTicks() - App->player->time > 2000 && SDL_GetTicks() - App->player->time < 4000){
+			current_animation = &scared2;
 		}
-		else{
+		else
+			current_animation = &scared;
+	}
+	else{
 
-			if (direction == 0){
-				current_animation = &right;
-				//position.x += speed;
-
-			}
-
-			if (direction == 1){
-				current_animation = &left;
-				//position.x -= speed;
-			}
-
-
-			if (direction == 2){
-				current_animation = &up;
-				//position.y -= speed;
-			}
-
-			if (direction == 3){
-				current_animation = &down;
-				//position.y += speed;
-			}
+		if (direction == 0){
+			current_animation = &right;
+			//position.x += speed;
 
 		}
 
-	
+		if (direction == 1){
+			current_animation = &left;
+			//position.x -= speed;
+		}
 
-	
+
+		if (direction == 2){
+			current_animation = &up;
+			//position.y -= speed;
+		}
+
+		if (direction == 3){
+			current_animation = &down;
+			//position.y += speed;
+		}
+
+	}
+
+
+
+
 
 
 	if (direction == 0 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] != 2){
@@ -260,10 +260,10 @@ update_status ModuleBlinky::Update()
 
 	col->SetPos(tilepos_x, tilepos_y);
 
-	
+
 	if (destroyed == false)
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
-	
+
 
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
@@ -280,7 +280,7 @@ update_status ModuleBlinky::Update()
 }
 
 
-void ModuleBlinky::OnCollision(Collider* c1, Collider* c2)
+void ModulePinky::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1 == col && destroyed == false)
 	{
