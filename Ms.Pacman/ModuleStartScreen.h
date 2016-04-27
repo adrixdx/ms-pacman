@@ -25,6 +25,11 @@ public:
 	Animation square;
 	Animation gname;
 	Animation blinky;
+	Animation inky;
+	Animation pinky;
+	Animation sue;
+	Animation mspacman;
+
 
 	float foreground_pos;
 	bool forward;

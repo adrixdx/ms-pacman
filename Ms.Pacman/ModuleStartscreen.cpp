@@ -50,11 +50,37 @@ ModuleStartScreen::ModuleStartScreen()
 	gname.PushBack({ 1745, 224, 241, 108, });
 	gname.PushBack({ 1746, 322, 226, 93, });
 	gname.PushBack({ 1960, 16, 216, 98, });
+	gname.PushBack({ 1960, 16, 216, 98, });
+	gname.PushBack({ 1960, 16, 216, 98, });
 	
 	gname.speed = 0.004f;
 
-	//ghosts
-	blinky.PushBack({ 1742, 16, 216, 98, });
+	//ghosts blinky
+	blinky.PushBack({ 2015, 219, 31, 30, });
+	blinky.PushBack({ 2050, 219, 31, 30, });
+	blinky.speed = 0.15f;
+
+	//ghosts inky
+	inky.PushBack({ 2015, 254, 31, 30, });
+	inky.PushBack({ 2050, 254, 31, 30, });
+	inky.speed = 0.15f;
+
+	//ghosts pinky
+	pinky.PushBack({ 2015, 288, 31, 30, });
+	pinky.PushBack({ 2050, 288, 31, 30, });
+	pinky.speed = 0.15f;
+
+	//ghosts sue
+	sue.PushBack({ 2015, 323, 31, 30, });
+	sue.PushBack({ 2050, 323, 31, 30, });
+	sue.speed = 0.15f;
+
+	// Ms. Pac-Man
+	mspacman.PushBack({ 2012, 182, 37, 35, });
+	mspacman.PushBack({ 2048, 181, 37, 35, });
+	mspacman.PushBack({ 2083, 181, 37, 35, });
+	mspacman.PushBack({ 2048, 181, 37, 35, });
+	mspacman.speed = 0.2f;
 
 }
 
@@ -64,8 +90,7 @@ ModuleStartScreen::~ModuleStartScreen()
 // Load assets
 bool ModuleStartScreen::Start()
  {
-	LOG("Loading ken scene");
-	
+
 	graphics = App->textures->Load("game/start.png");
 	App->audio->PlayMusic("game-start.ogg", 1.0f);
 
@@ -78,7 +103,6 @@ bool ModuleStartScreen::Start()
 // UnLoad assets
 bool ModuleStartScreen::CleanUp()
 {
-	LOG("Unloading ken scene");
 	App->audio->Disable();
 	return true;
 }
@@ -90,6 +114,12 @@ update_status ModuleStartScreen::Update()
 	App->render->Blit(graphics, 0, -20, &ground);
 	App->render->Blit(graphics, 90, 167, &(square.GetCurrentFrame()), 0.75f); // square animation
 	App->render->Blit(graphics, 110, 190, &(gname.GetCurrentFrame()), 0.75f); // ghost name animation
+
+	App->render->Blit(graphics, 55, 170, &(blinky.GetCurrentFrame()), 0.75f); // blinky
+	App->render->Blit(graphics, 55, 208, &(inky.GetCurrentFrame()), 0.75f); // inky
+	App->render->Blit(graphics, 55, 240, &(pinky.GetCurrentFrame()), 0.75f); // pinky
+	App->render->Blit(graphics, 55, 275, &(sue.GetCurrentFrame()), 0.75f); // sue
+	App->render->Blit(graphics, 210, 325, &(mspacman.GetCurrentFrame()), 0.75f); // mspacman
 
 	//FADE TO BLACK
 	if (App->input->keyboard[SDL_SCANCODE_SPACE]){
