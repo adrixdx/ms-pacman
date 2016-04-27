@@ -1,15 +1,18 @@
 
 MS. PAC-MAN
 
+
 NEMESIS STUDIOS
 
-Management: Alícia Díaz Github user: aliciadr
 
-Art/Design: Irene Carvajal. Github user: IreneCarvajal
+  Management: Alícia Díaz Github user: aliciadr
+  
+  Art/Design: Irene Carvajal. Github user: IreneCarvajal
 
-Code:Miquel Izquierdo. Github user: mizquierdo97
+  Code:Miquel Izquierdo. Github user: mizquierdo97
 
-QA: Adrian Higuero. Github user: adrixdx
+  QA: Adrian Higuero. Github user: adrixdx
+
 
 
 
@@ -54,3 +57,5 @@ Release 0.5
 -Ms. Pac-Man can't move out of camera limits
 
 -Added tunnels
+
+-Added all Ghosts
