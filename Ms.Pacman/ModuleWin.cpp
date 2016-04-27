@@ -30,10 +30,12 @@ ModuleWin::~ModuleWin()
 bool ModuleWin::Start()
 {
 	graphics = App->textures->Load("WinMaze1.png");
-
+	App->audio->PlayMusic("nothing.ogg", 1.0f);
 
 	App->player->Disable();
 	App->blinky->Disable();
+	
+
 	return true;
 }
 
