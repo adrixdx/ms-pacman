@@ -12,8 +12,9 @@
 #include "ModuleAudio.h"
 #include "ModuleEnemies.h"
 #include "ModuleBlinky.h"
+#include "ModuleGameOver.h"
 
-// Reference at https://youtu.be/6OlenbCC4WI?t=382
+
 int ModuleLevelOne::map[36][28] = {
 
 	{ 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 },//1
@@ -82,6 +83,8 @@ bool ModuleLevelOne::Start()
 	 pellets = 228;
 	 App->player->position.y = 408;
 
+	 App->audio->PlayMusic("effect.ogg",1.0f);
+
 	LOG("Loading background assets");
 	bool ret = true;
 
@@ -122,7 +125,7 @@ bool ModuleLevelOne::CleanUp()
 	LOG("Unloading honda stage");
 	App->player->Disable();
 	App->enemies->Disable();
-	App->audio->UnLoadFx(fx);
+	App->audio->Disable();
 
 	return true;
 }
@@ -134,7 +137,7 @@ update_status ModuleLevelOne::Update()
 	
  	if (pellets == 0 || App->player->destroyed == true){
 		App->level_one->Disable();
-		App->start->Enable();
+		App->gameover->Enable();
 		//App->fade->FadeToBlack(App->level_one, App->start, 1);
 		for (int i = 0; i < MAX_ACTIVE_PARTICLES; i++){
 			delete App->particles->active[i];

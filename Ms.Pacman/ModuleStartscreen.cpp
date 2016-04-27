@@ -10,7 +10,8 @@
 #include "ModuleLevelOne.h"
 #include "ModuleEnemies.h"
 #include "ModuleBlinky.h"
-
+#include "ModuleAudio.h"
+#include "ModuleGameOver.h"
 
 
 
@@ -66,9 +67,11 @@ bool ModuleStartScreen::Start()
 	LOG("Loading ken scene");
 	
 	graphics = App->textures->Load("game/start.png");
+	App->audio->PlayMusic("game-start.ogg", 1.0f);
 
 	App->player->Disable();
 	App->blinky->Disable();
+	App->gameover->Disable();
 	return true;
 }
 
@@ -76,6 +79,7 @@ bool ModuleStartScreen::Start()
 bool ModuleStartScreen::CleanUp()
 {
 	LOG("Unloading ken scene");
+	App->audio->Disable();
 	return true;
 }
 

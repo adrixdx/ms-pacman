@@ -71,6 +71,7 @@
   <ItemGroup>
     <ClInclude Include="ModuleBlinky.h" />
     <ClInclude Include="ModuleEnemies.h" />
+    <ClInclude Include="ModuleGameOver.h" />
     <ClInclude Include="ModuleGhost.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
@@ -97,6 +98,7 @@
   <ItemGroup>
     <ClCompile Include="ModuleBlinky.cpp" />
     <ClCompile Include="ModuleEnemies.cpp" />
+    <ClCompile Include="ModuleGameOver.cpp" />
     <ClCompile Include="ModuleGhost.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="ModuleGhost_Blinky.cpp" />
