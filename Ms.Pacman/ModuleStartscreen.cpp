@@ -66,7 +66,7 @@ bool ModuleStartScreen::Start()
  {
 	LOG("Loading ken scene");
 	
-	graphics = App->textures->Load("game/start.png");
+	graphics = App->textures->Load("start.png");
 	App->audio->PlayMusic("game-start.ogg", 1.0f);
 
 	App->player->Disable();

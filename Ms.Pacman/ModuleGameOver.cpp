@@ -27,7 +27,7 @@ ModuleGameOver::~ModuleGameOver()
 // Load assets
 bool ModuleGameOver::Start()
 {
-	graphics = App->textures->Load("game/GameOver.png");
+	graphics = App->textures->Load("GameOver.png");
 	
 
 	App->player->Disable();
