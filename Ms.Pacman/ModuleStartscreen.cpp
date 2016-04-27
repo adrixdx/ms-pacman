@@ -12,7 +12,6 @@
 #include "ModuleBlinky.h"
 #include "ModuleAudio.h"
 #include "ModuleGameOver.h"
-#include "ModuleReady.h"
 
 
 
@@ -67,13 +66,12 @@ bool ModuleStartScreen::Start()
  {
 	LOG("Loading ken scene");
 	
-	graphics = App->textures->Load("New/start.png");
+	graphics = App->textures->Load("game/start.png");
 	App->audio->PlayMusic("game-start.ogg", 1.0f);
 
 	App->player->Disable();
 	App->blinky->Disable();
 	App->gameover->Disable();
-	App->ready->Disable();
 	return true;
 }
 
@@ -96,7 +94,7 @@ update_status ModuleStartScreen::Update()
 	//FADE TO BLACK
 	if (App->input->keyboard[SDL_SCANCODE_SPACE]){
 
-		App->fade->FadeToBlack(App->start, App->ready, 1);
+		App->fade->FadeToBlack(App->start, App->level_one, 1);
 
 	}
 

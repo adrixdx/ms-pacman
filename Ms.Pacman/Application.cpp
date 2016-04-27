@@ -13,7 +13,6 @@
 #include "ModuleEnemies.h"
 #include "ModuleBlinky.h"
 #include "ModuleGameOver.h"
-#include "ModuleReady.h"
 
 
 
@@ -33,7 +32,6 @@ Application::Application()
 	modules[11] = enemies = new ModuleEnemies();
 	modules[12] = blinky = new ModuleBlinky();
 	modules[13] = gameover = new ModuleGameOver();
-	modules[14] = ready = new ModuleReady();
 
 }	
 
