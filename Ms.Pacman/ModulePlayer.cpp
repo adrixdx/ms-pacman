@@ -217,6 +217,14 @@ update_status ModulePlayer::Update()
 		position.x = (position_x / 16) * 16 + 8;
 				
 				}
+	if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -1 )
+	{
+		position.x = 0;
+	}
+	if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -2 )
+	{
+		position.x = 410;
+	}
 
 		//col->SetPos(position.x + 8, position.y + 8);
 		if (destroyed == false)
