@@ -19,10 +19,6 @@ ModuleGameOver::ModuleGameOver()
 {
 	ground = { 0, 0, 448, 576 };
 
-	
-
-	
-
 }
 
 ModuleGameOver::~ModuleGameOver()
@@ -31,8 +27,6 @@ ModuleGameOver::~ModuleGameOver()
 // Load assets
 bool ModuleGameOver::Start()
 {
-	LOG("Loading ken scene");
-
 	graphics = App->textures->Load("game/GameOver.png");
 	
 
@@ -53,15 +47,12 @@ bool ModuleGameOver::CleanUp()
 update_status ModuleGameOver::Update()
 {
 	App->render->Blit(graphics, 0, 0, &ground);
-	//Animations
-	
-	App->render->Blit(graphics, 90, 167, &(square.GetCurrentFrame()), 0.75f); // square animation
-	App->render->Blit(graphics, 110, 190, &(gname.GetCurrentFrame()), 0.75f); // ghost name animation
+
 
 	//FADE TO BLACK
-	if (App->input->keyboard[SDL_SCANCODE_SPACE]){
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN){
 
-		App->fade->FadeToBlack(App->start, App->gameover, 1);
+		App->fade->FadeToBlack(this, App->start, 1);
 
 	}
 
