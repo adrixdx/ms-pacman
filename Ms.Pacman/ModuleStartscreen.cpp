@@ -8,10 +8,11 @@
 #include "SDL/include/SDL.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleLevelOne.h"
+#include "ModuleEnemies.h"
 #include "ModuleBlinky.h"
 
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
+
 
 ModuleStartScreen::ModuleStartScreen()
 {
@@ -67,7 +68,7 @@ bool ModuleStartScreen::Start()
 	graphics = App->textures->Load("game/start.png");
 
 	App->player->Disable();
-	App->enemies->Disable();
+	App->blinky->Disable();
 	return true;
 }
 

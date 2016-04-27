@@ -83,6 +83,9 @@
     <ClInclude Include="ModuleGhost_Sue.h">
       <Filter>Modules\Ghosts</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleEnemies.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
     <ClInclude Include="ModuleBlinky.h">
       <Filter>Modules</Filter>
     </ClInclude>
@@ -144,6 +147,9 @@
     </ClCompile>
     <ClCompile Include="ModuleGhost_Sue.cpp">
       <Filter>Modules\Ghosts</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleEnemies.cpp">
+      <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleBlinky.cpp">
       <Filter>Modules</Filter>

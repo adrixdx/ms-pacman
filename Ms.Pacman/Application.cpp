@@ -10,6 +10,7 @@
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModuleGhost.h"
+#include "ModuleEnemies.h"
 #include "ModuleBlinky.h"
 
 
@@ -28,6 +29,8 @@ Application::Application()
 	modules[9] = collision = new ModuleCollision();
 	modules[6] = audio = new ModuleAudio();
 	modules[11] = enemies = new ModuleEnemies();
+	modules[12] = blinky = new ModuleBlinky();
+
 }	
 
 Application::~Application()

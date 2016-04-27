@@ -8,7 +8,9 @@
 #include "ModuleFadeToBlack.h"
 #include "ModulePlayer.h"
 #include "ModuleLevelOne.h"
+#include "ModuleEnemies.h"
 #include "ModuleBlinky.h"
+
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -54,6 +56,8 @@ ModulePlayer::~ModulePlayer()
 // Load assets
 bool ModulePlayer::Start()
 {
+	unsigned int time = SDL_GetTicks();
+	destroyed = false;
 	position.x = 208;
 
 	position.y = 408;
@@ -89,7 +93,7 @@ update_status ModulePlayer::Update()
 	int position_y = position.y;
 	static int dir[2] = { -1, -1 };
 	static int i = 0;
-
+	App->input;
 
 
 	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
@@ -153,26 +157,26 @@ update_status ModulePlayer::Update()
 	col->SetPos(tilepos_x, tilepos_y);
 
 	
-	if (dir[(i - 1) % 2] == 0 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] != 2){
+	if (dir[(i - 1) % 2] == 0 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] < 2){
 
 		position_x = position_x + speed;
 		position.x = position_x;
 		position.y = (position_y / 16) * 16 + 8;
 	}
-	if (dir[(i - 1) % 2] == 1 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] != 2){
+	if (dir[(i - 1) % 2] == 1 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] < 2){
 
 		position_x = position_x - speed;
 		position.x = position_x;
 		position.y = (position_y / 16) * 16 + 8;
 
 	}
-	if (dir[(i - 1) % 2] == 2 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] != 2){
+	if (dir[(i - 1) % 2] == 2 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] < 2){
 
 		position_y = position_y - speed;
 		position.y = position_y;
 		position.x = (position_x / 16) * 16 + 8;
 	}
-	if (dir[(i - 1) % 2] == 3 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] != 2){
+	if (dir[(i - 1) % 2] == 3 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] < 2){
 
 		position_y = position_y + speed;
 		position.y = position_y;
@@ -180,7 +184,7 @@ update_status ModulePlayer::Update()
 	}
 
 
-	if (dir[(i - 1) % 2] == 0 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16) + 1] == 2){
+	if (dir[(i - 1) % 2] == 0 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16) + 1] >= 2){
 
 		position_x = position_x - speed;
 		position.x = (position_x / 16) * 16 +8;
@@ -190,7 +194,7 @@ update_status ModulePlayer::Update()
 	}
 
 
-	if (dir[(i - 1) % 2] == 1 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16) - 1] == 2){
+	if (dir[(i - 1) % 2] == 1 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16) - 1] >= 2){
 
 		position_x = position_x + speed;
 		position.x = (position_x / 16) * 16 + 8;
@@ -198,7 +202,7 @@ update_status ModulePlayer::Update()
 	}
 			
 	
-	if (dir[(i - 1) % 2] == 2 && App->level_one->map[(tilepos_y / 16) - 1][(tilepos_x / 16)] == 2){
+	if (dir[(i - 1) % 2] == 2 && App->level_one->map[(tilepos_y / 16) - 1][(tilepos_x / 16)] >= 2){
 
 			position_y = position_y + speed;
 			position.y = (position_y / 16) * 16 + 8;
@@ -207,7 +211,7 @@ update_status ModulePlayer::Update()
 			
 		}
 
-	if (dir[(i - 1) % 2] == 3 && App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] == 2){
+	if (dir[(i - 1) % 2] == 3 && App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] >= 2){
 		position_y = position_y - speed;
 		position.y = (position_y / 16) * 16 + 8;
 		position.x = (position_x / 16) * 16 + 8;
@@ -224,6 +228,10 @@ update_status ModulePlayer::Update()
 
 		//App->render->Blit(graphics, position.x, position.y - r.h, &r);
 
+		if (SDL_GetTicks() - time > 4000){
+			power = false;
+		}
+
 		return UPDATE_CONTINUE;
 	}
 
@@ -238,12 +246,14 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			if (power == false){
 				destroyed = true;
 			}
-			else { App->enemies->position.x = 208;
-			App->enemies->position.y = 408;
+			else { App->blinky->position.x = 208;
+			App->blinky->position.y = 408;
 			}
 		}
 		if (c2->type == COLLIDER_POWERPELLET){
+			time = SDL_GetTicks();
 			power = true;
+			
 		}
 		
 	}

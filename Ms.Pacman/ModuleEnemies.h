@@ -1,5 +1,5 @@
-#ifndef __ModulePlayer_H__
-#define __ModulePlayer_H__
+#ifndef __ModuleEnemies_H__
+#define __ModuleEnemies_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -8,11 +8,11 @@
 
 struct SDL_Texture;
 
-class ModulePlayer : public Module
+class ModuleEnemies : public Module
 {
 public:
-	ModulePlayer();
-	~ModulePlayer();
+	ModuleEnemies();
+	~ModuleEnemies();
 
 	bool Start();
 	update_status Update();
@@ -29,10 +29,7 @@ public:
 	Animation down;
 	iPoint position;
 	Collider* col;
-	Collider* col2;
 	bool destroyed = false;
-	bool power = false;
-	unsigned int time = 0;
 
 };
 

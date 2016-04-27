@@ -10,6 +10,7 @@
 #include "ModuleStartScreen.h"
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
+#include "ModuleEnemies.h"
 #include "ModuleBlinky.h"
 
 // Reference at https://youtu.be/6OlenbCC4WI?t=382
@@ -30,10 +31,10 @@ int ModuleLevelOne::map[36][28] = {
 	{ 2, 2, 2, 1, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 1, 2, 2, 2 },//13
 	{ 0, 0, 2, 1, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 1, 2, 0, 2 },//14
 	{ 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 2 },//15
-	{ 0, 0, 2, 1, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 1, 2, 0, 2 },//16
-	{ 0, 0, 2, 1, 2, 2, 2, 2, 2, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 2, 2, 2, 2, 2, 1, 2, 0, 2 },//17
-	{ 0, 0, 2, 1, 2, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 2, 1, 2, 0, 2 },//178
-	{ 0, 0, 2, 1, 2, 2, 0, 2, 2, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 2, 2, 0, 2, 2, 1, 2, 2, 2 },//19
+	{ 0, 0, 2, 1, 2, 2, 2, 2, 2, 0, 2, 2, 2, 3, 3, 2, 2, 2, 0, 2, 2, 2, 2, 2, 1, 2, 0, 2 },//16
+	{ 0, 0, 2, 1, 2, 2, 2, 2, 2, 0, 2, 2, 2, 3, 3, 2, 2, 2, 0, 2, 2, 2, 2, 2, 1, 2, 0, 2 },//17
+	{ 0, 0, 2, 1, 2, 2, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 2, 2, 1, 2, 0, 2 },//178
+	{ 0, 0, 2, 1, 2, 2, 0, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 1, 2, 2, 2 },//19
 	{ 2, 2, 2, 1, 2, 2, 0, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 1, 2, 2, 2 },//20
 	{ 0, 0, 0, 1, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 1, 0, 0, 0 },//21º
 	{ 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2 },//22
@@ -76,7 +77,7 @@ ModuleLevelOne::~ModuleLevelOne()
 // Load assets
 bool ModuleLevelOne::Start()
  {
-	
+	App->player->power == false;
 	 App->player->position.x = 208;
 	 pellets = 228;
 	 App->player->position.y = 408;
@@ -89,7 +90,7 @@ bool ModuleLevelOne::Start()
 	graphics2 = App->textures->Load("puntos.png");
 
 	fx = App->audio->LoadFx("starting.wav");
-
+	pellets= 228;
 
 	for (int i = 0; i < 28; i++){
 		for (int n = 0; n < 35; n++){
@@ -109,7 +110,8 @@ bool ModuleLevelOne::Start()
 	App->particles->AddParticle(App->particles->powerpellet, 415, 479, COLLIDER_POWERPELLET, 0);
 	
 	App->player->Enable();
-	App->enemies->Enable();
+	App->blinky->Enable();
+	
 
 	return ret;
 }

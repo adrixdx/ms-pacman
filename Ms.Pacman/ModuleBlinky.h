@@ -1,23 +1,29 @@
-#ifndef __ModuleEnemies_H__
-#define __ModuleEnemies_H__
+#ifndef __ModuleBlinky__
+#define __ModuleBlinky__
 
 #include "Module.h"
 #include "Animation.h"
 #include "Globals.h"
 #include "p2Point.h"
+#include "ModuleEnemies.h"
+
 
 struct SDL_Texture;
 
-class ModuleEnemies : public Module
+class ModuleBlinky : public Module
 {
+private:
+	bool enabled = true;
 public:
-	ModuleEnemies();
-	~ModuleEnemies();
+ModuleBlinky();
+	~ModuleBlinky();
 
 	bool Start();
 	update_status Update();
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
+
+
 
 public:
 
@@ -27,9 +33,13 @@ public:
 	Animation left;
 	Animation up;
 	Animation down;
+	Animation scared;
+	Animation scared2;
 	iPoint position;
 	Collider* col;
+	bool turn;
 	bool destroyed = false;
+	int direction;
 
 };
 
