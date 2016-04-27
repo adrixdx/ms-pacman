@@ -42,14 +42,11 @@ update_status ModuleFadeToBlack::Update()
 			if(now >= total_time)
 			{
 				
-				if (App->start->IsEnabled()){
-					App->start->Disable();
-					App->level_one->Enable();
+				if (App->fade->module1->IsEnabled()){
+					App->fade->module1->Disable();
+					App->fade->module2->Enable();
 					}
-				else {
-					App->level_one->Disable();
-					App->start->Enable();
-				}
+			
 
 				// ---
 				total_time += total_time;
@@ -78,6 +75,9 @@ update_status ModuleFadeToBlack::Update()
 bool ModuleFadeToBlack::FadeToBlack(Module* module_off, Module* module_on, float time)
 {
 	bool ret = false;
+
+	module1 = module_off;
+	module2 = module_on;
 
 	if(current_step == fade_step::none)
 	{

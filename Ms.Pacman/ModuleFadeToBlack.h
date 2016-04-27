@@ -25,6 +25,10 @@ private:
 
 	Uint32 start_time = 0;
 	Uint32 total_time = 0;
+
+	Module* module1 = nullptr;
+	Module*  module2 = nullptr;
+
 	SDL_Rect screen;
 };
 
