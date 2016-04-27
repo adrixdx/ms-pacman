@@ -184,6 +184,7 @@ update_status ModulePlayer::Update()
 
 		position_x = position_x - speed;
 		position.x = (position_x / 16) * 16 +8;
+		position.y = (position_y / 16) * 16 + 8;
 		
 		
 	}
@@ -193,6 +194,7 @@ update_status ModulePlayer::Update()
 
 		position_x = position_x + speed;
 		position.x = (position_x / 16) * 16 + 8;
+		position.y = (position_y / 16) * 16 + 8;
 	}
 			
 	
@@ -200,6 +202,7 @@ update_status ModulePlayer::Update()
 
 			position_y = position_y + speed;
 			position.y = (position_y / 16) * 16 + 8;
+			position.x = (position_x / 16) * 16 + 8;
 			
 			
 		}
@@ -207,6 +210,7 @@ update_status ModulePlayer::Update()
 	if (dir[(i - 1) % 2] == 3 && App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] == 2){
 		position_y = position_y - speed;
 		position.y = (position_y / 16) * 16 + 8;
+		position.x = (position_x / 16) * 16 + 8;
 				
 				}
 
