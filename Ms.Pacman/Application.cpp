@@ -13,6 +13,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleBlinky.h"
 #include "ModuleGameOver.h"
+#include "ModuleWin.h"
 
 
 
@@ -32,6 +33,7 @@ Application::Application()
 	modules[11] = enemies = new ModuleEnemies();
 	modules[12] = blinky = new ModuleBlinky();
 	modules[13] = gameover = new ModuleGameOver();
+	modules[14] = win = new ModuleWin();
 
 }	
 
@@ -49,6 +51,8 @@ bool Application::Init()
 	player->Disable();
 	// Disable the map that you do not start with
 	level_one->Disable();
+	win->Disable();
+	gameover->Disable();
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();

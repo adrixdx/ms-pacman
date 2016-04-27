@@ -16,20 +16,21 @@
 
 
 
-ModuleGameOver::ModuleGameOver()
+
+ModuleWin::ModuleWin()
 {
 	ground = { 0, 0, 448, 576 };
 
 }
 
-ModuleGameOver::~ModuleGameOver()
+ModuleWin::~ModuleWin()
 {}
 
 // Load assets
-bool ModuleGameOver::Start()
+bool ModuleWin::Start()
 {
-	graphics = App->textures->Load("game/GameOver.png");
-	
+	graphics = App->textures->Load("WinMaze1.png");
+
 
 	App->player->Disable();
 	App->blinky->Disable();
@@ -37,15 +38,15 @@ bool ModuleGameOver::Start()
 }
 
 // UnLoad assets
-bool ModuleGameOver::CleanUp()
+bool ModuleWin::CleanUp()
 {
-	LOG("Unloading gameover scene");
+	LOG("Unloading win scene");
 	App->audio->Disable();
 	return true;
 }
 
 // Update: draw background
-update_status ModuleGameOver::Update()
+update_status ModuleWin::Update()
 {
 	App->render->Blit(graphics, 0, 0, &ground);
 

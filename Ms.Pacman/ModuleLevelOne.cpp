@@ -13,6 +13,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleBlinky.h"
 #include "ModuleGameOver.h"
+#include "ModuleWin.h"
 
 
 int ModuleLevelOne::map[36][28] = {
@@ -135,14 +136,19 @@ update_status ModuleLevelOne::Update()
 {
 	App->render->Blit(graphics1, 0, 0, &ground);
 	
- 	if (pellets == 0 || App->player->destroyed == true){
-		App->level_one->Disable();
-		App->gameover->Enable();
-		//App->fade->FadeToBlack(App->level_one, App->start, 1);
+	if (pellets == 0)
+	{
+		App->fade->FadeToBlack(this, App->win, 1);
+	}
+	else if (App->player->destroyed == true){
+
+	
+
 		for (int i = 0; i < MAX_ACTIVE_PARTICLES; i++){
 			delete App->particles->active[i];
 			App->particles->active[i] = nullptr;
 		}
+		App->fade->FadeToBlack(this, App->gameover, 1);
 	}
 	
 	return UPDATE_CONTINUE;

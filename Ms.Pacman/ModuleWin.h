@@ -1,5 +1,5 @@
-#ifndef __MODULEGAMEOVER_H__
-#define __MODULESGAMEOVER_H__
+#ifndef __MODULEWIN_H__
+#define __MODULEWIN_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -7,11 +7,11 @@
 
 struct SDL_Texture;
 
-class ModuleGameOver : public Module
+class ModuleWin : public Module
 {
 public:
-	ModuleGameOver();
-	~ModuleGameOver();
+	ModuleWin();
+	~ModuleWin();
 
 	bool Start();
 	update_status Update();
@@ -26,4 +26,4 @@ public:
 	bool forward;
 };
 
-#endif // __MODULEGAMEOVER_H__
+#endif // __MODULEWIN_H__
