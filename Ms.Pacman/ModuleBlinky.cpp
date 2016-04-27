@@ -89,7 +89,7 @@ bool ModuleBlinky::Start()
 	
 
 	position.x = 208;
-	position.y = 250;
+	position.y = 230;
 	LOG("Loadi ngplayer textures");
 	bool ret = true;
 	graphics = App->textures->Load("characters.png"); // arcade version

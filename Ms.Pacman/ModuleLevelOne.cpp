@@ -87,7 +87,7 @@ bool ModuleLevelOne::Start()
  {
 	App->player->power == false;
 	 App->player->position.x = 208;
-	 pellets = 228;
+	 pellets = 224;
 	 App->player->position.y = 408;
 
 	 App->audio->PlayMusic("effect.ogg",1.0f);
@@ -100,7 +100,7 @@ bool ModuleLevelOne::Start()
 	graphics2 = App->textures->Load("puntos.png");
 
 	fx = App->audio->LoadFx("starting.wav");
-	pellets= 228;
+	
 
 	for (int i = 0; i < 28; i++){
 		for (int n = 0; n < 35; n++){

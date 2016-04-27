@@ -30,7 +30,7 @@ public:
 	Animation water;
 	uint fx=0;
 	static int map[36][28];
-	int pellets = 228;
+	int pellets = 224;
 };
 
 #endif // __MODULESCENEHONDA_H__

@@ -88,7 +88,7 @@ bool ModuleInky::Start()
 
 
 
-	position.x = 208;
+	position.x = 192;
 	position.y = 250;
 	LOG("Loadi ngplayer textures");
 	bool ret = true;
