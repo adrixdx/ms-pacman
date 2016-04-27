@@ -92,6 +92,9 @@
     <ClInclude Include="ModuleGameOver.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleReady.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -158,6 +161,9 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleGameOver.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleReady.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
