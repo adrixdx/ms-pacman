@@ -1,8 +1,8 @@
 
-MS. PAC-MAN
+#MS. PAC-MAN
 
 
-NEMESIS STUDIOS
+##NEMESIS STUDIOS
 
 
   Management: Alícia Díaz Github user: aliciadr
@@ -12,11 +12,32 @@ NEMESIS STUDIOS
   Code:Miquel Izquierdo. Github user: mizquierdo97
 
   QA: Adrian Higuero. Github user: adrixdx
+  
+  
+  
+
+##Game Controls:
+
+  -Direction arrows of keyboard: move Ms- Pac-Man up, down, left or right
+
+  -Press space on start screen or win/game over screens to change the screen to the following one
+
+  -During levels screens can't be changed
+
+  -Press ESC to exit the game
+  
+  
+
+##Game description:
+
+   -Ms. Pac-Man has to eat all the pellets and power pellets in order to win the game, without touching the ghosts inside the maze.
+
+   -The ghosts can be eaten only when a power pellet has been eaten before and for a short period of time.
 
 
+##Releases:
 
-
-Release 0.1
+###Release 0.1
 
 -Added background images (start and level one)
 
@@ -30,7 +51,7 @@ Release 0.1
 
 
 
-Release 0.5
+###Release 0.5
 
 -Added maze collisions
 
