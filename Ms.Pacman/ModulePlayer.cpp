@@ -220,11 +220,11 @@ update_status ModulePlayer::Update()
 		position.x = (position_x / 16) * 16 + 8;
 				
 				}
-	if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -1 )
+	if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -3 )
 	{
 		position.x = 0;
 	}
-	if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -2 )
+	if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -4 )
 	{
 		position.x = 410;
 	}
@@ -243,6 +243,8 @@ update_status ModulePlayer::Update()
 			power = false;
 		}
 
+		
+
 		return UPDATE_CONTINUE;
 	}
 
@@ -254,7 +256,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (c1 == col && destroyed == false )
 	{
 		if (c2->type == COLLIDER_BLINKY ){
-			if (power == false){
+			if (power == false  && god == false){
 				destroyed = true;
 			}
 			else { App->blinky->position.x = 208;
@@ -262,7 +264,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			}
 		}
 		if (c2->type == COLLIDER_INKY){
-			if (power == false){
+			if (power == false && god == false){
 				destroyed = true;
 			}
 			else {
@@ -271,7 +273,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			}
 		}
 		if (c2->type == COLLIDER_PINKY){
-			if (power == false){
+			if (power == false && god == false){
 				destroyed = true;
 			}
 			else {
@@ -280,7 +282,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			}
 		}
 		if (c2->type == COLLIDER_SUE){
-			if (power == false){
+			if (power == false && god == false){
 				destroyed = true;
 			}
 			else {

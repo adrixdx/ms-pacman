@@ -2,6 +2,7 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModuleCollision.h"
+#include "ModulePlayer.h"
 
 ModuleCollision::ModuleCollision()
 {
@@ -127,6 +128,9 @@ void ModuleCollision::DebugDraw()
 {
 	if (App->input->keyboard[SDL_SCANCODE_F1] == KEY_DOWN)
 		debug = !debug;
+
+	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_DOWN)
+		App->player->god = !App->player->god;
 
 	if (debug == false)
 		return;

@@ -32,6 +32,7 @@ public:
 	Collider* col2;
 	bool destroyed = false;
 	bool power = false;
+	bool god = false;
 	unsigned int time = 0;
 
 };

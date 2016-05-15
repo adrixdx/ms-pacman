@@ -14,6 +14,7 @@
 #include "ModuleBlinky.h"
 #include <stdlib.h>
 #include<time.h>
+#include  <math.h>
 
 
 
@@ -39,7 +40,7 @@ bool ModuleBlinky::Start()
 	turn = true;
 	
 	srand(time(NULL));
-	direction = rand() % 4;
+	direction = 1;
 
 
 		// Right
@@ -89,7 +90,7 @@ bool ModuleBlinky::Start()
 	
 
 	position.x = 208;
-	position.y = 230;
+	position.y = 216;
 	LOG("Loadi ngplayer textures");
 	bool ret = true;
 	graphics = App->textures->Load("characters.png"); // arcade version
@@ -118,11 +119,52 @@ update_status ModuleBlinky::Update()
 	int tilepos_x = ((position_x + 16) / 16) * 16;
 	int tilepos_y = ((position_y + 16) / 16) * 16;
 	
+	int d_up = 1000;
+	int d_down = 1000;
+	int d_right = 1000;
+	int d_left = 1000;
+	
+	
 
 	
 	float speed = 2;
 	if (turn == true){
+
+		if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -1 || App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -2){
+			if (App->level_one->map[(tilepos_y/16) -1][(tilepos_x / 16)] != 2){
+				d_up = SDL_sqrt(((tilepos_x)-App->player->position.x)*(tilepos_x - App->player->position.x) + ((tilepos_y - 16) - App->player->position.y)*((tilepos_y - 16) - App->player->position.y));
+			}
+
+			if (App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] != 2){
+				d_down = SDL_sqrt(((tilepos_x)-App->player->position.x)*(tilepos_x - App->player->position.x) + ((tilepos_y + 16) - App->player->position.y)*((tilepos_y + 16) - App->player->position.y));
+			}
+
+			if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)-1] != 2){
+				d_left = SDL_sqrt(((tilepos_x -16)-App->player->position.x)*((tilepos_x-16) - App->player->position.x) + ((tilepos_y ) - App->player->position.y)*((tilepos_y ) - App->player->position.y));
+			}
+
+			if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)+1] != 2){
+				d_right = SDL_sqrt(((tilepos_x +16)-App->player->position.x)*((tilepos_x + 16) - App->player->position.x) + ((tilepos_y ) - App->player->position.y)*((tilepos_y ) - App->player->position.y));
+			}
+
+			if (d_up < d_down && d_up < d_right && d_up < d_left){
+				direction = 2; turn = false;
+			} 
+			else if (d_down < d_up && d_down < d_right && d_down < d_left){
+				direction = 3; turn = false;
+			}
+			else if (d_right < d_down && d_right < d_left && d_right < d_up){
+				direction = 0; turn = false;
+			}
+			else{
+				direction = 1; turn = false;
+			}
+
+		}
+		/*
 		if (direction == 0 && (App->level_one->map[(tilepos_y / 16) - 1][(tilepos_x / 16)] != 2 || App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] != 2)){
+			
+			
 			direction = rand() % 4;
 
 			turn = false;
@@ -157,10 +199,10 @@ update_status ModuleBlinky::Update()
 		else if (direction == 3 && App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] == 2){
 			direction = rand() % 4;
 			turn = true;
-		}
+		}*/
 	}
 
-		if (App->player->power == true){
+		if (App->player->power == true ||App->player->god ==true){
 			if (SDL_GetTicks() - App->player->time > 2000 && SDL_GetTicks() - App->player->time < 4000){
 				current_animation = &scared2;
 			}
@@ -284,10 +326,10 @@ void ModuleBlinky::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1 == col && destroyed == false)
 	{
-		if (c2->type == COLLIDER_PLAYER && App->player->power == true){
+		if (c2->type == COLLIDER_PLAYER && (App->player->power == true || App->player->god ==true)){
 			position.x = 208;
 
-			position.y = 250;
+			position.y = 216;
 
 		}
 
