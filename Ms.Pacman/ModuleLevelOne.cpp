@@ -152,7 +152,7 @@ update_status ModuleLevelOne::Update()
 	App->render->Blit(graphics1, 0, 0, &ground);
 
 	
-	if (pellets == 0)
+	if (pellets == 0 || App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 	{
 		App->fade->FadeToBlack(this, App->win, 1);
 for (int i = 0; i < MAX_ACTIVE_PARTICLES; i++){
