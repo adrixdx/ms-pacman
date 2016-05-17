@@ -51,6 +51,45 @@ ModulePlayer::ModulePlayer()
 	down.PushBack({ 160, 0, 32, 32 });
 	down.speed = 0.15f;
 
+	//God UP
+	g_up.PushBack({ 0, 256, 32, 32 });
+	g_up.PushBack({ 32, 256, 32, 32 });
+	g_up.PushBack({ 64, 256, 32, 32 });
+	g_up.PushBack({ 96, 256, 32, 32 });
+	g_up.PushBack({ 128, 256, 32, 32 });
+	g_up.PushBack({ 160, 256, 32, 32 });
+	g_up.speed = 0.15f;
+
+	//GOD left
+	g_left.PushBack({ 0, 288, 32, 32 });
+	g_left.PushBack({ 32, 288, 32, 32 });
+	g_left.PushBack({ 64, 288, 32, 32 });
+	g_left.PushBack({ 96, 288, 32, 32 });
+	g_left.PushBack({ 128, 288, 32, 32 });
+	g_left.PushBack({ 160, 288, 32, 32 });
+	g_left.speed = 0.15f;
+
+	//GOD down
+
+	g_down.PushBack({ 0, 320, 32, 32 });
+	g_down.PushBack({ 32, 320, 32, 32 });
+	g_down.PushBack({ 64, 320, 32, 32 });
+	g_down.PushBack({ 96, 320, 32, 32 });
+	g_down.PushBack({ 128, 320, 32, 32 });
+	g_down.PushBack({ 160, 320, 32, 32 });
+	g_down.speed = 0.15f;
+
+
+	//GOD right
+
+
+	g_right.PushBack({ 0, 352, 32, 32 });
+	g_right.PushBack({ 32, 352, 32, 32 });
+	g_right.PushBack({ 64, 352, 32, 32 });
+	g_right.PushBack({ 96, 352, 32, 32 });
+	g_right.PushBack({ 128, 352, 32, 32 });
+	g_right.PushBack({ 160, 352, 32, 32 });
+	g_right.speed = 0.15f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -67,7 +106,8 @@ bool ModulePlayer::Start()
 	
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("characters.png"); // arcade version
+	graphics = App->textures->Load("characters.png");
+	// arcade version
 
 
 
@@ -148,6 +188,25 @@ update_status ModulePlayer::Update()
 	if (dir[(i - 1) % 2] == 3){
 		current_animation = &down;
 		//position.y += speed;
+	}
+	if (god == true){
+		if (dir[(i - 1) % 2] == 0){
+			current_animation = &g_right;
+			//position.x += speed;
+
+		}
+		if (dir[(i - 1) % 2] == 1){
+			current_animation = &g_left;
+			//position.x -= speed;
+		}
+		if (dir[(i - 1) % 2] == 2){
+			current_animation = &g_up;
+			//position.y -= speed;
+		}
+		if (dir[(i - 1) % 2] == 3){
+			current_animation = &g_down;
+			//position.y += speed;
+		}
 	}
 
 

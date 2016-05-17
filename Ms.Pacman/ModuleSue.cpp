@@ -160,7 +160,9 @@ update_status ModuleSue::Update()
 		}
 	}
 
-	if (App->player->power == true){
+
+
+	if (App->player->power == true || App->player->god == true){
 		if (SDL_GetTicks() - App->player->time > 2000 && SDL_GetTicks() - App->player->time < 4000){
 			current_animation = &scared2;
 		}
@@ -168,29 +170,38 @@ update_status ModuleSue::Update()
 			current_animation = &scared;
 	}
 	else{
+		if (App->player->power == true){
+			if (SDL_GetTicks() - App->player->time > 2000 && SDL_GetTicks() - App->player->time < 4000){
+				current_animation = &scared2;
+			}
+			else
+				current_animation = &scared;
+		}
+		else{
 
-		if (direction == 0){
-			current_animation = &right;
-			//position.x += speed;
+			if (direction == 0){
+				current_animation = &right;
+				//position.x += speed;
+
+			}
+
+			if (direction == 1){
+				current_animation = &left;
+				//position.x -= speed;
+			}
+
+
+			if (direction == 2){
+				current_animation = &up;
+				//position.y -= speed;
+			}
+
+			if (direction == 3){
+				current_animation = &down;
+				//position.y += speed;
+			}
 
 		}
-
-		if (direction == 1){
-			current_animation = &left;
-			//position.x -= speed;
-		}
-
-
-		if (direction == 2){
-			current_animation = &up;
-			//position.y -= speed;
-		}
-
-		if (direction == 3){
-			current_animation = &down;
-			//position.y += speed;
-		}
-
 	}
 
 

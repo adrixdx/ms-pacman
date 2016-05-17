@@ -39,7 +39,7 @@ bool ModuleBlinky::Start()
 {
 	turn = true;
 	
-	srand(time(NULL));
+	//srand(time(NULL));
 	direction = 1;
 
 
@@ -128,78 +128,93 @@ update_status ModuleBlinky::Update()
 
 	
 	float speed = 2;
-	if (turn == true){
 
-		if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -1 || App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -2){
-			if (App->level_one->map[(tilepos_y/16) -1][(tilepos_x / 16)] != 2){
-				d_up = SDL_sqrt(((tilepos_x)-App->player->position.x)*(tilepos_x - App->player->position.x) + ((tilepos_y - 16) - App->player->position.y)*((tilepos_y - 16) - App->player->position.y));
+	if (SDL_GetTicks() - time <= 700){
+		
+			direction = 2;
+		
+			//if (SDL_GetTicks() - time >= 2000) direction = 1;
+	}
+	else if (SDL_GetTicks() - time <= 810){
+		direction = 1;
+	}
+	else {
+		if (turn == true){
+
+			if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -1 || App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -2){
+				if (App->level_one->map[(tilepos_y / 16) - 1][(tilepos_x / 16)] != 2){
+					d_up = SDL_sqrt(((tilepos_x)-App->player->position.x)*(tilepos_x - App->player->position.x) + ((tilepos_y - 16) - App->player->position.y)*((tilepos_y - 16) - App->player->position.y));
+				}
+
+				if (App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] != 2){
+					d_down = SDL_sqrt(((tilepos_x)-App->player->position.x)*(tilepos_x - App->player->position.x) + ((tilepos_y + 16) - App->player->position.y)*((tilepos_y + 16) - App->player->position.y));
+				}
+
+				if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) - 1] != 2){
+					d_left = SDL_sqrt(((tilepos_x - 16) - App->player->position.x)*((tilepos_x - 16) - App->player->position.x) + ((tilepos_y)-App->player->position.y)*((tilepos_y)-App->player->position.y));
+				}
+
+				if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) + 1] != 2){
+					d_right = SDL_sqrt(((tilepos_x + 16) - App->player->position.x)*((tilepos_x + 16) - App->player->position.x) + ((tilepos_y)-App->player->position.y)*((tilepos_y)-App->player->position.y));
+				}
+
+				if (d_up <= d_down && d_up <= d_right && d_up <= d_left){
+					direction = 2; turn = false;
+				}
+				else if (d_right <= d_down && d_right <= d_left && d_right <= d_up){
+					direction = 0; turn = false;
+				}
+				else if (d_down <= d_up && d_down <= d_right && d_down <= d_left){
+					direction = 3; turn = false;
+				}
+				
+				else{
+					direction = 1; turn = false;
+				}
+
+			}
+			if (App->player->power == true){
+
+				d_up = 0;
+				d_down = 0;
+				d_right = 0;
+				d_left = 0;
+
+				if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -1 || App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -2){
+					if (App->level_one->map[(tilepos_y / 16) - 1][(tilepos_x / 16)] != 2){
+						d_up = SDL_sqrt(((tilepos_x)-App->player->position.x)*(tilepos_x - App->player->position.x) + ((tilepos_y - 16) - App->player->position.y)*((tilepos_y - 16) - App->player->position.y));
+					}
+
+					if (App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] != 2){
+						d_down = SDL_sqrt(((tilepos_x)-App->player->position.x)*(tilepos_x - App->player->position.x) + ((tilepos_y + 16) - App->player->position.y)*((tilepos_y + 16) - App->player->position.y));
+					}
+
+					if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) - 1] != 2){
+						d_left = SDL_sqrt(((tilepos_x - 16) - App->player->position.x)*((tilepos_x - 16) - App->player->position.x) + ((tilepos_y)-App->player->position.y)*((tilepos_y)-App->player->position.y));
+					}
+
+					if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) + 1] != 2){
+						d_right = SDL_sqrt(((tilepos_x + 16) - App->player->position.x)*((tilepos_x + 16) - App->player->position.x) + ((tilepos_y)-App->player->position.y)*((tilepos_y)-App->player->position.y));
+					}
+
+					if (d_up > d_down && d_up > d_right && d_up > d_left){
+						direction = 2; turn = false;
+					}
+					else if (d_down > d_up && d_down > d_right && d_down > d_left){
+						direction = 3; turn = false;
+					}
+					else if (d_right > d_down && d_right > d_left && d_right > d_up){
+						direction = 0; turn = false;
+					}
+					else{
+						direction = 1; turn = false;
+					}
+
+				}
+
 			}
 
-			if (App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] != 2){
-				d_down = SDL_sqrt(((tilepos_x)-App->player->position.x)*(tilepos_x - App->player->position.x) + ((tilepos_y + 16) - App->player->position.y)*((tilepos_y + 16) - App->player->position.y));
-			}
-
-			if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)-1] != 2){
-				d_left = SDL_sqrt(((tilepos_x -16)-App->player->position.x)*((tilepos_x-16) - App->player->position.x) + ((tilepos_y ) - App->player->position.y)*((tilepos_y ) - App->player->position.y));
-			}
-
-			if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)+1] != 2){
-				d_right = SDL_sqrt(((tilepos_x +16)-App->player->position.x)*((tilepos_x + 16) - App->player->position.x) + ((tilepos_y ) - App->player->position.y)*((tilepos_y ) - App->player->position.y));
-			}
-
-			if (d_up < d_down && d_up < d_right && d_up < d_left){
-				direction = 2; turn = false;
-			} 
-			else if (d_down < d_up && d_down < d_right && d_down < d_left){
-				direction = 3; turn = false;
-			}
-			else if (d_right < d_down && d_right < d_left && d_right < d_up){
-				direction = 0; turn = false;
-			}
-			else{
-				direction = 1; turn = false;
-			}
-
 		}
-		/*
-		if (direction == 0 && (App->level_one->map[(tilepos_y / 16) - 1][(tilepos_x / 16)] != 2 || App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] != 2)){
-			
-			
-			direction = rand() % 4;
-
-			turn = false;
-		}
-		else if (direction == 1 && (App->level_one->map[(tilepos_y / 16) - 1][(tilepos_x / 16)] != 2 || App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] != 2)){
-			direction = rand() % 4;
-			turn = false;
-		}
-		else if (direction == 2 && (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) - 1] != 2 || App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) + 1] != 2 )){
-			direction = rand() % 4;
-			turn = false;
-		}
-
-		else if (direction == 3 && (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) - 1] != 2 || App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) + 1] != 2 )){
-			direction = rand() % 4;
-			turn = false;
-		}
-
-		if (direction == 0 && App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) + 1] == 2){
-			direction = rand() % 4;
-			turn = true;
-		}
-		else if (direction == 1 && App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) - 1] == 2){
-			direction = rand() % 4;
-			turn = true;
-		}
-		else if (direction == 2 && App->level_one->map[(tilepos_y / 16) - 1][(tilepos_x / 16)] == 2){
-			direction = rand() % 4;
-			turn = true;
-		}
-
-		else if (direction == 3 && App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] == 2){
-			direction = rand() % 4;
-			turn = true;
-		}*/
 	}
 
 		if (App->player->power == true ||App->player->god ==true){
@@ -328,8 +343,9 @@ void ModuleBlinky::OnCollision(Collider* c1, Collider* c2)
 	{
 		if (c2->type == COLLIDER_PLAYER && (App->player->power == true || App->player->god ==true)){
 			position.x = 208;
-
-			position.y = 216;
+			
+			position.y = 260;
+			time = SDL_GetTicks();
 
 		}
 

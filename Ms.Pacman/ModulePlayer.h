@@ -27,6 +27,11 @@ public:
 	Animation left;
 	Animation up;
 	Animation down;
+	Animation g_right;
+	Animation g_left;
+	Animation g_up;
+	Animation g_down;
+	
 	iPoint position;
 	Collider* col;
 	Collider* col2;
