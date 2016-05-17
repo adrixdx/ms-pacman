@@ -92,6 +92,9 @@ bool ModuleLevelOne::Start()
 
 	 App->audio->PlayMusic("effect.ogg",1.0f);
 
+	 App->inky->time = SDL_GetTicks();
+	 App->pinky->time = SDL_GetTicks();
+
 	LOG("Loading background assets");
 	bool ret = true;
 

@@ -134,78 +134,104 @@ update_status ModulePlayer::Update()
 	static int direction = -1;
 	int position_x = position.x;
 	int position_y = position.y;
-	static int dir[2] = { -1, -1 };
-	static int i = 0;
+	static int dir = 1;
+	static int s_dir = 1;
+	int tilepos_x = ((position_x + 16) / 16) * 16;
+	int tilepos_y = ((position_y + 16) / 16) * 16;
+	
 	App->input;
 
 
 	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
 	{
-		dir[i % 2] = 0;
-		i++;
-		//direction = 0;
-		//current_animation = &right;
-		//position.x += speed;
+		s_dir= 0;
+		
 	}
-	if (dir[(i - 1) % 2] == 0){
+	if (dir == 0){
 		current_animation = &right;
-		//position.x += speed;
 
 	}
 
 
 	if (App->input->keyboard[SDL_SCANCODE_LEFT] == 1)
 	{
-		dir[i % 2] = 1;
-		i++;
-		//direction = 1;
-
+		s_dir= 1;
+	
 	}
-	if (dir[(i - 1) % 2] == 1){
+	if (dir == 1){
 		current_animation = &left;
-		//position.x -= speed;
+		
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_UP] == 1)
 	{
-		dir[i % 2] = 2;
-		i++;
-		//direction = 2;
+		s_dir = 2;
+	
+		
 
 	}
-	if (dir[(i - 1) % 2] == 2){
+	if (dir == 2){
 		current_animation = &up;
-		//position.y -= speed;
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_DOWN] == 1)
 	{
-		dir[i % 2] = 3;
-		i++;
-		//direction = 3;
+		s_dir = 3;
+	}	
 
-	}
-	if (dir[(i - 1) % 2] == 3){
+	if (dir == 3){
 		current_animation = &down;
-		//position.y += speed;
+		
+	}
+
+	if (dir == 0 && s_dir == 1){
+		dir = s_dir;
+	}
+	if (dir == 1 && s_dir == 0){
+		dir = s_dir;
+	}
+	if (dir == 2 && s_dir == 3){
+		dir = s_dir;
+	}
+	if (dir == 3 && s_dir == 2){
+		dir = s_dir;
+	}
+
+	if (App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] == -1 || App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] == -2){
+		if (s_dir == 0 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16) + 1] != 2){
+			dir = s_dir;
+
+		}
+		if (s_dir == 1 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16) - 1] != 2){
+			dir = s_dir;
+
+		}
+		if (s_dir == 2 && App->level_one->map[(tilepos_y / 16) - 1][(tilepos_x / 16)] != 2){
+			dir = s_dir;
+
+		}
+		if (s_dir == 3 && App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] != 2){
+			dir = s_dir;
+
+		}
+
 	}
 	if (god == true){
-		if (dir[(i - 1) % 2] == 0){
+		if (dir == 0){
 			current_animation = &g_right;
-			//position.x += speed;
-
+			
 		}
-		if (dir[(i - 1) % 2] == 1){
+		if (dir == 1){
 			current_animation = &g_left;
-			//position.x -= speed;
+			
 		}
-		if (dir[(i - 1) % 2] == 2){
+		if (dir == 2){
 			current_animation = &g_up;
-			//position.y -= speed;
+			
 		}
-		if (dir[(i - 1) % 2] == 3){
+		if (dir == 3){
 			current_animation = &g_down;
-			//position.y += speed;
+		
 		}
 	}
 
@@ -213,32 +239,31 @@ update_status ModulePlayer::Update()
 
 	// Collider--------------
 
-	int tilepos_x = ((position_x + 16) / 16) * 16;
-	int tilepos_y = ((position_y + 16) / 16) * 16;
+	
 
 	col->SetPos(tilepos_x, tilepos_y);
 
 	
-	if (dir[(i - 1) % 2] == 0 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] < 2){
+	if (dir == 0 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] < 2){
 
 		position_x = position_x + speed;
 		position.x = position_x;
 		position.y = (position_y / 16) * 16 + 8;
 	}
-	if (dir[(i - 1) % 2] == 1 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] < 2){
+	if (dir == 1 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] < 2){
 
 		position_x = position_x - speed;
 		position.x = position_x;
 		position.y = (position_y / 16) * 16 + 8;
 
 	}
-	if (dir[(i - 1) % 2] == 2 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] < 2){
+	if (dir == 2 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] < 2){
 
 		position_y = position_y - speed;
 		position.y = position_y;
 		position.x = (position_x / 16) * 16 + 8;
 	}
-	if (dir[(i - 1) % 2] == 3 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] < 2){
+	if (dir== 3 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] < 2){
 
 		position_y = position_y + speed;
 		position.y = position_y;
@@ -246,7 +271,7 @@ update_status ModulePlayer::Update()
 	}
 
 
-	if (dir[(i - 1) % 2] == 0 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16) + 1] >= 2){
+	if (dir == 0 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16) + 1] >= 2){
 
 		position_x = position_x - speed;
 		position.x = (position_x / 16) * 16 +8;
@@ -256,7 +281,7 @@ update_status ModulePlayer::Update()
 	}
 
 
-	if (dir[(i - 1) % 2] == 1 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16) - 1] >= 2){
+	if (dir == 1 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16) - 1] >= 2){
 
 		position_x = position_x + speed;
 		position.x = (position_x / 16) * 16 + 8;
@@ -264,7 +289,7 @@ update_status ModulePlayer::Update()
 	}
 			
 	
-	if (dir[(i - 1) % 2] == 2 && App->level_one->map[(tilepos_y / 16) - 1][(tilepos_x / 16)] >= 2){
+	if (dir == 2 && App->level_one->map[(tilepos_y / 16) - 1][(tilepos_x / 16)] >= 2){
 
 			position_y = position_y + speed;
 			position.y = (position_y / 16) * 16 + 8;
@@ -273,7 +298,7 @@ update_status ModulePlayer::Update()
 			
 		}
 
-	if (dir[(i - 1) % 2] == 3 && App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] >= 2){
+	if (dir == 3 && App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] >= 2){
 		position_y = position_y - speed;
 		position.y = (position_y / 16) * 16 + 8;
 		position.x = (position_x / 16) * 16 + 8;
@@ -288,7 +313,7 @@ update_status ModulePlayer::Update()
 		position.x = 410;
 	}
 
-		//col->SetPos(position.x + 8, position.y + 8);
+		
 		if (destroyed == false)
 			App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 
@@ -296,7 +321,7 @@ update_status ModulePlayer::Update()
 		// Draw everything --------------------------------------
 		SDL_Rect r = current_animation->GetCurrentFrame();
 
-		//App->render->Blit(graphics, position.x, position.y - r.h, &r);
+	
 
 		if (SDL_GetTicks() - time > 4000){
 			power = false;
