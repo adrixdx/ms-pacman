@@ -38,15 +38,18 @@ Application::Application()
 	modules[3] = textures = new ModuleTextures();
 	modules[4] = level_one = new ModuleLevelOne();
 
-	modules[20] = level_two = new ModuleLevelTwo();
+	modules[6] = level_two = new ModuleLevelTwo();
 	modules[19] = level_three = new ModuleLevelThree();
 	
 	modules[5] = start = new ModuleStartScreen();
-	modules[10] = player = new ModulePlayer();
+	
 	modules[7] = fade = new ModuleFadeToBlack();
+
+	
+	modules[20] = audio = new ModuleAudio();
 	modules[8] = particles = new ModuleParticles();
 	modules[9] = collision = new ModuleCollision();
-	modules[6] = audio = new ModuleAudio();
+	modules[10] = player = new ModulePlayer();
 	modules[11] = enemies = new ModuleEnemies();
 	modules[12] = blinky = new ModuleBlinky();
 	modules[13] = inky = new ModuleInky();
