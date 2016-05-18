@@ -91,6 +91,7 @@
     <ClInclude Include="ModuleReadyTwo.h" />
     <ClInclude Include="ModuleRender.h" />
     <ClInclude Include="ModuleLevelOne.h" />
+    <ClInclude Include="ModuleScore.h" />
     <ClInclude Include="ModuleStartScreen.h" />
     <ClInclude Include="ModuleSue.h" />
     <ClInclude Include="ModuleTextures.h" />

@@ -31,6 +31,7 @@ class ModuleLevelThree;
 class ModuleLevelTwo;
 class ModuleReadyTwo;
 
+
 class Application
 {
 public:
@@ -52,6 +53,7 @@ public:
 	ModuleGameOver* gameover;
 	ModuleLevelThree* level_three;
 	ModuleLevelTwo* level_two;
+	
 
 	ModuleReady* ready;
 	ModuleReadyTwo* ready_two;

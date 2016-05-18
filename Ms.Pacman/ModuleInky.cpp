@@ -12,6 +12,7 @@
 #include "ModuleAudio.h"
 #include "ModuleEnemies.h"
 #include "ModuleInky.h"
+#include "ModuleBlinky.h"
 #include <stdlib.h>
 #include<time.h>
 
@@ -117,8 +118,17 @@ update_status ModuleInky::Update()
 	int i_position_x = position.x;
 	int i_position_y = position.y;
 
-	int tilepos_x = ((position_x + 16) / 16) * 16;
-	int tilepos_y = ((position_y + 16) / 16) * 16;
+	int blinky_position_x = App->blinky->position.x;
+	int blinky_position_y = App->blinky->position.y;
+
+	int tilepos_x = ((i_position_x + 16) / 16) * 16;
+	int tilepos_y = ((i_position_y + 16) / 16) * 16;
+
+	int blinky_tilepos_x = ((blinky_position_x + 16) / 16) * 16;
+	int blinky_tilepos_y = ((blinky_position_y + 16) / 16) * 16;
+
+	int n_position_x = App->player->position.x - blinky_tilepos_x;
+	int n_position_y = App->player->position.y - blinky_tilepos_y;
 
 	int d_up = 1000;
 	int d_down = 1000;
@@ -142,20 +152,20 @@ update_status ModuleInky::Update()
 	else {
 		if (turn == true){
 
-			if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -1 || App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -2){
-				if (App->level_one->map[(tilepos_y / 16) - 1][(tilepos_x / 16)] != 2){
+			if (App->player->s_map[(tilepos_y / 16)][(tilepos_x / 16)] == -1 || App->player->s_map[(tilepos_y / 16)][(tilepos_x / 16)] == -2){
+				if (App->player->s_map[(tilepos_y / 16) - 1][(tilepos_x / 16)] != 2){
 					d_up = SDL_sqrt(((tilepos_x)-App->player->position.x)*(tilepos_x - App->player->position.x) + ((tilepos_y - 16) - App->player->position.y)*((tilepos_y - 16) - App->player->position.y));
 				}
 
-				if (App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] != 2){
+				if (App->player->s_map[(tilepos_y / 16) + 1][(tilepos_x / 16)] != 2){
 					d_down = SDL_sqrt(((tilepos_x)-App->player->position.x)*(tilepos_x - App->player->position.x) + ((tilepos_y + 16) - App->player->position.y)*((tilepos_y + 16) - App->player->position.y));
 				}
 
-				if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) - 1] != 2){
+				if (App->player->s_map[(tilepos_y / 16)][(tilepos_x / 16) - 1] != 2){
 					d_left = SDL_sqrt(((tilepos_x - 16) - App->player->position.x)*((tilepos_x - 16) - App->player->position.x) + ((tilepos_y)-App->player->position.y)*((tilepos_y)-App->player->position.y));
 				}
 
-				if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) + 1] != 2){
+				if (App->player->s_map[(tilepos_y / 16)][(tilepos_x / 16) + 1] != 2){
 					d_right = SDL_sqrt(((tilepos_x + 16) - App->player->position.x)*((tilepos_x + 16) - App->player->position.x) + ((tilepos_y)-App->player->position.y)*((tilepos_y)-App->player->position.y));
 				}
 
@@ -181,20 +191,20 @@ update_status ModuleInky::Update()
 				d_right = 0;
 				d_left = 0;
 
-				if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -1 || App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -2){
-					if (App->level_one->map[(tilepos_y / 16) - 1][(tilepos_x / 16)] != 2){
+				if (App->player->s_map[(tilepos_y / 16)][(tilepos_x / 16)] == -1 || App->player->s_map[(tilepos_y / 16)][(tilepos_x / 16)] == -2){
+					if (App->player->s_map[(tilepos_y / 16) - 1][(tilepos_x / 16)] != 2){
 						d_up =  SDL_sqrt(2*((tilepos_x)-App->player->position.x)*(tilepos_x - App->player->position.x) + 2*((tilepos_y - 16) - App->player->position.y)*((tilepos_y - 16) - App->player->position.y));
 					}
 
-					if (App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] != 2){
+					if (App->player->s_map[(tilepos_y / 16) + 1][(tilepos_x / 16)] != 2){
 						d_down =   SDL_sqrt(2*((tilepos_x)-App->player->position.x)*(tilepos_x - App->player->position.x) + 2*((tilepos_y + 16) - App->player->position.y)*((tilepos_y + 16) - App->player->position.y));
 					}
 
-					if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) - 1] != 2){
+					if (App->player->s_map[(tilepos_y / 16)][(tilepos_x / 16) - 1] != 2){
 						d_left =  SDL_sqrt(2*((tilepos_x - 16) - App->player->position.x)*((tilepos_x - 16) - App->player->position.x) + 2*((tilepos_y)-App->player->position.y)*((tilepos_y)-App->player->position.y));
 					}
 
-					if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) + 1] != 2){
+					if (App->player->s_map[(tilepos_y / 16)][(tilepos_x / 16) + 1] != 2){
 						d_right =  SDL_sqrt(2*((tilepos_x + 16) - App->player->position.x)*((tilepos_x + 16) - App->player->position.x) + 2*((tilepos_y)-App->player->position.y)*((tilepos_y)-App->player->position.y));
 					}
 
@@ -256,26 +266,26 @@ update_status ModuleInky::Update()
 
 
 
-	if (direction == 0 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] != 2){
+	if (direction == 0 && App->player->s_map[tilepos_y / 16][(tilepos_x / 16)] != 2){
 
 		position_x = position_x + speed;
 		position.x = position_x;
 		position.y = ( i_position_y / 16) * 16 + 8;
 	}
-	if (direction == 1 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] != 2){
+	if (direction == 1 && App->player->s_map[tilepos_y / 16][(tilepos_x / 16)] != 2){
 
 		position_x = position_x - speed;
 		position.x = position_x;
 		position.y = (i_position_y / 16) * 16 + 8;
 
 	}
-	if (direction == 2 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] != 2){
+	if (direction == 2 && App->player->s_map[tilepos_y / 16][(tilepos_x / 16)] != 2){
 
 		position_y = position_y - speed;
 		position.y = position_y;
 		position.x = (i_position_x / 16) * 16 + 8;
 	}
-	if (direction == 3 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] != 2){
+	if (direction == 3 && App->player->s_map[tilepos_y / 16][(tilepos_x / 16)] != 2){
 
 		position_y = position_y + speed;
 		position.y = position_y;
@@ -283,7 +293,7 @@ update_status ModuleInky::Update()
 	}
 
 
-	if (direction == 0 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16) + 1] == 2){
+	if (direction == 0 && App->player->s_map[tilepos_y / 16][(tilepos_x / 16) + 1] == 2){
 
 		position_x = position_x - speed;
 		position.x = (i_position_x / 16) * 16 + 8;
@@ -291,14 +301,14 @@ update_status ModuleInky::Update()
 	}
 
 
-	if (direction == 1 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16) - 1] == 2){
+	if (direction == 1 && App->player->s_map[tilepos_y / 16][(tilepos_x / 16) - 1] == 2){
 
 		position_x = position_x + speed;
 		position.x = (i_position_x / 16) * 16 + 8;
 	}
 
 
-	if (direction == 2 && App->level_one->map[(tilepos_y / 16) - 1][(tilepos_x / 16)] == 2){
+	if (direction == 2 && App->player->s_map[(tilepos_y / 16) - 1][(tilepos_x / 16)] == 2){
 
 		position_y = position_y + speed;
 		position.y = (i_position_y / 16) * 16 + 8;
@@ -306,7 +316,7 @@ update_status ModuleInky::Update()
 
 	}
 
-	if (direction == 3 && App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] == 2){
+	if (direction == 3 && App->player->s_map[(tilepos_y / 16) + 1][(tilepos_x / 16)] == 2){
 		position_y = position_y - speed;
 		position.y = (i_position_y / 16) * 16 + 8;
 
@@ -318,14 +328,14 @@ update_status ModuleInky::Update()
 
 	col->SetPos(tilepos_x, tilepos_y);
 
-
+	App->render->Blit(graphics, App->player->position.x + n_position_x, App->player->position.y + n_position_y, &(current_animation->GetCurrentFrame()));
 	if (destroyed == false)
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
-	if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -3)
+	if (App->player->s_map[(tilepos_y / 16)][(tilepos_x / 16)] == -3)
 	{
 		position.x = 0;
 	}
-	if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -4)
+	if (App->player->s_map[(tilepos_y / 16)][(tilepos_x / 16)] == -4)
 	{
 		position.x = 410;
 	}
@@ -334,10 +344,8 @@ update_status ModuleInky::Update()
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
 	//App->render->Blit(graphics, position.x, position.y - r.h, &r);
-	int tilepos_x_temp = ((position_x + 16) / 16) * 16;
-	int tilepos_y_temp = ((position_y + 16) / 16) * 16;
-
-	if (tilepos_x_temp != tilepos_x || tilepos_y_temp != tilepos_y){
+	if (App->player->s_map[(tilepos_y / 16)][(tilepos_x / 16)] != -1 && App->player->s_map[(tilepos_y / 16)][(tilepos_x / 16)] != -2)
+	{
 		turn = true;
 	}
 

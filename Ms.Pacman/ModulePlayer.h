@@ -22,6 +22,7 @@ public:
 public:
 
 	SDL_Texture* graphics = nullptr;
+	
 	Animation idle;
 	Animation right;
 	Animation left;
@@ -40,6 +41,8 @@ public:
 	bool god = false;
 	unsigned int time = 0;
 	int dir = 0;
+	int n_map = 0;
+	int s_map[36][28];
 
 };
 

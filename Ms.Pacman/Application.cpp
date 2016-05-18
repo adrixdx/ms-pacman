@@ -19,6 +19,7 @@
 #include "ModuleLevelThree.h"
 #include "ModuleLevelTwo.h"
 #include "ModuleReadyTwo.h"
+#include "ModuleScore.h"
 
 #include "ModuleReady.h"
 
@@ -60,6 +61,7 @@ Application::Application()
 	modules[20] = win = new ModuleWin();
 
 	modules[21] = audio = new ModuleAudio();
+
 
 
 

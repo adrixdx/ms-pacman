@@ -92,7 +92,7 @@ bool ModuleLevelOne::Start()
 	 App->player->position.x = 208;
 	 pellets = 224;
 	 App->player->position.y = 408;
-
+	 App->player->n_map = 0;
 	 App->audio->PlayMusic("effect.ogg",1.0f);
 
 	 App->inky->time = SDL_GetTicks();
@@ -146,6 +146,10 @@ bool ModuleLevelOne::CleanUp()
 	App->player->Disable();
 	App->enemies->Disable();
 	App->audio->Disable();
+	App->blinky->Disable();
+	App->sue->Disable();
+	App->pinky->Disable();
+	App->inky->Disable();
 
 	return true;
 }
