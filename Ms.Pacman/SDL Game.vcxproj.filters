@@ -92,6 +92,12 @@
     <ClInclude Include="ModuleWin.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleLevelThree.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleLevelTwo.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -158,6 +164,12 @@
       <Filter>Modules\Ghosts</Filter>
     </ClCompile>
     <ClCompile Include="ModuleWin.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleLevelThree.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleLevelTwo.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>

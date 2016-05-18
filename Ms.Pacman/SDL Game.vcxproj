@@ -82,6 +82,8 @@
     <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleInky.h" />
     <ClInclude Include="ModuleInput.h" />
+    <ClInclude Include="ModuleLevelThree.h" />
+    <ClInclude Include="ModuleLevelTwo.h" />
     <ClInclude Include="ModuleParticles.h" />
     <ClInclude Include="ModulePinky.h" />
     <ClInclude Include="ModulePlayer.h" />
@@ -107,6 +109,8 @@
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleInky.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
+    <ClCompile Include="ModuleLevelThree.cpp" />
+    <ClCompile Include="ModuleLevelTwo.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="ModulePinky.cpp" />
     <ClCompile Include="ModulePlayer.cpp" />

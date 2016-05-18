@@ -4,7 +4,7 @@
 #include "Globals.h"
 
 
-#define NUM_MODULES 19
+#define NUM_MODULES 21
 
 
 class ModuleWindow;
@@ -27,6 +27,8 @@ class ModulePinky;
 class ModuleInky;
 class Module;
 class ModuleWin;
+class ModuleLevelThree;
+class ModuleLevelTwo;
 
 class Application
 {
@@ -47,6 +49,8 @@ public:
 	ModuleAudio* audio;
 	ModuleBlinky* blinky;
 	ModuleGameOver* gameover;
+	ModuleLevelThree* level_three;
+	ModuleLevelTwo* level_two;
 
 	ModuleReady* ready;
 	ModuleSue* sue;

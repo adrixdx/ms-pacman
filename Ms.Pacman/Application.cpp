@@ -16,6 +16,8 @@
 #include "ModulePinky.h"
 #include "ModuleInky.h"
 #include "ModuleGameOver.h"
+#include "ModuleLevelThree.h"
+#include "ModuleLevelTwo.h"
 
 #include "ModuleReady.h"
 
@@ -26,11 +28,19 @@
 
 Application::Application()
 {
+
+	
+	
+
 	modules[0] = window = new ModuleWindow();
 	modules[1] = render = new ModuleRender();
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
 	modules[4] = level_one = new ModuleLevelOne();
+
+	modules[20] = level_two = new ModuleLevelTwo();
+	modules[19] = level_three = new ModuleLevelThree();
+	
 	modules[5] = start = new ModuleStartScreen();
 	modules[10] = player = new ModulePlayer();
 	modules[7] = fade = new ModuleFadeToBlack();
@@ -45,6 +55,8 @@ Application::Application()
 	modules[16] = gameover = new ModuleGameOver();
 	modules[17] = ready = new ModuleReady();	
 	modules[18] = win = new ModuleWin();
+
+
 
 
 }	

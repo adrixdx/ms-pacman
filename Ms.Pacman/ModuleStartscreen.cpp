@@ -16,6 +16,8 @@
 #include "ModuleAudio.h"
 #include "ModuleGameOver.h"
 #include "ModuleReady.h"
+#include "ModuleLevelThree.h"
+#include "ModuleLevelTwo.h"
 
 
 
@@ -110,6 +112,8 @@ bool ModuleStartScreen::Start()
 
 	App->gameover->Disable();
 	App->level_one->Disable();
+	App->level_three->Disable();
+	App->level_two->Disable();
 	App->ready->Disable();
 	return true;
 }
