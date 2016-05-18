@@ -15,6 +15,7 @@
 #include "ModuleGameOver.h"
 #include "ModuleLevelThree.h"
 #include "ModuleLevelTwo.h"
+#include "ModuleReadyTwo.h"
 
 #include "ModuleSue.h"
 #include "ModulePinky.h"

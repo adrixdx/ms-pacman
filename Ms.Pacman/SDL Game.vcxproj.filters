@@ -98,6 +98,9 @@
     <ClInclude Include="ModuleLevelTwo.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleReadyTwo.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -170,6 +173,9 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleLevelTwo.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleReadyTwo.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>

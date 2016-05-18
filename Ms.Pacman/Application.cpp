@@ -18,6 +18,7 @@
 #include "ModuleGameOver.h"
 #include "ModuleLevelThree.h"
 #include "ModuleLevelTwo.h"
+#include "ModuleReadyTwo.h"
 
 #include "ModuleReady.h"
 
@@ -39,14 +40,14 @@ Application::Application()
 	modules[4] = level_one = new ModuleLevelOne();
 
 	modules[6] = level_two = new ModuleLevelTwo();
-	modules[19] = level_three = new ModuleLevelThree();
+	modules[20] = level_three = new ModuleLevelThree();
 	
 	modules[5] = start = new ModuleStartScreen();
 	
 	modules[7] = fade = new ModuleFadeToBlack();
 
 	
-	modules[20] = audio = new ModuleAudio();
+	modules[21] = audio = new ModuleAudio();
 	modules[8] = particles = new ModuleParticles();
 	modules[9] = collision = new ModuleCollision();
 	modules[10] = player = new ModulePlayer();
@@ -57,7 +58,8 @@ Application::Application()
 	modules[15] = pinky = new ModulePinky();
 	modules[16] = gameover = new ModuleGameOver();
 	modules[17] = ready = new ModuleReady();	
-	modules[18] = win = new ModuleWin();
+	modules[18] = ready_two = new ModuleReadyTwo();
+	modules[19] = win = new ModuleWin();
 
 
 
