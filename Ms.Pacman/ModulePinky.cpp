@@ -112,8 +112,10 @@ bool ModulePinky::CleanUp()
 update_status ModulePinky::Update()
 {
 	Animation* current_animation = &idle;
-	int position_x = position.x;
-	int position_y = position.y;
+	float position_x = position.x;
+	float position_y = position.y;
+	int i_position_x = position.x;
+	int i_position_y = position.y;
 
 	int tilepos_x = ((position_x + 16) / 16) * 16;
 	int tilepos_y = ((position_y + 16) / 16) * 16;
@@ -126,7 +128,7 @@ update_status ModulePinky::Update()
 
 
 
-	float speed = 2;
+	float speed = 1.5;
 
 	if (SDL_GetTicks() - time <= 500){
 
@@ -134,10 +136,10 @@ update_status ModulePinky::Update()
 
 		//if (SDL_GetTicks() - time >= 2000) direction = 1;
 	}
-	else if (SDL_GetTicks() - time <= 900){
+	else if (SDL_GetTicks() - time <= 950){
 		direction = 2;
 	}
-	else if (SDL_GetTicks() - time <= 930){
+	else if (SDL_GetTicks() - time <= 980){
 		direction = 1;
 	}
 	else {
@@ -261,33 +263,33 @@ update_status ModulePinky::Update()
 
 		position_x = position_x + speed;
 		position.x = position_x;
-		position.y = (position_y / 16) * 16 + 8;
+		position.y = (i_position_y / 16) * 16 + 8;
 	}
 	if (direction == 1 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] != 2){
 
 		position_x = position_x - speed;
 		position.x = position_x;
-		position.y = (position_y / 16) * 16 + 8;
+		position.y = (i_position_y / 16) * 16 + 8;
 
 	}
 	if (direction == 2 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] != 2){
 
 		position_y = position_y - speed;
 		position.y = position_y;
-		position.x = (position_x / 16) * 16 + 8;
+		position.x = (i_position_x / 16) * 16 + 8;
 	}
 	if (direction == 3 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16)] != 2){
 
 		position_y = position_y + speed;
 		position.y = position_y;
-		position.x = (position_x / 16) * 16 + 8;
+		position.x = (i_position_x / 16) * 16 + 8;
 	}
 
 
 	if (direction == 0 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16) + 1] == 2){
 
 		position_x = position_x - speed;
-		position.x = (position_x / 16) * 16 + 8;
+		position.x = (i_position_x / 16) * 16 + 8;
 
 	}
 
@@ -295,21 +297,21 @@ update_status ModulePinky::Update()
 	if (direction == 1 && App->level_one->map[tilepos_y / 16][(tilepos_x / 16) - 1] == 2){
 
 		position_x = position_x + speed;
-		position.x = (position_x / 16) * 16 + 8;
+		position.x = (i_position_x / 16) * 16 + 8;
 	}
 
 
 	if (direction == 2 && App->level_one->map[(tilepos_y / 16) - 1][(tilepos_x / 16)] == 2){
 
 		position_y = position_y + speed;
-		position.y = (position_y / 16) * 16 + 8;
+		position.y = (i_position_y / 16) * 16 + 8;
 
 
 	}
 
 	if (direction == 3 && App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] == 2){
 		position_y = position_y - speed;
-		position.y = (position_y / 16) * 16 + 8;
+		position.y = (i_position_y / 16) * 16 + 8;
 
 	}
 
@@ -323,7 +325,14 @@ update_status ModulePinky::Update()
 	if (destroyed == false)
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 
-
+	if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -3)
+	{
+		position.x = 0;
+	}
+	if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -4)
+	{
+		position.x = 410;
+	}
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
