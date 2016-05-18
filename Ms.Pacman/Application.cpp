@@ -38,28 +38,28 @@ Application::Application()
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
 	modules[4] = level_one = new ModuleLevelOne();
-
-	modules[6] = level_two = new ModuleLevelTwo();
-	modules[20] = level_three = new ModuleLevelThree();
-	
 	modules[5] = start = new ModuleStartScreen();
-	
-	modules[7] = fade = new ModuleFadeToBlack();
+	modules[6] = level_two = new ModuleLevelTwo();
+	modules[7] = level_three = new ModuleLevelThree();
 
-	
-	modules[21] = audio = new ModuleAudio();
-	modules[8] = particles = new ModuleParticles();
-	modules[9] = collision = new ModuleCollision();
-	modules[10] = player = new ModulePlayer();
-	modules[11] = enemies = new ModuleEnemies();
-	modules[12] = blinky = new ModuleBlinky();
-	modules[13] = inky = new ModuleInky();
-	modules[14] = sue = new ModuleSue();
-	modules[15] = pinky = new ModulePinky();
-	modules[16] = gameover = new ModuleGameOver();
-	modules[17] = ready = new ModuleReady();	
+
+	modules[8] = fade = new ModuleFadeToBlack();
+	modules[9] = particles = new ModuleParticles();
+	modules[10] = collision = new ModuleCollision();
+
+	modules[11] = player = new ModulePlayer();
+	modules[12] = enemies = new ModuleEnemies();
+	modules[13] = blinky = new ModuleBlinky();
+	modules[14] = inky = new ModuleInky();
+	modules[15] = sue = new ModuleSue();
+	modules[16] = pinky = new ModulePinky();
+
+	modules[17] = gameover = new ModuleGameOver();
 	modules[18] = ready_two = new ModuleReadyTwo();
-	modules[19] = win = new ModuleWin();
+	modules[19] = ready = new ModuleReady();	
+	modules[20] = win = new ModuleWin();
+
+	modules[21] = audio = new ModuleAudio();
 
 
 
@@ -80,6 +80,10 @@ bool Application::Init()
 	player->Disable();
 	// Disable the map that you do not start with
 	level_one->Disable();
+	level_two->Disable();
+	level_three->Disable();
+	ready->Disable();
+	ready_two->Disable();
 	win->Disable();
 	gameover->Disable();
 

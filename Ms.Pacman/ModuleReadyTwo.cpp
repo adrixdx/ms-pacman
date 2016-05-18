@@ -13,7 +13,6 @@
 #include "ModuleEnemies.h"
 #include "ModuleBlinky.h"
 #include "ModuleAudio.h"
-#include "ModuleReady.h"
 #include "ModuleReadyTwo.h"
 #include "ModuleInky.h"
 #include "ModulePinky.h"
@@ -58,8 +57,7 @@ bool ModuleReadyTwo::CleanUp()
 	App->level_one->Disable();
 	App->level_three->Disable();
 	App->level_two->Disable();
-	App->ready->Disable();
-	App->ready_two->Disable();
+
 
 	return true;
 }
