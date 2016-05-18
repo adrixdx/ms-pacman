@@ -39,6 +39,7 @@ public:
 	bool power = false;
 	bool god = false;
 	unsigned int time = 0;
+	int dir = 0;
 
 };
 

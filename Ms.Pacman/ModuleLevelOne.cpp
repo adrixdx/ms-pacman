@@ -96,6 +96,7 @@ bool ModuleLevelOne::Start()
 
 	 App->inky->time = SDL_GetTicks();
 	 App->pinky->time = SDL_GetTicks();
+	 App->sue->time = SDL_GetTicks();
 
 	LOG("Loading background assets");
 	bool ret = true;

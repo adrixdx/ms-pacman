@@ -101,8 +101,9 @@ bool ModulePlayer::Start()
 	unsigned int time = SDL_GetTicks();
 	destroyed = false;
 	position.x = 208;
-
+	dir = 1;
 	position.y = 408;
+	
 	
 	LOG("Loading player textures");
 	bool ret = true;
@@ -131,10 +132,10 @@ update_status ModulePlayer::Update()
 	Animation* current_animation = &idle;
 	bool colision = false;
 	float speed = 2;
-	static int direction = -1;
+	
 	int position_x = position.x;
 	int position_y = position.y;
-	static int dir = 1;
+	//static int dir = 1;
 	static int s_dir = 1;
 	int tilepos_x = ((position_x + 16) / 16) * 16;
 	int tilepos_y = ((position_y + 16) / 16) * 16;

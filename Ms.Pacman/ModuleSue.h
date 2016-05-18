@@ -40,6 +40,7 @@ public:
 	bool turn;
 	bool destroyed = false;
 	int direction;
+	uint time = 0;
 
 };
 

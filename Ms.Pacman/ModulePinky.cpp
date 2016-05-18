@@ -343,10 +343,11 @@ void ModulePinky::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1 == col && destroyed == false)
 	{
-		if (c2->type == COLLIDER_PLAYER && App->player->power == true){
+		if (c2->type == COLLIDER_PLAYER && (App->player->power == true || App->player->god== true)){
 			position.x = 208;
 
-			position.y = 250;
+			position.y = 260;
+			time = SDL_GetTicks();
 
 		}
 

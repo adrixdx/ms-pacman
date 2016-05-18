@@ -181,19 +181,19 @@ update_status ModuleInky::Update()
 
 				if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -1 || App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16)] == -2){
 					if (App->level_one->map[(tilepos_y / 16) - 1][(tilepos_x / 16)] != 2){
-						d_up = SDL_sqrt(((tilepos_x)-App->player->position.x)*(tilepos_x - App->player->position.x) + ((tilepos_y - 16) - App->player->position.y)*((tilepos_y - 16) - App->player->position.y));
+						d_up =  SDL_sqrt(2*((tilepos_x)-App->player->position.x)*(tilepos_x - App->player->position.x) + 2*((tilepos_y - 16) - App->player->position.y)*((tilepos_y - 16) - App->player->position.y));
 					}
 
 					if (App->level_one->map[(tilepos_y / 16) + 1][(tilepos_x / 16)] != 2){
-						d_down = SDL_sqrt(((tilepos_x)-App->player->position.x)*(tilepos_x - App->player->position.x) + ((tilepos_y + 16) - App->player->position.y)*((tilepos_y + 16) - App->player->position.y));
+						d_down =   SDL_sqrt(2*((tilepos_x)-App->player->position.x)*(tilepos_x - App->player->position.x) + 2*((tilepos_y + 16) - App->player->position.y)*((tilepos_y + 16) - App->player->position.y));
 					}
 
 					if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) - 1] != 2){
-						d_left = SDL_sqrt(((tilepos_x - 16) - App->player->position.x)*((tilepos_x - 16) - App->player->position.x) + ((tilepos_y)-App->player->position.y)*((tilepos_y)-App->player->position.y));
+						d_left =  SDL_sqrt(2*((tilepos_x - 16) - App->player->position.x)*((tilepos_x - 16) - App->player->position.x) + 2*((tilepos_y)-App->player->position.y)*((tilepos_y)-App->player->position.y));
 					}
 
 					if (App->level_one->map[(tilepos_y / 16)][(tilepos_x / 16) + 1] != 2){
-						d_right = SDL_sqrt(((tilepos_x + 16) - App->player->position.x)*((tilepos_x + 16) - App->player->position.x) + ((tilepos_y)-App->player->position.y)*((tilepos_y)-App->player->position.y));
+						d_right =  SDL_sqrt(2*((tilepos_x + 16) - App->player->position.x)*((tilepos_x + 16) - App->player->position.x) + 2*((tilepos_y)-App->player->position.y)*((tilepos_y)-App->player->position.y));
 					}
 
 					if (d_up > d_down && d_up > d_right && d_up > d_left){
@@ -340,10 +340,10 @@ void ModuleInky::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1 == col && destroyed == false)
 	{
-		if (c2->type == COLLIDER_PLAYER && App->player->power == true){
+		if (c2->type == COLLIDER_PLAYER && (App->player->power == true || App->player->god == true)){
 			position.x = 208;
 
-			position.y = 250;
+			position.y = 260;
 			time = SDL_GetTicks();
 		}
 
