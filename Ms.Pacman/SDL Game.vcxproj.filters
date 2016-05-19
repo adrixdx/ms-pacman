@@ -128,6 +128,9 @@
     <ClInclude Include="ModuleGameOverThree.h">
       <Filter>Modules\GameOver</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleGameOverFour.h">
+      <Filter>Modules\GameOver</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -218,6 +221,9 @@
       <Filter>Modules\GameOver</Filter>
     </ClCompile>
     <ClCompile Include="ModuleGameOverThree.cpp">
+      <Filter>Modules\GameOver</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleGameOverFour.cpp">
       <Filter>Modules\GameOver</Filter>
     </ClCompile>
   </ItemGroup>

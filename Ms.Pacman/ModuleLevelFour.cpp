@@ -12,7 +12,7 @@
 #include "ModuleAudio.h"
 #include "ModuleEnemies.h"
 #include "ModuleBlinky.h"
-#include "ModuleGameOver.h"
+#include "ModuleGameOverFour.h"
 #include "ModuleLevelThree.h"
 #include "ModuleReady.h"
 #include "ModuleLevelFour.h"
@@ -176,7 +176,7 @@ update_status ModuleLevelFour::Update()
 			delete App->particles->active[i];
 			App->particles->active[i] = nullptr;
 		}
-		App->fade->FadeToBlack(this, App->gameover, 1);
+		App->fade->FadeToBlack(this, App->gameover_four, 1);
 	}
 
 	return UPDATE_CONTINUE;

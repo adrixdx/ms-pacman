@@ -4,7 +4,7 @@
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
 #include "ModuleStartScreen.h"
-#include "ModuleLevelOne.h"
+
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleParticles.h"
@@ -15,9 +15,11 @@
 #include "ModuleSue.h"
 #include "ModulePinky.h"
 #include "ModuleInky.h"
-#include "ModuleLevelThree.h"
-#include "ModuleLevelTwo.h"
 #include "ModuleScore.h"
+
+#include "ModuleLevelOne.h"
+#include "ModuleLevelTwo.h"
+#include "ModuleLevelThree.h"
 #include "ModuleLevelFour.h"
 
 #include "ModuleReady.h"
@@ -28,6 +30,7 @@
 #include "ModuleGameOver.h"
 #include "ModuleGameOverTwo.h"
 #include "ModuleGameOverThree.h"
+#include "ModuleGameOverFour.h"
 
 #include "ModuleWin.h"
 
@@ -36,9 +39,6 @@
 
 Application::Application()
 {
-
-	
-	
 
 	modules[0] = window = new ModuleWindow();
 	modules[1] = render = new ModuleRender();
@@ -74,8 +74,7 @@ Application::Application()
 
 	modules[25] = gameover_two = new ModuleGameOverTwo();
 	modules[26] = gameover_three = new ModuleGameOverThree();
-
-
+	modules[27] = gameover_four = new ModuleGameOverFour();
 
 
 

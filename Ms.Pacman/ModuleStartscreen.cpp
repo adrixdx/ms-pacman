@@ -7,24 +7,27 @@
 #include "ModuleInput.h"
 #include "SDL/include/SDL.h"
 #include "ModuleFadeToBlack.h"
-#include "ModuleLevelOne.h"
 #include "ModuleEnemies.h"
 #include "ModuleBlinky.h"
 #include "ModuleSue.h"
 #include "ModulePinky.h"
 #include "ModuleInky.h"
 #include "ModuleAudio.h"
-#include "ModuleGameOver.h"
-#include "ModuleReady.h"
+
+#include "ModuleLevelOne.h"
+#include "ModuleLevelTwo.h"
 #include "ModuleLevelThree.h"
 #include "ModuleLevelFour.h"
-#include "ModuleLevelTwo.h"
+
+#include "ModuleReady.h"
 #include "ModuleReadyTwo.h"
 #include "ModuleReadyThree.h"
 #include "ModuleReadyFour.h"
 
+#include "ModuleGameOver.h"
 #include "ModuleGameOverTwo.h"
 #include "ModuleGameOverThree.h"
+#include "ModuleGameOverFour.h"
 
 
 
@@ -130,6 +133,7 @@ bool ModuleStartScreen::Start()
 	App->gameover->Disable();
 	App->gameover_two->Disable();
 	App->gameover_three->Disable();
+	App->gameover_four->Disable();
 
 	return true;
 }
