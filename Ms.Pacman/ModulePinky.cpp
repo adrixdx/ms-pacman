@@ -185,6 +185,19 @@ update_status ModulePinky::Update()
 					d_right = SDL_sqrt(((tilepos_x + 16) - (p_tilepos_x + i * 16))*((tilepos_x + 16) - (p_tilepos_x + i * 16)) + ((tilepos_y)-(p_tilepos_y + n * 16))*((tilepos_y)-(p_tilepos_y + n * 16)));
 				}
 
+				if (direction == 0){
+					d_left = 1000;
+				}
+				if (direction == 1){
+					d_right = 1000;
+				}
+				if (direction == 2){
+					d_down = 1000;
+				}
+				if (direction == 3){
+					d_up = 1000;
+				}
+
 				if (d_up <= d_down && d_up <= d_right && d_up <= d_left){
 					direction = 2; turn = false;
 				}
@@ -223,6 +236,10 @@ update_status ModulePinky::Update()
 					if (App->player->s_map[(tilepos_y / 16)][(tilepos_x / 16) + 1] != 2){
 						d_right = SDL_sqrt(((tilepos_x + 16) - App->player->position.x)*((tilepos_x + 16) - App->player->position.x) + ((tilepos_y)-App->player->position.y)*((tilepos_y)-App->player->position.y));
 					}
+
+
+				
+
 
 					if (d_up > d_down && d_up > d_right && d_up > d_left){
 						direction = 2; turn = false;
