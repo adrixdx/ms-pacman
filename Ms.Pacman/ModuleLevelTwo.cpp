@@ -18,6 +18,8 @@
 #include "ModuleReadyTwo.h"
 #include "ModuleReadyThree.h"
 
+#include "ModuleGameOverTwo.h"
+
 #include "ModuleSue.h"
 #include "ModulePinky.h"
 #include "ModuleInky.h"
@@ -176,7 +178,7 @@ update_status ModuleLevelTwo::Update()
 			delete App->particles->active[i];
 			App->particles->active[i] = nullptr;
 		}
-		App->fade->FadeToBlack(this, App->gameover, 1);
+		App->fade->FadeToBlack(this, App->gameover_two, 1);
 	}
 
 	return UPDATE_CONTINUE;

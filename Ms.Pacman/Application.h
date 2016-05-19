@@ -4,7 +4,7 @@
 #include "Globals.h"
 
 
-#define NUM_MODULES 25
+#define NUM_MODULES 26
 
 
 class ModuleWindow;
@@ -34,6 +34,8 @@ class ModuleLevelFour;
 class ModuleReadyThree;
 class ModuleReadyFour;
 
+class ModuleGameOverTwo;
+
 
 class Application
 {
@@ -62,6 +64,8 @@ public:
 	ModuleReadyTwo* ready_two;
 	ModuleReadyThree* ready_three;
 	ModuleReadyFour* ready_four;
+
+	ModuleGameOverTwo* gameover_two;
 
 	ModuleBlinky* blinky;
 	ModuleSue* sue;

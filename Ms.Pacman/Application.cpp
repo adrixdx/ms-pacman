@@ -23,6 +23,7 @@
 #include "ModuleLevelFour.h"
 #include "ModuleReadyThree.h"
 #include "ModuleReadyFour.h"
+#include "ModuleGameOverTwo.h"
 
 #include "ModuleReady.h"
 
@@ -68,6 +69,8 @@ Application::Application()
 	modules[21] = win = new ModuleWin();
 
 	modules[22] = audio = new ModuleAudio();
+
+	modules[25] = gameover_two = new ModuleGameOverTwo();
 
 
 
