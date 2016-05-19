@@ -124,9 +124,9 @@ bool ModuleLevelFour::Start()
 
 
 
-	App->particles->AddParticle(App->particles->powerpellet, 15, 78, COLLIDER_POWERPELLET, 0);
+	App->particles->AddParticle(App->particles->powerpellet, 15, 94, COLLIDER_POWERPELLET, 0);
 	App->particles->AddParticle(App->particles->powerpellet, 15, 479, COLLIDER_POWERPELLET, 0);
-	App->particles->AddParticle(App->particles->powerpellet, 415, 78, COLLIDER_POWERPELLET, 0);
+	App->particles->AddParticle(App->particles->powerpellet, 415, 94, COLLIDER_POWERPELLET, 0);
 	App->particles->AddParticle(App->particles->powerpellet, 415, 479, COLLIDER_POWERPELLET, 0);
 
 	App->player->Enable();

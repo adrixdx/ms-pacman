@@ -369,7 +369,7 @@ update_status ModuleBlinky::Update()
 		int t_tilepos_y = ((t_i_position_y + 16) / 16) * 16;
 		int t_tilepos_x = ((t_i_position_x + 16) / 16) * 16;
 
-
+		
 		if (t_turn == true){
 
 			if (App->player->s_map[(t_tilepos_y / 16)][(t_tilepos_x / 16)] == -1 || App->player->s_map[(t_tilepos_y / 16)][(t_tilepos_x / 16)] == -2){

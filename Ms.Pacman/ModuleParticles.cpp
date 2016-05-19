@@ -7,6 +7,10 @@
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
 #include "ModuleLevelOne.h"
+#include "ModuleLevelFour.h"
+#include "ModuleLevelThree.h"
+#include "ModuleLevelTwo.h"
+#include "ModulePlayer.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -118,7 +122,10 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 			//AddParticle(explosion, active[i]->position.x, active[i]->position.y);
 			delete active[i];
 			active[i] = nullptr;
-			App->level_one->pellets -= 1 ;
+			if (App->player->n_map == 0)	App->level_one->pellets -= 1 ;
+			if (App->player->n_map == 1)	App->level_two->pellets -= 1;
+			if (App->player->n_map == 2)	App->level_three->pellets -= 1;
+			if (App->player->n_map == 3)	App->level_four->pellets -= 1;
 			break;
 		}
 	}

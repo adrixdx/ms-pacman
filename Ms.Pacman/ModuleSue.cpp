@@ -83,7 +83,13 @@ bool ModuleSue::Start()
 
 	scared2.speed = 0.1f;
 
+	circle.PushBack({ 0, 470, 350, 350 });
 
+	a_hor.PushBack({ 203, 401, 32, 28 });
+	a_hor.speed = 0.0f;
+
+	a_vert.PushBack({ 201, 340, 30, 32 });
+	a_vert.speed = 0.0f;
 
 
 
@@ -112,6 +118,9 @@ bool ModuleSue::CleanUp()
 update_status ModuleSue::Update()
 {
 	Animation* current_animation = &idle;
+	Animation* horitzontal = &a_hor;
+	Animation* vertical = &a_vert;
+	Animation* a_circle = &circle;
 	float position_x = position.x;
 	float position_y = position.y;
 	int i_position_x = position.x;
@@ -133,11 +142,14 @@ update_status ModuleSue::Update()
 	if (SDL_GetTicks() - time <= 700){
 
 		direction = 2;
+		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
+		
 
 		//if (SDL_GetTicks() - time >= 2000) direction = 1;
 	}
 	else if (SDL_GetTicks() - time <= 810){
 		direction = 1;
+		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	}
 	else {
 		if (turn == true){
@@ -329,17 +341,299 @@ update_status ModuleSue::Update()
 		position.y = (i_position_y / 16) * 16 + 8;
 
 	}
+	col->SetPos(tilepos_x, tilepos_y);
+	
+	float t_positionx = position.x;
+	float t_positiony = position.y;
+	float t_position_x = t_positionx;
+	float t_position_y = t_positiony;
+	int p_position_x = App->player->position.x;
+	int p_position_y = App->player->position.y;
+	int player_position_x = ((p_position_x + 16) / 16) * 16;
+	int player_position_y = ((p_position_y + 16) / 16) * 16;
+	bool t_turn = true;
 
+	int i = 0, n = 0;
+	int temp_dir = direction;
+	bool ret = false;
+	int cont = 0;
+	if (debug == true){
+		App->render->Blit(graphics, App->player->position.x - 140, App->player->position.y - 150, &(a_circle->GetCurrentFrame()));
+		if (SDL_sqrt(((tilepos_x)-App->player->position.x)*((tilepos_x)-App->player->position.x) + ((tilepos_y)-App->player->position.y)*((tilepos_y)-App->player->position.y)) < 150){
+			while (ret != true){
+				d_up = 0;
+				d_down = 0;
+				d_left = 0;
+				d_right = 0;
+				//t_position_x + i != App->player->position.x  && t_position_y + n != App->player->position.y
+				float t_position_x = t_positionx;
+				float t_position_y = t_positiony;
+				int t_i_position_x = t_positionx;
+				int t_i_position_y = t_positiony;
+				int t_tilepos_y = ((t_i_position_y + 16) / 16) * 16;
+				int t_tilepos_x = ((t_i_position_x + 16) / 16) * 16;
+
+
+				if (t_turn == true){
+
+					if (App->player->s_map[(t_tilepos_y / 16)][(t_tilepos_x / 16)] == -1 || App->player->s_map[(t_tilepos_y / 16)][(t_tilepos_x / 16)] == -2){
+						if (App->player->s_map[(t_tilepos_y / 16) - 1][(t_tilepos_x / 16)] != 2){
+							d_up = SDL_sqrt(((t_tilepos_x)-App->player->position.x)*(t_tilepos_x - App->player->position.x) + ((t_tilepos_y - 16) - App->player->position.y)*((t_tilepos_y - 16) - App->player->position.y));
+						}
+
+						if (App->player->s_map[(t_tilepos_y / 16) + 1][(t_tilepos_x / 16)] != 2){
+							d_down = SDL_sqrt(((t_tilepos_x)-App->player->position.x)*(t_tilepos_x - App->player->position.x) + ((t_tilepos_y + 16) - App->player->position.y)*((t_tilepos_y + 16) - App->player->position.y));
+						}
+
+						if (App->player->s_map[(t_tilepos_y / 16)][(t_tilepos_x / 16) - 1] != 2){
+							d_left = SDL_sqrt(((t_tilepos_x - 16) - App->player->position.x)*((t_tilepos_x - 16) - App->player->position.x) + ((t_tilepos_y)-App->player->position.y)*((t_tilepos_y)-App->player->position.y));
+						}
+
+						if (App->player->s_map[(t_tilepos_y / 16)][(t_tilepos_x / 16) + 1] != 2){
+							d_right = SDL_sqrt(((t_tilepos_x + 16) - App->player->position.x)*((t_tilepos_x + 16) - App->player->position.x) + ((t_tilepos_y)-App->player->position.y)*((t_tilepos_y)-App->player->position.y));
+						}
+
+						if (temp_dir == 0){
+							d_left = 0;
+						}
+						if (temp_dir == 1){
+							d_right = 0;
+						}
+						if (temp_dir == 2){
+							d_down = 0;
+						}
+						if (temp_dir == 3){
+							d_up = 0;
+						}
+
+
+						if (d_up >= d_down && d_up >= d_right && d_up >= d_left){
+							temp_dir = 2; t_turn = false;
+						}
+						else if (d_right >= d_down && d_right >= d_left && d_right >= d_up){
+							temp_dir = 0; t_turn = false;
+						}
+						else if (d_down >= d_up && d_down >= d_right && d_down >= d_left){
+							temp_dir = 3; t_turn = false;
+						}
+
+						else if (d_left >= d_up && d_left >= d_right && d_left >= d_down){
+							temp_dir = 1; t_turn = false;
+						}
+
+					}
+
+
+				}
+				if (temp_dir == 0 && App->player->s_map[t_tilepos_y / 16][(t_tilepos_x / 16)] != 2){
+
+					t_position_x = t_position_x + speed;
+					t_positionx = t_position_x;
+					t_positiony = (t_i_position_y / 16) * 16 + 8;
+				}
+				if (temp_dir == 1 && App->player->s_map[t_tilepos_y / 16][(t_tilepos_x / 16)] != 2){
+
+					t_position_x = t_position_x - speed;
+					t_positionx = t_position_x;
+					t_positiony = (t_i_position_y / 16) * 16 + 8;
+
+				}
+				if (temp_dir == 2 && App->player->s_map[t_tilepos_y / 16][(t_tilepos_x / 16)] != 2){
+
+					t_position_y = t_position_y - speed;
+					t_positiony = t_position_y;
+					t_positionx = (t_i_position_x / 16) * 16 + 8;
+				}
+				if (temp_dir == 3 && App->player->s_map[t_tilepos_y / 16][(t_tilepos_x / 16)] != 2){
+
+					t_position_y = t_position_y + speed;
+					t_positiony = t_position_y;
+					t_positionx = (t_i_position_x / 16) * 16 + 8;
+				}
+
+
+				if (temp_dir == 0 && App->player->s_map[t_tilepos_y / 16][(t_tilepos_x / 16) + 1] == 2){
+
+					t_position_x = t_position_x - speed;
+					t_positionx = (t_i_position_x / 16) * 16 + 8;
+
+				}
+
+
+				if (temp_dir == 0 || temp_dir == 1){
+					App->render->Blit(graphics, t_tilepos_x, t_tilepos_y, &(horitzontal->GetCurrentFrame()));
+				}
+				else App->render->Blit(graphics, t_tilepos_x, t_tilepos_y, &(vertical->GetCurrentFrame()));
+
+				if (temp_dir == 0){
+					t_tilepos_x += 16;
+				}
+				if (temp_dir == 1){
+					t_tilepos_x -= 16;
+				}
+				if (temp_dir == 2){
+					t_tilepos_y -= 16;
+				}
+				if (temp_dir == 3){
+					t_tilepos_y += 16;
+				}
+				if (App->player->s_map[(t_tilepos_y / 16)][(t_tilepos_x / 16)] != -1 && App->player->s_map[(t_tilepos_y / 16)][(t_tilepos_x / 16)] != -2)
+				{
+
+					t_turn = true;
+				}
+				if ((t_tilepos_y == player_position_y && t_tilepos_x == player_position_x) || cont >= 100){
+					ret = true;
+					t_turn = true;
+					temp_dir = direction;
+				}
+				cont++;
+			}
+		
+		}
+		else{
+			while (ret != true){
+				d_up = 1000;
+				d_down = 1000;
+				d_left = 1000;
+				d_right = 1000;
+				//t_position_x + i != App->player->position.x  && t_position_y + n != App->player->position.y
+				float t_position_x = t_positionx;
+				float t_position_y = t_positiony;
+				int t_i_position_x = t_positionx;
+				int t_i_position_y = t_positiony;
+				int t_tilepos_y = ((t_i_position_y + 16) / 16) * 16;
+				int t_tilepos_x = ((t_i_position_x + 16) / 16) * 16;
+
+
+				if (t_turn == true){
+
+					if (App->player->s_map[(t_tilepos_y / 16)][(t_tilepos_x / 16)] == -1 || App->player->s_map[(t_tilepos_y / 16)][(t_tilepos_x / 16)] == -2){
+						if (App->player->s_map[(t_tilepos_y / 16) - 1][(t_tilepos_x / 16)] != 2){
+							d_up = SDL_sqrt(((t_tilepos_x)-App->player->position.x)*(t_tilepos_x - App->player->position.x) + ((t_tilepos_y - 16) - App->player->position.y)*((t_tilepos_y - 16) - App->player->position.y));
+						}
+
+						if (App->player->s_map[(t_tilepos_y / 16) + 1][(t_tilepos_x / 16)] != 2){
+							d_down = SDL_sqrt(((t_tilepos_x)-App->player->position.x)*(t_tilepos_x - App->player->position.x) + ((t_tilepos_y + 16) - App->player->position.y)*((t_tilepos_y + 16) - App->player->position.y));
+						}
+
+						if (App->player->s_map[(t_tilepos_y / 16)][(t_tilepos_x / 16) - 1] != 2){
+							d_left = SDL_sqrt(((t_tilepos_x - 16) - App->player->position.x)*((t_tilepos_x - 16) - App->player->position.x) + ((t_tilepos_y)-App->player->position.y)*((t_tilepos_y)-App->player->position.y));
+						}
+
+						if (App->player->s_map[(t_tilepos_y / 16)][(t_tilepos_x / 16) + 1] != 2){
+							d_right = SDL_sqrt(((t_tilepos_x + 16) - App->player->position.x)*((t_tilepos_x + 16) - App->player->position.x) + ((t_tilepos_y)-App->player->position.y)*((t_tilepos_y)-App->player->position.y));
+						}
+
+						if (temp_dir == 0){
+							d_left = 1000;
+						}
+						if (temp_dir == 1){
+							d_right = 1000;
+						}
+						if (temp_dir == 2){
+							d_down = 1000;
+						}
+						if (temp_dir == 3){
+							d_up = 1000;
+						}
+
+
+						if (d_up <= d_down && d_up <= d_right && d_up <= d_left){
+							temp_dir = 2; t_turn = false;
+						}
+						else if (d_right <= d_down && d_right <= d_left && d_right <= d_up){
+							temp_dir = 0; t_turn = false;
+						}
+						else if (d_down <= d_up && d_down <= d_right && d_down <= d_left){
+							temp_dir = 3; t_turn = false;
+						}
+
+						else if (d_left <= d_up && d_left <= d_right && d_left <= d_down){
+							temp_dir = 1; t_turn = false;
+						}
+
+					}
+
+
+				}
+				if (temp_dir == 0 && App->player->s_map[t_tilepos_y / 16][(t_tilepos_x / 16)] != 2){
+
+					t_position_x = t_position_x + speed;
+					t_positionx = t_position_x;
+					t_positiony = (t_i_position_y / 16) * 16 + 8;
+				}
+				if (temp_dir == 1 && App->player->s_map[t_tilepos_y / 16][(t_tilepos_x / 16)] != 2){
+
+					t_position_x = t_position_x - speed;
+					t_positionx = t_position_x;
+					t_positiony = (t_i_position_y / 16) * 16 + 8;
+
+				}
+				if (temp_dir == 2 && App->player->s_map[t_tilepos_y / 16][(t_tilepos_x / 16)] != 2){
+
+					t_position_y = t_position_y - speed;
+					t_positiony = t_position_y;
+					t_positionx = (t_i_position_x / 16) * 16 + 8;
+				}
+				if (temp_dir == 3 && App->player->s_map[t_tilepos_y / 16][(t_tilepos_x / 16)] != 2){
+
+					t_position_y = t_position_y + speed;
+					t_positiony = t_position_y;
+					t_positionx = (t_i_position_x / 16) * 16 + 8;
+				}
+
+
+				if (temp_dir == 0 && App->player->s_map[t_tilepos_y / 16][(t_tilepos_x / 16) + 1] == 2){
+
+					t_position_x = t_position_x - speed;
+					t_positionx = (t_i_position_x / 16) * 16 + 8;
+
+				}
+
+
+				if (temp_dir == 0 || temp_dir == 1){
+					App->render->Blit(graphics, t_tilepos_x, t_tilepos_y, &(horitzontal->GetCurrentFrame()));
+				}
+				else App->render->Blit(graphics, t_tilepos_x, t_tilepos_y, &(vertical->GetCurrentFrame()));
+
+				if (temp_dir == 0){
+					t_tilepos_x += 16;
+				}
+				if (temp_dir == 1){
+					t_tilepos_x -= 16;
+				}
+				if (temp_dir == 2){
+					t_tilepos_y -= 16;
+				}
+				if (temp_dir == 3){
+					t_tilepos_y += 16;
+				}
+				if (App->player->s_map[(t_tilepos_y / 16)][(t_tilepos_x / 16)] != -1 && App->player->s_map[(t_tilepos_y / 16)][(t_tilepos_x / 16)] != -2)
+				{
+
+					t_turn = true;
+				}
+				if ((t_tilepos_y == player_position_y && t_tilepos_x == player_position_x) || cont >= 100){
+					ret = true;
+					t_turn = true;
+					temp_dir = direction;
+				}
+				cont++;
+			}
+		}
+	}
+	
 
 
 	// Collider--------------
 
-	col->SetPos(tilepos_x, tilepos_y);
+	
+	
 
-
-	if (destroyed == false)
+	if (destroyed == false){
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
-
+	}
 	if (App->player->s_map[(tilepos_y / 16)][(tilepos_x / 16)] == -3)
 	{
 		position.x = 0;

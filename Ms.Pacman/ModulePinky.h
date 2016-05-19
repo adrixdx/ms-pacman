@@ -35,6 +35,9 @@ public:
 	Animation down;
 	Animation scared;
 	Animation scared2;
+	Animation a_hor;
+	Animation a_vert;
+	Animation square;
 	iPoint position;
 	Collider* col;
 	bool turn;

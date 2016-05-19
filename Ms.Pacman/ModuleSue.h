@@ -33,8 +33,11 @@ public:
 	Animation left;
 	Animation up;
 	Animation down;
+	Animation circle;
 	Animation scared;
 	Animation scared2;
+	Animation a_hor;
+	Animation a_vert;
 	iPoint position;
 	Collider* col;
 	bool turn;
