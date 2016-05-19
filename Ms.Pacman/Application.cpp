@@ -20,6 +20,7 @@
 #include "ModuleLevelTwo.h"
 #include "ModuleReadyTwo.h"
 #include "ModuleScore.h"
+#include "ModuleLevelFour.h"
 
 #include "ModuleReady.h"
 
@@ -42,25 +43,27 @@ Application::Application()
 	modules[5] = start = new ModuleStartScreen();
 	modules[6] = level_two = new ModuleLevelTwo();
 	modules[7] = level_three = new ModuleLevelThree();
+	modules[8] = level_four = new ModuleLevelFour();
 
 
-	modules[8] = fade = new ModuleFadeToBlack();
-	modules[9] = particles = new ModuleParticles();
-	modules[10] = collision = new ModuleCollision();
+	modules[9] = fade = new ModuleFadeToBlack();
+	modules[10] = particles = new ModuleParticles();
+	modules[11] = collision = new ModuleCollision();
 
-	modules[11] = player = new ModulePlayer();
-	modules[12] = enemies = new ModuleEnemies();
-	modules[13] = blinky = new ModuleBlinky();
-	modules[14] = inky = new ModuleInky();
-	modules[15] = sue = new ModuleSue();
-	modules[16] = pinky = new ModulePinky();
+	modules[12] = player = new ModulePlayer();
+	modules[13] = enemies = new ModuleEnemies();
+	modules[14] = blinky = new ModuleBlinky();
+	modules[15] = inky = new ModuleInky();
+	modules[16] = sue = new ModuleSue();
+	modules[17] = pinky = new ModulePinky();
 
-	modules[17] = gameover = new ModuleGameOver();
-	modules[18] = ready_two = new ModuleReadyTwo();
-	modules[19] = ready = new ModuleReady();	
-	modules[20] = win = new ModuleWin();
+	modules[18] = gameover = new ModuleGameOver();
+	modules[19] = ready_two = new ModuleReadyTwo();
+	modules[20] = ready = new ModuleReady();	
+	modules[21] = win = new ModuleWin();
 
-	modules[21] = audio = new ModuleAudio();
+	modules[22] = audio = new ModuleAudio();
+
 
 
 
