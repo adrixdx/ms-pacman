@@ -3,6 +3,10 @@
 #include "ModuleRender.h"
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
+#include "ModuleBlinky.h"
+#include "ModulePinky.h"
+#include "ModuleSue.h"
+#include "ModuleInky.h"
 
 ModuleCollision::ModuleCollision()
 {
@@ -131,6 +135,13 @@ void ModuleCollision::DebugDraw()
 
 	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_DOWN)
 		App->player->god = !App->player->god;
+
+	if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN){
+		App->inky->debug = !App->inky->debug;
+		App->blinky->debug = !App->blinky->debug;
+		App->pinky->debug = !App->pinky->debug;
+		App->sue->debug = !App->sue->debug;
+	}
 
 	if (debug == false)
 		return;

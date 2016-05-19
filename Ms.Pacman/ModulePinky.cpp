@@ -208,7 +208,7 @@ update_status ModulePinky::Update()
 					direction = 3; turn = false;
 				}
 
-				else{
+				else if(d_left <= d_up && d_left<= d_right && d_left<=d_down){
 					direction = 1; turn = false;
 				}
 
@@ -241,16 +241,16 @@ update_status ModulePinky::Update()
 				
 
 
-					if (d_up > d_down && d_up > d_right && d_up > d_left){
+					if (d_up >= d_down && d_up >= d_right && d_up >= d_left){
 						direction = 2; turn = false;
 					}
-					else if (d_down > d_up && d_down > d_right && d_down > d_left){
+					else if (d_down >=  d_up && d_down >= d_right && d_down >= d_left){
 						direction = 3; turn = false;
 					}
-					else if (d_right > d_down && d_right > d_left && d_right > d_up){
+					else if (d_right >= d_down && d_right >= d_left && d_right >= d_up){
 						direction = 0; turn = false;
 					}
-					else{
+					else if (d_left >= d_up && d_left >= d_right && d_left >= d_down){
 						direction = 1; turn = false;
 					}
 

@@ -41,7 +41,7 @@ public:
 	bool destroyed = false;
 	int direction;
 	unsigned int time = 0;
-
+	bool debug = false;
 };
 
 #endif

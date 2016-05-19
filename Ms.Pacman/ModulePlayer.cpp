@@ -10,6 +10,7 @@
 #include "ModuleLevelOne.h"
 #include "ModuleLevelTwo.h"
 #include "ModuleLevelThree.h"
+#include "ModuleLevelFour.h"
 #include "ModuleEnemies.h"
 #include "ModuleBlinky.h"
 #include "ModuleSue.h"
@@ -138,7 +139,7 @@ bool ModulePlayer::Start()
 	else if (n_map == 3){
 		for (int i = 0; i < 28; i++){
 			for (int n = 0; n < 36; n++){
-				s_map[n][i] = App->level_one->map[n][i];
+				s_map[n][i] = App->level_four->map[n][i];
 			}
 		}
 	}

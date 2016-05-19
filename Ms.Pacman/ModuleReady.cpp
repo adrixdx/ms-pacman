@@ -30,7 +30,7 @@ ModuleReady::~ModuleReady()
 bool ModuleReady::Start()
 {
 	time = SDL_GetTicks();
-	graphics = App->textures->Load("P1Ready.png");
+	graphics = App->textures->Load("PP1Ready.png");
 	App->audio->PlayMusic("game-start.ogg", 1.0f);
 
 	App->player->Disable();

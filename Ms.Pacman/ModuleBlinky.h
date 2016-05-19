@@ -33,6 +33,11 @@ public:
 	Animation left;
 	Animation up;
 	Animation down;
+
+	Animation a_hor;
+	Animation a_vert;
+	
+
 	Animation scared;
 	Animation scared2;
 	iPoint position;
@@ -41,6 +46,7 @@ public:
 	bool destroyed = false;
 	int direction;
 	unsigned int time = 0;
+	bool debug = false;
 
 };
 

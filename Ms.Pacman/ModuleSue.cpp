@@ -184,11 +184,11 @@ update_status ModuleSue::Update()
 					direction = 3; turn = false;
 				}
 
-				else{
+				else if (d_left <= d_up && d_left <= d_right && d_left <= d_down){
 					direction = 1; turn = false;
 				}
 
-			
+
 				if (App->player->power == true || SDL_sqrt(((tilepos_x)-App->player->position.x)*((tilepos_x)-App->player->position.x) + ((tilepos_y)-App->player->position.y)*((tilepos_y)-App->player->position.y)) < 150){
 
 					d_up = 0;
@@ -213,18 +213,19 @@ update_status ModuleSue::Update()
 							d_right = SDL_sqrt(((tilepos_x + 16) - App->player->position.x)*((tilepos_x + 16) - App->player->position.x) + ((tilepos_y)-App->player->position.y)*((tilepos_y)-App->player->position.y));
 						}
 
-						if (d_up > d_down && d_up > d_right && d_up > d_left){
+						if (d_up >= d_down && d_up >= d_right && d_up >= d_left){
 							direction = 2; turn = false;
 						}
-						else if (d_down > d_up && d_down > d_right && d_down > d_left){
+						else if (d_down >= d_up && d_down >= d_right && d_down >= d_left){
 							direction = 3; turn = false;
 						}
-						else if (d_right > d_down && d_right > d_left && d_right > d_up){
+						else if (d_right >= d_down && d_right >= d_left && d_right >= d_up){
 							direction = 0; turn = false;
 						}
-						else{
+						else if (d_left >= d_up && d_left >= d_right && d_left >= d_down){
 							direction = 1; turn = false;
 						}
+
 
 					}
 
@@ -232,39 +233,40 @@ update_status ModuleSue::Update()
 
 			}
 		}
-	}
 
-	if (App->player->power == true || App->player->god == true){
-		if (SDL_GetTicks() - App->player->time > 2000 && SDL_GetTicks() - App->player->time < 4000){
-			current_animation = &scared2;
+
+		if (App->player->power == true || App->player->god == true){
+			if (SDL_GetTicks() - App->player->time > 2000 && SDL_GetTicks() - App->player->time < 4000){
+				current_animation = &scared2;
+			}
+			else
+				current_animation = &scared;
 		}
-		else
-			current_animation = &scared;
-	}
-	else{
+		else{
 
-		if (direction == 0){
-			current_animation = &right;
-			//position.x += speed;
+			if (direction == 0){
+				current_animation = &right;
+				//position.x += speed;
+
+			}
+
+			if (direction == 1){
+				current_animation = &left;
+				//position.x -= speed;
+			}
+
+
+			if (direction == 2){
+				current_animation = &up;
+				//position.y -= speed;
+			}
+
+			if (direction == 3){
+				current_animation = &down;
+				//position.y += speed;
+			}
 
 		}
-
-		if (direction == 1){
-			current_animation = &left;
-			//position.x -= speed;
-		}
-
-
-		if (direction == 2){
-			current_animation = &up;
-			//position.y -= speed;
-		}
-
-		if (direction == 3){
-			current_animation = &down;
-			//position.y += speed;
-		}
-
 	}
 
 

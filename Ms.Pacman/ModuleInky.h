@@ -35,12 +35,15 @@ public:
 	Animation down;
 	Animation scared;
 	Animation scared2;
+	Animation a_hor;
+	Animation a_vert;
 	iPoint position;
 	Collider* col;
 	bool turn;
 	bool destroyed = false;
 	int direction;
 	unsigned int time = 0;
+	bool debug = false;
 
 };
 
