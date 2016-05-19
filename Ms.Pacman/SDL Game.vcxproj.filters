@@ -15,6 +15,15 @@
     <Filter Include="Modules\Ghosts">
       <UniqueIdentifier>{79efbbde-369f-42d1-9b0f-e58a60603d32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Levels">
+      <UniqueIdentifier>{f6607237-ac8d-4565-8a4a-f5ea4a680f34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Ready">
+      <UniqueIdentifier>{f36bce93-3083-4abe-8cb5-e7e8a8de1765}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\GameOver">
+      <UniqueIdentifier>{f037d75a-0ea4-491f-8511-b55a2d8b361c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -53,9 +62,6 @@
     <ClInclude Include="ModuleStartScreen.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleLevelOne.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleParticles.h">
       <Filter>Modules</Filter>
     </ClInclude>
@@ -66,12 +72,6 @@
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModuleEnemies.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleGameOver.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleReady.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="Globals.h">
@@ -92,29 +92,41 @@
     <ClInclude Include="ModuleWin.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleLevelThree.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleLevelTwo.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleReadyTwo.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleScore.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModuleLevelFour.h">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Levels</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleReadyThree.h">
-      <Filter>Modules</Filter>
+    <ClInclude Include="ModuleLevelOne.h">
+      <Filter>Modules\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleLevelThree.h">
+      <Filter>Modules\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleLevelTwo.h">
+      <Filter>Modules\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleReady.h">
+      <Filter>Modules\Ready</Filter>
     </ClInclude>
     <ClInclude Include="ModuleReadyFour.h">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Ready</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleReadyThree.h">
+      <Filter>Modules\Ready</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleReadyTwo.h">
+      <Filter>Modules\Ready</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleGameOver.h">
+      <Filter>Modules\GameOver</Filter>
     </ClInclude>
     <ClInclude Include="ModuleGameOverTwo.h">
-      <Filter>Modules</Filter>
+      <Filter>Modules\GameOver</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleGameOverThree.h">
+      <Filter>Modules\GameOver</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -148,9 +160,6 @@
     <ClCompile Include="ModuleStartscreen.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleLevelOne.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleParticles.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
@@ -161,12 +170,6 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleEnemies.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleGameOver.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleReady.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleBlinky.cpp">
@@ -184,26 +187,38 @@
     <ClCompile Include="ModuleWin.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleLevelFour.cpp">
+      <Filter>Modules\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleLevelOne.cpp">
+      <Filter>Modules\Levels</Filter>
+    </ClCompile>
     <ClCompile Include="ModuleLevelThree.cpp">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Levels</Filter>
     </ClCompile>
     <ClCompile Include="ModuleLevelTwo.cpp">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Levels</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleReadyTwo.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleLevelFour.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleReadyThree.cpp">
-      <Filter>Modules</Filter>
+    <ClCompile Include="ModuleReady.cpp">
+      <Filter>Modules\Ready</Filter>
     </ClCompile>
     <ClCompile Include="ModuleReadyFour.cpp">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Ready</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleReadyThree.cpp">
+      <Filter>Modules\Ready</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleReadyTwo.cpp">
+      <Filter>Modules\Ready</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleGameOver.cpp">
+      <Filter>Modules\GameOver</Filter>
     </ClCompile>
     <ClCompile Include="ModuleGameOverTwo.cpp">
-      <Filter>Modules</Filter>
+      <Filter>Modules\GameOver</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleGameOverThree.cpp">
+      <Filter>Modules\GameOver</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

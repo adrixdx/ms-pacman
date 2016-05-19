@@ -12,7 +12,8 @@
 #include "ModuleAudio.h"
 #include "ModuleEnemies.h"
 #include "ModuleBlinky.h"
-#include "ModuleGameOver.h"
+#include "ModuleGameOverThree.h"
+
 #include "ModuleLevelThree.h"
 #include "ModuleLevelTwo.h"
 #include "ModuleLevelFour.h"
@@ -179,7 +180,7 @@ update_status ModuleLevelThree::Update()
 			delete App->particles->active[i];
 			App->particles->active[i] = nullptr;
 		}
-		App->fade->FadeToBlack(this, App->gameover, 1);
+		App->fade->FadeToBlack(this, App->gameover_three, 1);
 	}
 
 

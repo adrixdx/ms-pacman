@@ -80,6 +80,7 @@
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleCollision.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
+    <ClInclude Include="ModuleGameOverThree.h" />
     <ClInclude Include="ModuleGameOverTwo.h" />
     <ClInclude Include="ModuleInky.h" />
     <ClInclude Include="ModuleInput.h" />
@@ -113,6 +114,7 @@
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCollision.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
+    <ClCompile Include="ModuleGameOverThree.cpp" />
     <ClCompile Include="ModuleGameOverTwo.cpp" />
     <ClCompile Include="ModuleInky.cpp" />
     <ClCompile Include="ModuleInput.cpp" />

@@ -22,7 +22,9 @@
 #include "ModuleReadyTwo.h"
 #include "ModuleReadyThree.h"
 #include "ModuleReadyFour.h"
+
 #include "ModuleGameOverTwo.h"
+#include "ModuleGameOverThree.h"
 
 
 
@@ -127,6 +129,7 @@ bool ModuleStartScreen::Start()
 
 	App->gameover->Disable();
 	App->gameover_two->Disable();
+	App->gameover_three->Disable();
 
 	return true;
 }

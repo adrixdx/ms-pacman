@@ -15,17 +15,19 @@
 #include "ModuleSue.h"
 #include "ModulePinky.h"
 #include "ModuleInky.h"
-#include "ModuleGameOver.h"
 #include "ModuleLevelThree.h"
 #include "ModuleLevelTwo.h"
-#include "ModuleReadyTwo.h"
 #include "ModuleScore.h"
 #include "ModuleLevelFour.h"
-#include "ModuleReadyThree.h"
-#include "ModuleReadyFour.h"
-#include "ModuleGameOverTwo.h"
 
 #include "ModuleReady.h"
+#include "ModuleReadyTwo.h"
+#include "ModuleReadyThree.h"
+#include "ModuleReadyFour.h"
+
+#include "ModuleGameOver.h"
+#include "ModuleGameOverTwo.h"
+#include "ModuleGameOverThree.h"
 
 #include "ModuleWin.h"
 
@@ -71,6 +73,7 @@ Application::Application()
 	modules[22] = audio = new ModuleAudio();
 
 	modules[25] = gameover_two = new ModuleGameOverTwo();
+	modules[26] = gameover_three = new ModuleGameOverThree();
 
 
 
