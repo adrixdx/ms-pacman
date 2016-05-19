@@ -20,6 +20,7 @@
 #include "ModuleLevelFour.h"
 #include "ModuleLevelTwo.h"
 #include "ModuleReadyTwo.h"
+#include "ModuleReadyThree.h"
 
 
 
@@ -119,6 +120,7 @@ bool ModuleStartScreen::Start()
 	App->level_two->Disable();
 	App->ready->Disable();
 	App->ready_two->Disable();
+	App->ready_three->Disable();
 	return true;
 }
 

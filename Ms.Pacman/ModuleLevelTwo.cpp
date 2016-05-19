@@ -16,6 +16,7 @@
 #include "ModuleLevelThree.h"
 #include "ModuleLevelTwo.h"
 #include "ModuleReadyTwo.h"
+#include "ModuleReadyThree.h"
 
 #include "ModuleSue.h"
 #include "ModulePinky.h"
@@ -54,8 +55,8 @@ int ModuleLevelTwo::map[36][28] = {
 	{ 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2 },//25
 	{ 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2 },//26
 	{ -4, 0, 0, -1, 1, 1, -1, 2, 2, -1, 1, -1, 1, 1, 1, 1, -1, 1, -1, 2, 2, -1, 1, 1, -1, 0, 0, -3 },//27
-	{ 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 1, 2, 2, 1, 2, 2, 2 },//28
-	{ 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 1, 2, 2, 1, 2, 2, 2 },//29
+	{ 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2 },//28
+	{ 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2 },//29
 	{ 2, -1, 1, -1, 2, 2, -1, 1, 1, -1, 1, 1, -1, 2, 2, -1, 1, 1, -1, 1, 1, -1, 2, 2, -1, 1, -1, 2 },//30
 	{ 2, 0, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 0, 2 },//31
 	{ 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2 },//32
@@ -161,7 +162,7 @@ update_status ModuleLevelTwo::Update()
 
 	if (pellets == 0 || App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 	{
-		App->fade->FadeToBlack(this, App->level_three, 1);
+		App->fade->FadeToBlack(this, App->ready_three, 1);
 		for (int i = 0; i < MAX_ACTIVE_PARTICLES; i++){
 			delete App->particles->active[i];
 			App->particles->active[i] = nullptr;
