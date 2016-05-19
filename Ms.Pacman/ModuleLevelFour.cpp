@@ -14,8 +14,7 @@
 #include "ModuleBlinky.h"
 #include "ModuleGameOver.h"
 #include "ModuleLevelThree.h"
-#include "ModuleLevelTwo.h"
-#include "ModuleReadyTwo.h"
+#include "ModuleReady.h"
 #include "ModuleLevelFour.h"
 
 #include "ModuleSue.h"
@@ -163,7 +162,7 @@ update_status ModuleLevelFour::Update()
 
 	if (pellets == 0 || App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 	{
-		App->fade->FadeToBlack(this, App->level_one, 1);
+		App->fade->FadeToBlack(this, App->ready, 1);
 		for (int i = 0; i < MAX_ACTIVE_PARTICLES; i++){
 			delete App->particles->active[i];
 			App->particles->active[i] = nullptr;

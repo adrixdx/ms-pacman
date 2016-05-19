@@ -89,6 +89,7 @@
     <ClInclude Include="ModulePinky.h" />
     <ClInclude Include="ModulePlayer.h" />
     <ClInclude Include="ModuleReady.h" />
+    <ClInclude Include="ModuleReadyFour.h" />
     <ClInclude Include="ModuleReadyThree.h" />
     <ClInclude Include="ModuleReadyTwo.h" />
     <ClInclude Include="ModuleRender.h" />
@@ -120,6 +121,7 @@
     <ClCompile Include="ModulePinky.cpp" />
     <ClCompile Include="ModulePlayer.cpp" />
     <ClCompile Include="ModuleReady.cpp" />
+    <ClCompile Include="ModuleReadyFour.cpp" />
     <ClCompile Include="ModuleReadyThree.cpp" />
     <ClCompile Include="ModuleReadyTwo.cpp" />
     <ClCompile Include="ModuleRender.cpp" />

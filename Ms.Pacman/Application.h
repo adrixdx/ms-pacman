@@ -4,7 +4,7 @@
 #include "Globals.h"
 
 
-#define NUM_MODULES 24
+#define NUM_MODULES 25
 
 
 class ModuleWindow;
@@ -32,6 +32,7 @@ class ModuleLevelTwo;
 class ModuleReadyTwo;
 class ModuleLevelFour;
 class ModuleReadyThree;
+class ModuleReadyFour;
 
 
 class Application
@@ -43,24 +44,26 @@ public:
 	ModuleRender* render;
 	ModuleInput* input;
 	ModuleTextures* textures;
-	ModuleStartScreen* start;
-	ModuleLevelOne* level_one;
 	ModulePlayer* player;
 	ModuleFadeToBlack* fade;
 	ModuleParticles* particles;
 	ModuleCollision* collision;
 	ModuleEnemies* enemies;
 	ModuleAudio* audio;
-	ModuleBlinky* blinky;
 	ModuleGameOver* gameover;
+
+	ModuleStartScreen* start;
+	ModuleLevelOne* level_one;
 	ModuleLevelThree* level_three;
 	ModuleLevelTwo* level_two;
 	ModuleLevelFour* level_four;
 	
-
 	ModuleReady* ready;
 	ModuleReadyTwo* ready_two;
 	ModuleReadyThree* ready_three;
+	ModuleReadyFour* ready_four;
+
+	ModuleBlinky* blinky;
 	ModuleSue* sue;
 	ModuleInky* inky;
 	ModulePinky* pinky;

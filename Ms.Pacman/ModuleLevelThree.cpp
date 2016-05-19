@@ -16,6 +16,7 @@
 #include "ModuleLevelThree.h"
 #include "ModuleLevelTwo.h"
 #include "ModuleLevelFour.h"
+#include "ModuleReadyFour.h"
 
 #include "ModuleSue.h"
 #include "ModulePinky.h"
@@ -164,7 +165,7 @@ update_status ModuleLevelThree::Update()
 	if (pellets == 0 || App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 	{
 	
-		App->fade->FadeToBlack(this, App->level_four, 1);
+		App->fade->FadeToBlack(this, App->ready_four, 1);
 		for (int i = 0; i < MAX_ACTIVE_PARTICLES; i++){
 			delete App->particles->active[i];
 			App->particles->active[i] = nullptr;

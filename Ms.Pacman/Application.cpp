@@ -22,6 +22,7 @@
 #include "ModuleScore.h"
 #include "ModuleLevelFour.h"
 #include "ModuleReadyThree.h"
+#include "ModuleReadyFour.h"
 
 #include "ModuleReady.h"
 
@@ -61,6 +62,8 @@ Application::Application()
 	modules[18] = gameover = new ModuleGameOver();
 	modules[19] = ready_two = new ModuleReadyTwo();
 	modules[23] = ready_three = new ModuleReadyThree();
+	modules[24] = ready_four = new ModuleReadyFour();
+
 	modules[20] = ready = new ModuleReady();	
 	modules[21] = win = new ModuleWin();
 

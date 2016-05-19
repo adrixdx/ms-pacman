@@ -21,6 +21,7 @@
 #include "ModuleLevelTwo.h"
 #include "ModuleReadyTwo.h"
 #include "ModuleReadyThree.h"
+#include "ModuleReadyFour.h"
 
 
 
@@ -115,12 +116,14 @@ bool ModuleStartScreen::Start()
 
 	App->gameover->Disable();
 	App->level_one->Disable();
+	App->level_two->Disable();
 	App->level_three->Disable();
 	App->level_four->Disable();
-	App->level_two->Disable();
+
 	App->ready->Disable();
 	App->ready_two->Disable();
 	App->ready_three->Disable();
+	App->ready_four->Disable();
 	return true;
 }
 
