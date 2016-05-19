@@ -342,7 +342,7 @@ update_status ModuleInky::Update()
 
 	col->SetPos(tilepos_x, tilepos_y);
 
-	App->render->Blit(graphics, App->player->position.x + n_position_x, App->player->position.y + n_position_y, &(current_animation->GetCurrentFrame()));
+	//App->render->Blit(graphics, App->player->position.x + n_position_x, App->player->position.y + n_position_y, &(current_animation->GetCurrentFrame()));
 	if (destroyed == false)
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	if (App->player->s_map[(tilepos_y / 16)][(tilepos_x / 16)] == -3)

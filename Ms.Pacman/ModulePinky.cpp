@@ -362,7 +362,7 @@ update_status ModulePinky::Update()
 	col->SetPos(tilepos_x, tilepos_y);
 
 
-	App->render->Blit(graphics, (p_tilepos_x + i * 16), (p_tilepos_y + n*16 ), &(current_animation->GetCurrentFrame()));
+	//App->render->Blit(graphics, (p_tilepos_x + i * 16), (p_tilepos_y + n*16 ), &(current_animation->GetCurrentFrame()));
 
 	if (destroyed == false)
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
