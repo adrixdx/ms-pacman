@@ -19,12 +19,16 @@
 ##Game Controls:
 
   -Direction arrows of keyboard: move Ms- Pac-Man up, down, left or right
-
-  -Press space on start screen or win/game over screens to change the screen to the following one
-
-  -During levels screens can't be changed
+  
+  -Press the spacebar to start or skip to the next level (does not work on Ready screens)
 
   -Press ESC to exit the game
+  
+  -Press F1 to show map collisions
+  
+  -Press F2 to start God Mode
+  
+  -Press F3 to shw the direction ghosts are going to move
   
   
 
@@ -80,3 +84,18 @@
 -Added tunnels
 
 -Added all Ghosts
+
+
+
+###Release 0.7
+
+-3 new mazes
+
+-God mode added
+
+-Ghosts have a different IA each other
+
+-Added a debug mode to see where the ghosts are going to move
+
+-Ms. Pacman movement improved
+
