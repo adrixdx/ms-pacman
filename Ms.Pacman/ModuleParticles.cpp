@@ -38,9 +38,6 @@ bool ModuleParticles::Start()
 	LOG("Loading particles");
 	graphics = App->textures->Load("puntos.png");
 
-	// Load particles fx particle
-	//explosion.fx = App->audio->LoadFx("rtype/explosion.wav");
-	//laser.fx = App->audio->LoadFx("rtype/laser.wav");
 
 	return true;
 }
@@ -50,17 +47,6 @@ bool ModuleParticles::CleanUp()
 {
 	LOG("Unloading particles");
 	//App->textures->Unload(graphics);
-
-	// Unload fx
-
-/*	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
-	{
-		if (active[i] != nullptr)
-		{
-			delete active[i];
-			active[i] = nullptr;
-		}
-	}*/
 
 	return true;
 }
@@ -83,11 +69,7 @@ update_status ModuleParticles::Update()
 		else if (SDL_GetTicks() >= p->born)
 		{
 			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
-			/*if (p->fx_played == false)
-			{
-				p->fx_played = true;
-				App->audio->PlayFx(p->fx);
-			}*/
+			
 		}
 	}
 

@@ -35,7 +35,7 @@ int ModuleLevelThree::map[36][28] = {
 	{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },//4  --START
 	{ 2, -1, 1, 1, 1, 1, 1, 1, 1, -1, 2, 2, -1, 1, 1, -1, 2, 2, -1, 1, 1, 1, 1, 1, 1, 1, -1, 2 },//5
 	{ 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2 },//6
-	{ 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2 },//7
+	{ 2, 0, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 0, 2 },//7
 	{ 2, 1, 2, 2, -1, 1, 1, -1, 1, -1, 1, 1, -1, 2, 2, -1, 1, 1, -1, 1, -1, 1, 1, -1, 2, 2, 1, 2 },//8
 	{ 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2 },//9
 	{ 2, -1, 1, 1, -1, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, -1, 1, 1, -1, 2 },//10
@@ -55,7 +55,7 @@ int ModuleLevelThree::map[36][28] = {
 	{ 2, -1, 1, -1, 1, 1, -1, 2, 2, -1, 1, 1, -1, 2, 2, -1, 1, 1, -1, 2, 2, -1, 1, 1, -1, 1, -1, 2 },//24
 	{ 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2 },//25
 	{ 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2 },//26
-	{ 2, -1, 1, -1, 2, 2, -1, 1, 1, -1, 1, 1, -1, 0, 0, -1, 1, 1, -1, 1, 1, -1, 2, 2, -1, 1, -1, 2 },//27
+	{ 2, -2, 1, -1, 2, 2, -1, 1, 1, -1, 1, 1, -1, 0, 0, -1, 1, 1, -1, 1, 1, -1, 2, 2, -1, 1, -2, 2 },//27
 	{ 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2 },//28
 	{ 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2 },//29
 	{ 2, -1, 1, 1, 1, 1, -1, 2, 2, -1, 1, 1, -1, 2, 2, -1, 1, 1, -1, 2, 2, -1, 1, 1, 1, 1, -1, 2 },//30
@@ -93,7 +93,7 @@ bool ModuleLevelThree::Start()
 
 	App->player->power == false;
 	App->player->position.x = 208;
-	pellets = 224;
+	pellets = 234;
 	App->player->position.y = 408;
 	App->player->n_map = 2;
 	App->audio->PlayMusic("effect.ogg", 1.0f);
@@ -127,9 +127,9 @@ bool ModuleLevelThree::Start()
 
 
 	App->particles->AddParticle(App->particles->powerpellet, 15, 94, COLLIDER_POWERPELLET, 0);
-	App->particles->AddParticle(App->particles->powerpellet, 15, 543, COLLIDER_POWERPELLET, 0);
+	App->particles->AddParticle(App->particles->powerpellet, 15, 416, COLLIDER_POWERPELLET, 0);
 	App->particles->AddParticle(App->particles->powerpellet, 415, 94, COLLIDER_POWERPELLET, 0);
-	App->particles->AddParticle(App->particles->powerpellet, 415, 543, COLLIDER_POWERPELLET, 0);
+	App->particles->AddParticle(App->particles->powerpellet, 415, 416, COLLIDER_POWERPELLET, 0);
 	
 	App->player->Enable();
 	App->blinky->Enable();

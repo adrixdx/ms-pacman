@@ -59,8 +59,8 @@ int ModuleLevelTwo::map[36][28] = {
 	{ -4, 0, 0, -1, 1, 1, -1, 2, 2, -1, 1, -1, 1, 1, 1, 1, -1, 1, -1, 2, 2, -1, 1, 1, -1, 0, 0, -3 },//27
 	{ 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2 },//28
 	{ 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2 },//29
-	{ 2, -1, 1, -1, 2, 2, -1, 1, 1, -1, 1, 1, -1, 2, 2, -1, 1, 1, -1, 1, 1, -1, 2, 2, -1, 1, -1, 2 },//30
-	{ 2, 0, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 0, 2 },//31
+	{ 2, -2, 1, -1, 2, 2, -1, 1, 1, -1, 1, 1, -1, 2, 2, -1, 1, 1, -1, 1, 1, -1, 2, 2, -1, 1, -2, 2 },//30
+	{ 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2 },//31
 	{ 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2 },//32
 	{ 2, -1, 1, 1, 1, 1, -1, 1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1, 1, -1, 1, 1, 1, 1, -1, 2 },//33
 	{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },//34     -----END
@@ -93,7 +93,7 @@ bool ModuleLevelTwo::Start()
 {
 	App->player->power == false;
 	App->player->position.x = 208;
-	pellets = 224;
+	pellets = 244;
 	App->player->position.y = 408;
 	App->player->n_map = 1;
 	App->audio->PlayMusic("effect.ogg", 1.0f);
@@ -127,9 +127,9 @@ bool ModuleLevelTwo::Start()
 
 
 	App->particles->AddParticle(App->particles->powerpellet, 15, 110, COLLIDER_POWERPELLET, 0);
-	App->particles->AddParticle(App->particles->powerpellet, 15, 463, COLLIDER_POWERPELLET, 0);
+	App->particles->AddParticle(App->particles->powerpellet, 15, 462, COLLIDER_POWERPELLET, 0);
 	App->particles->AddParticle(App->particles->powerpellet, 415, 110, COLLIDER_POWERPELLET, 0);
-	App->particles->AddParticle(App->particles->powerpellet, 415, 463, COLLIDER_POWERPELLET, 0);
+	App->particles->AddParticle(App->particles->powerpellet, 415, 462, COLLIDER_POWERPELLET, 0);
 
 	App->player->Enable();
 	App->blinky->Enable();

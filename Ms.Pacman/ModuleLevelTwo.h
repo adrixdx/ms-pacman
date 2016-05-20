@@ -30,7 +30,7 @@ public:
 	Animation water;
 	uint fx = 0;
 	static int map[36][28];
-	int pellets = 224;
+	int pellets = 244;
 };
 
 #endif // __MODULELEVELTWO_H__
