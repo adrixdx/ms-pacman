@@ -94,6 +94,22 @@ ModulePlayer::ModulePlayer()
 	g_right.PushBack({ 128, 352, 32, 32 });
 	g_right.PushBack({ 160, 352, 32, 32 });
 	g_right.speed = 0.15f;
+
+	//NUMBERS
+
+	n_0.PushBack({0,810, 16,16});
+	n_1.PushBack({ 16, 810, 16, 16 });
+	n_2.PushBack({ 32, 810, 16, 16 });
+	n_3.PushBack({ 16 * 3, 810, 16, 16 });
+	n_4.PushBack({ 16 * 4, 810, 16, 16 });
+	n_5.PushBack({ 16 * 5, 810, 16, 16 });
+	n_6.PushBack({ 16 * 6, 810, 16, 16 });
+	n_7.PushBack({ 16 * 7, 810, 16, 16 });
+	n_8.PushBack({ 16 * 8, 810, 16, 16 });
+	n_9.PushBack({ 16 * 9, 810, 16, 16 });
+
+
+
 }
 
 ModulePlayer::~ModulePlayer()
@@ -164,6 +180,11 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	Animation* current_animation = &idle;
+	Animation* units = &n_0;
+	Animation* dozens = &n_0;
+	Animation* hundreds = &n_0;
+	Animation* thousands = &n_0;
+	Animation* t_thousands = &n_0;
 	bool colision = false;
 	float speed = 2;
 	
@@ -174,7 +195,69 @@ update_status ModulePlayer::Update()
 	int tilepos_x = ((position_x + 16) / 16) * 16;
 	int tilepos_y = ((position_y + 16) / 16) * 16;
 	
-	App->input;
+	uint n_units;
+	uint n_dozens;
+	uint n_hundreds; 
+	uint n_thousands;
+	uint n_10thousands;
+
+	n_units = points % 10;
+	n_dozens = (points / 10) % 10;
+	n_hundreds = (points / 100) % 10;
+	n_thousands = (points / 1000) % 10;
+	n_10thousands = (points / 10000) % 10;
+	
+	switch (n_dozens){
+	case 0: dozens = &n_0; break;
+	case 1:dozens = &n_1; break;
+	case 2:dozens = &n_2; break;
+	case 3:dozens = &n_3; break;
+	case 4:dozens = &n_4; break;
+	case 5:dozens = &n_5; break;
+	case 6:dozens = &n_6; break;
+	case 7:dozens = &n_7; break;
+	case 8:dozens = &n_8; break;
+	case 9:dozens = &n_9; break;
+	}
+
+	switch (n_hundreds){
+	case 0:hundreds = &n_0; break;
+	case 1:hundreds = &n_1; break;
+	case 2:hundreds = &n_2; break;
+	case 3:hundreds = &n_3; break;
+	case 4:hundreds = &n_4; break;
+	case 5:hundreds = &n_5; break;
+	case 6:hundreds = &n_6; break;
+	case 7:hundreds = &n_7; break;
+	case 8:hundreds = &n_8; break;
+	case 9:hundreds = &n_9; break;
+	}
+
+	switch (n_thousands){
+	case 0: thousands = &n_0; break;
+	case 1:thousands = &n_1; break;
+	case 2:thousands = &n_2; break;
+	case 3:thousands = &n_3; break;
+	case 4:thousands = &n_4; break;
+	case 5:thousands = &n_5; break;
+	case 6:thousands = &n_6; break;
+	case 7:thousands = &n_7; break;
+	case 8:thousands = &n_8; break;
+	case 9:thousands = &n_9; break;
+	}
+	switch (n_10thousands){
+	case 0: t_thousands = &n_0; break;
+	case 1:t_thousands = &n_1; break;
+	case 2:t_thousands = &n_2; break;
+	case 3:t_thousands = &n_3; break;
+	case 4:t_thousands = &n_4; break;
+	case 5:t_thousands = &n_5; break;
+	case 6:t_thousands = &n_6; break;
+	case 7:t_thousands = &n_7; break;
+	case 8:t_thousands = &n_8; break;
+	case 9:t_thousands = &n_9; break;
+	}
+
 
 
 	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
@@ -349,18 +432,29 @@ update_status ModulePlayer::Update()
 	}
 
 	
+	
 		if (destroyed == false)
 			App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
+		App->render->Blit(graphics, 128+16, 16, &(units->GetCurrentFrame()));
+		App->render->Blit(graphics, 128, 16, &(dozens->GetCurrentFrame()));
+		App->render->Blit(graphics, 96+16, 16, &(hundreds->GetCurrentFrame()));
+		App->render->Blit(graphics, 96, 16, &(thousands->GetCurrentFrame()));
+		App->render->Blit(graphics, 96-16, 16, &(t_thousands->GetCurrentFrame()));
+
 
 
 		// Draw everything --------------------------------------
 		SDL_Rect r = current_animation->GetCurrentFrame();
 
-	
+		if (destroyed == true){
+			points = 0;
+		}
 
 		if (SDL_GetTicks() - time > 4000){
 			power = false;
 		}
+
+
 
 		
 
@@ -378,8 +472,10 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			if (power == false  && god == false){
 				destroyed = true;
 			}
-			else { App->blinky->position.x = 208;
+			else {
+			App->blinky->position.x = 208;
 			App->blinky->position.y = 408;
+			points += 200;
 			}
 		}
 		if (c2->type == COLLIDER_INKY){
@@ -389,6 +485,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			else {
 				App->inky->position.x = 208;
 				App->inky->position.y = 408;
+				points += 200;
 			}
 		}
 		if (c2->type == COLLIDER_PINKY){
@@ -398,6 +495,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			else {
 				App->pinky->position.x = 208;
 				App->pinky->position.y = 408;
+				points += 200;
 			}
 		}
 		if (c2->type == COLLIDER_SUE){
@@ -407,13 +505,18 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			else {
 				App->sue->position.x = 208;
 				App->sue->position.y = 408;
+				points += 200;
 			}
 		}
 		if (c2->type == COLLIDER_POWERPELLET){
 			time = SDL_GetTicks();
 			power = true;
+			points += 100;
 			
 		}
-		
+		if (c2->type == COLLIDER_PELLET){
+			points += 10;
+
+		}
 	}
 }

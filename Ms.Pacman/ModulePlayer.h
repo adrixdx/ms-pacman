@@ -32,6 +32,18 @@ public:
 	Animation g_left;
 	Animation g_up;
 	Animation g_down;
+
+	//Numbers;
+	Animation n_0;
+	Animation n_1;
+	Animation n_2;
+	Animation n_3;
+	Animation n_4;
+	Animation n_5;
+	Animation n_6;
+	Animation n_7;
+	Animation n_8;
+	Animation n_9;
 	
 	iPoint position;
 	Collider* col;
@@ -43,6 +55,7 @@ public:
 	int dir = 0;
 	int n_map = 0;
 	int s_map[36][28];
+	uint points = 0;
 
 };
 
