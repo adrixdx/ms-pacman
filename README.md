@@ -41,19 +41,17 @@
 
 ##Releases:
 
-###Release 0.1
+###Release 0.7
 
--Added background images (start and level one)
+-3 new mazes
 
--To change the background press the spacebar.
+-God mode added
 
--Ms. Pac-Man can move in four directions with the direction arrows
+-Ghosts have a different IA each other
 
--Ms. Pac-Man has movement animations
+-Added a debug mode to see where the ghosts are going to move
 
--Level one has walls that limit her movements, so she can't go out of the maze
-
-
+-Ms. Pacman movement improved
 
 ###Release 0.5
 
@@ -85,17 +83,22 @@
 
 -Added all Ghosts
 
+###Release 0.1
+
+-Added background images (start and level one)
+
+-To change the background press the spacebar.
+
+-Ms. Pac-Man can move in four directions with the direction arrows
+
+-Ms. Pac-Man has movement animations
+
+-Level one has walls that limit her movements, so she can't go out of the maze
 
 
-###Release 0.7
 
--3 new mazes
 
--God mode added
 
--Ghosts have a different IA each other
 
--Added a debug mode to see where the ghosts are going to move
 
--Ms. Pacman movement improved
 
