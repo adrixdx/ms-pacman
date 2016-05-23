@@ -74,21 +74,22 @@ ModuleStartScreen::ModuleStartScreen()
 	gname.PushBack({ 1960, 16, 216, 98, });
 	gname.PushBack({ 1960, 16, 216, 98, });
 	
-	gname.speed = 0.002f;
+	gname.speed = 0.002000000001f;
 
 	//ghosts blinky
 	/*
 	blinky.PushBack({ 2015, 219, 31, 30, });
 	blinky.PushBack({ 2050, 219, 31, 30, });
 	blinky.speed = 0.15f;*/
-	blinky_left.PushBack({ 2086, 219, 31, 30 });
-	blinky_left.PushBack({ 2121, 219, 31, 30 });
-	blinky_up.speed = 0.1f;
+	blinky_left.PushBack({ 2085, 219, 31, 30 });
+	blinky_left.PushBack({ 2120, 219, 31, 30 });
+	/*Arreglado animacion red*/
+	blinky_left.speed = 0.1f;
 	blinky_up.PushBack({ 2015, 219, 31, 30 });
 	blinky_up.PushBack({ 2050, 219, 31, 30 });
 	blinky_up.speed = 0.1f;
-	position_r.x = 448;
-	position_r.y = 371;
+	position_b.x = 448;
+	position_b.y = 371;
 
 
 	//ghosts inky
@@ -97,11 +98,11 @@ ModuleStartScreen::ModuleStartScreen()
 	inky.PushBack({ 2050, 254, 31, 30, });
 	inky.speed = 0.15f;*/
 	//ghosts pinky
-	pinky_left.PushBack({ 2086, 288, 31, 30 });
-	pinky_left.PushBack({ 2121, 288, 31, 30 });
+	pinky_left.PushBack({ 2086, 254, 31, 30 });   
+	pinky_left.PushBack({ 2121, 254, 31, 30 });   
 	pinky_left.speed = 0.1f;
-	pinky_up.PushBack({ 2015, 288, 31, 30 });
-	pinky_up.PushBack({ 2050, 288, 31, 30 });
+	pinky_up.PushBack({ 2015, 254, 31, 30 });    
+	pinky_up.PushBack({ 2050, 254, 31, 30 });	
 	pinky_up.speed = 0.1f;
 	position_p.x = 448;
 	position_p.y = 371;
@@ -125,14 +126,14 @@ ModuleStartScreen::ModuleStartScreen()
 	mspacman.speed = 0.2f;
 	*/
 	//ghosts inky
-	inky_left.PushBack({ 2086, 254, 31, 30 });
-	inky_left.PushBack({ 2121, 254, 31, 30 });
+	inky_left.PushBack({ 2086, 288, 31, 30 });  
+	inky_left.PushBack({ 2121, 288, 31, 30 });  
 	inky_left.speed = 0.1f;
-	inky_up.PushBack({ 2015, 254, 31, 30 });
-	inky_up.PushBack({ 2050, 254, 31, 30 });
+	inky_up.PushBack({ 2015, 288, 31, 30 });    
+	inky_up.PushBack({ 2050, 288, 31, 30 });    
 	inky_up.speed = 0.1f;
-	position_b.x = 448;
-	position_b.y = 371;
+	position_i.x = 448;
+	position_i.y = 371;
 
 
 	//ghosts sue
@@ -142,8 +143,8 @@ ModuleStartScreen::ModuleStartScreen()
 	sue_up.PushBack({ 2015, 323, 31, 30 });
 	sue_up.PushBack({ 2050, 323, 31, 30 });
 	sue_up.speed = 0.1f;
-	position_o.x = 448;
-	position_o.y = 371;
+	position_s.x = 448;
+	position_s.y = 371;
 
 	// Ms. Pac-Man
 	backward.PushBack({ 2012, 182, 37, 35 });
@@ -217,85 +218,86 @@ update_status ModuleStartScreen::Update()
 	App->render->Blit(graphics, 90, 167, &(square.GetCurrentFrame()), 0.75f); // square animation
 	App->render->Blit(graphics, 110, 190, &(gname.GetCurrentFrame()), 0.75f); // ghost name animation
 
-/*	App->render->Blit(graphics, 55, 170, &(blinky.GetCurrentFrame()), 0.75f); // blinky
+	/*App->render->Blit(graphics, 55, 170, &(blinky.GetCurrentFrame()), 0.75f); // blinky
 	App->render->Blit(graphics, 55, 208, &(inky.GetCurrentFrame()), 0.75f); // inky
 	App->render->Blit(graphics, 55, 240, &(pinky.GetCurrentFrame()), 0.75f); // pinky
 	App->render->Blit(graphics, 55, 275, &(sue.GetCurrentFrame()), 0.75f); // sue
 	App->render->Blit(graphics, 210, 325, &(mspacman.GetCurrentFrame()), 0.75f); // mspacman
+
 	*/
 	float speed = 2;
 
 	//BLINKY
 	if (SDL_GetTicks() - time_blinky < 10000){
 
-		if (position_r.x == 50 && position_r.y > 220){
+		if (position_b.x == 50 && position_b.y > 206){
 
-			current_animation_r = &blinky_up;
-			position_r.y -= speed;
-			if (position_r.y == 223){
+			current_animation_b = &blinky_up;
+			position_b.y -= speed;
+			if (position_b.y == 223){
 				time_pinky = SDL_GetTicks();
 			}
 		}
-		else if (position_r.x >50){
+		else if (position_b.x >50){
 
-			current_animation_r = &blinky_left;
-			position_r.x -= speed;
+			current_animation_b = &blinky_left;
+			position_b.x -= speed;
 		}
 	}
 
 	//PINKY
 	if (SDL_GetTicks() - time_pinky < 10000){
 
-		if (position_b.x == 50 && position_b.y > 260){
+		if (position_p.x == 50 && position_p.y > 242){
 
 			current_animation_p = &pinky_up;
-			position_b.y -= speed;
-			if (position_b.y == 263){
+			position_p.y -= speed;
+			if (position_p.y == 263){
 				time_inky = SDL_GetTicks();
 			}
 		}
 
-		else if (position_b.x > 50){
+		else if (position_p.x > 50){
 
 			current_animation_p = &pinky_left;
-			position_b.x -= speed;
+			position_p.x -= speed;
 		}
 
 	}
 
 	//INKY
 	if (SDL_GetTicks() - time_inky < 10000){
-		if (position_p.x == 50 && position_p.y > 300){
+		if (position_i.x == 50 && position_i.y > 278){
 
-			current_animation_b = &inky_up;
-			position_p.y -= speed;
+			current_animation_i = &inky_up;
+			position_i.y -= speed;
 
-			if (position_p.y == 303){
+			if (position_i.y == 303){
 				time_sue = SDL_GetTicks();
 			}
 		}
-		else if (position_p.x > 50)
+		else if (position_i.x > 50)
 		{
-			current_animation_b = &inky_left;
-			position_p.x -= speed;
+			current_animation_i = &inky_left;
+			position_i.x -= speed;
 		}
 	}
 
 	//SUE
 	if (SDL_GetTicks() - time_sue < 10000)
 	{
-		if (position_o.x == 50 && position_o.y > 340)
+		if (position_s.x == 50 && position_s.y > 316)
 		{
-			current_animation_o = &sue_up;
-			position_o.y -= speed;
-			if (position_o.y == 343){
+			current_animation_s = &sue_up;
+			position_s.y -= speed;
+			if (position_s.y == 343){
 				time_pacman = SDL_GetTicks();
 			}
 		}
-		else if (position_o.x > 50)
+		else if (position_s.x > 50)
 		{
-			current_animation_o = &sue_left;
-			position_o.x -= speed;
+			current_animation_s = &sue_left;
+			position_s.x -= speed;
 		}
 	}
 
@@ -313,11 +315,11 @@ update_status ModuleStartScreen::Update()
 	}
 
 	SDL_Rect r = current_animation_ms->GetCurrentFrame();
-
-	SDL_Rect r_r = current_animation_r->GetCurrentFrame();
-	SDL_Rect r_p = current_animation_p->GetCurrentFrame();
-	SDL_Rect r_o = current_animation_o->GetCurrentFrame();
 	SDL_Rect r_b = current_animation_b->GetCurrentFrame();
+	SDL_Rect r_p = current_animation_p->GetCurrentFrame();
+	SDL_Rect r_i = current_animation_i->GetCurrentFrame();
+	SDL_Rect r_s = current_animation_s->GetCurrentFrame();
+
 
 	//App->render->Blit(graphics, 0, -20, &ground);
 	//App->render->Blit(graphics, 90, 167, &(squareinit.GetCurrentFrame()), 0.75f); //squareinit animation
@@ -334,13 +336,13 @@ update_status ModuleStartScreen::Update()
 	}
 
 	//GHOST BLINKY
-	if (position_r.y == 100)
+	if (position_b.y == 100)
 	{
-		App->render->Blit(graphics, position_r.x, position_r.y - r_r.h, &blinky);
+		App->render->Blit(graphics, position_b.x, position_b.y - r_b.h, &blinky);
 	}
-	else if (position_r.y > 100)
+	else if (position_b.y > 100)
 	{
-		App->render->Blit(graphics, position_r.x, position_r.y - r_r.h, &r_r);
+		App->render->Blit(graphics, position_b.x, position_b.y - r_b.h, &r_b);
 	}
 
 	//PINKY
@@ -354,24 +356,24 @@ update_status ModuleStartScreen::Update()
 	}
 
 	//INKY
-	if (position_b.y == 132)
+	if (position_i.y == 132)
 	{
-		App->render->Blit(graphics, position_b.x, position_b.y - r_b.h, &inky);
+		App->render->Blit(graphics, position_i.x, position_i.y - r_i.h, &inky);
 	}
-	else if (position_b.y > 132)
+	else if (position_i.y > 132)
 	{
-		App->render->Blit(graphics, position_b.x, position_b.y - r_b.h, &r_b);
+		App->render->Blit(graphics, position_i.x, position_i.y - r_i.h, &r_i);
 	}
 
 
 	//SUE
-	if (position_o.y == 148)
+	if (position_s.y == 148)
 	{
-		App->render->Blit(graphics, position_o.x, position_o.y - r_o.h, &sue);
+		App->render->Blit(graphics, position_s.x, position_s.y - r_s.h, &sue);
 	}
-	else if (position_o.y > 148)
+	else if (position_s.y > 148)
 	{
-		App->render->Blit(graphics, position_o.x, position_o.y - r_o.h, &r_o);
+		App->render->Blit(graphics, position_s.x, position_s.y - r_s.h, &r_s);
 	}
 
 	//FADE TO BLACK
@@ -382,5 +384,6 @@ update_status ModuleStartScreen::Update()
 	}
 
 	App->render->Blit(graphics, 110, 190, &(gname.GetCurrentFrame()), 0.75f); // ghost name animation
+	
 	return UPDATE_CONTINUE;
 }

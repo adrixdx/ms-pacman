@@ -39,10 +39,10 @@ public:
 	fPoint position_ms;
 
 	//new
-	Animation* current_animation_r = &blinky_left;
+	Animation* current_animation_b = &blinky_left;
 	Animation* current_animation_p = &pinky_left;
-	Animation* current_animation_b = &inky_left;
-	Animation* current_animation_o = &sue_left;
+	Animation* current_animation_i = &inky_left;
+	Animation* current_animation_s = &sue_left;
 
 	Animation square;
 	Animation gname;
@@ -62,10 +62,10 @@ public:
 	Animation sue;
 	Animation mspacman;*/
 
-	fPoint position_r;
-	fPoint position_p;
 	fPoint position_b;
-	fPoint position_o;
+	fPoint position_p;
+	fPoint position_i;
+	fPoint position_s;
 
 	uint time_blinky = 0;
 	uint time_inky = 0;
