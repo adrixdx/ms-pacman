@@ -28,7 +28,7 @@
   
   -Press F2 to start God Mode
   
-  -Press F3 to shw the direction ghosts are going to move
+  -Press F3 to show the direction ghosts are going to move
   
   
 
