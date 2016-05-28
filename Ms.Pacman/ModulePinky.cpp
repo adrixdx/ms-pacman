@@ -381,6 +381,7 @@ update_status ModulePinky::Update()
 	bool ret = false;
 	int cont = 0;
 	if (debug == true){
+		App->render->Blit(graphics, (p_tilepos_x + i * 16), (p_tilepos_y + n * 16), &(a_square->GetCurrentFrame()));
 		while (ret != true){
 			d_up = 1000;
 			d_down = 1000;
@@ -518,7 +519,7 @@ update_status ModulePinky::Update()
 	col->SetPos(tilepos_x, tilepos_y);
 
 
-	App->render->Blit(graphics, (p_tilepos_x + i * 16), (p_tilepos_y + n*16 ), &(a_square->GetCurrentFrame()));
+
 
 	if (destroyed == false)
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
