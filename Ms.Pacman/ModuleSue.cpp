@@ -83,7 +83,7 @@ bool ModuleSue::Start()
 
 	scared2.speed = 0.1f;
 
-	circle.PushBack({ 0, 470, 350, 350 });
+	circle.PushBack({ 0, 450, 350, 350 });
 
 	a_hor.PushBack({ 203, 401, 32, 28 });
 	a_hor.speed = 0.0f;
