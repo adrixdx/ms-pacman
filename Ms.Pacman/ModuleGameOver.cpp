@@ -44,7 +44,7 @@ bool ModuleGameOver::CleanUp()
 {
 	LOG("Unloading gameover scene");
 	App->audio->Disable();
-	
+
 	
 	return true;
 }

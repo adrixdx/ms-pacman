@@ -77,10 +77,7 @@ ModuleStartScreen::ModuleStartScreen()
 	gname.speed = 0.002000000001f;
 
 	//ghosts blinky
-	/*
-	blinky.PushBack({ 2015, 219, 31, 30, });
-	blinky.PushBack({ 2050, 219, 31, 30, });
-	blinky.speed = 0.15f;*/
+	
 	blinky_left.PushBack({ 2085, 219, 31, 30 });
 	blinky_left.PushBack({ 2120, 219, 31, 30 });
 	/*Arreglado animacion red*/
@@ -92,11 +89,6 @@ ModuleStartScreen::ModuleStartScreen()
 	position_b.y = 371;
 
 
-	//ghosts inky
-	/*
-	inky.PushBack({ 2015, 254, 31, 30, });
-	inky.PushBack({ 2050, 254, 31, 30, });
-	inky.speed = 0.15f;*/
 	//ghosts pinky
 	pinky_left.PushBack({ 2086, 254, 31, 30 });   
 	pinky_left.PushBack({ 2121, 254, 31, 30 });   
@@ -107,24 +99,7 @@ ModuleStartScreen::ModuleStartScreen()
 	position_p.x = 448;
 	position_p.y = 371;
 
-	//ghosts pinky
-	/*
-	pinky.PushBack({ 2015, 288, 31, 30, });
-	pinky.PushBack({ 2050, 288, 31, 30, });
-	pinky.speed = 0.15f;
-
-	//ghosts sue
-	sue.PushBack({ 2015, 323, 31, 30, });
-	sue.PushBack({ 2050, 323, 31, 30, });
-	sue.speed = 0.15f;
-
-	// Ms. Pac-Man
-	mspacman.PushBack({ 2012, 182, 37, 35, });
-	mspacman.PushBack({ 2048, 181, 37, 35, });
-	mspacman.PushBack({ 2083, 181, 37, 35, });
-	mspacman.PushBack({ 2048, 181, 37, 35, });
-	mspacman.speed = 0.2f;
-	*/
+	
 	//ghosts inky
 	inky_left.PushBack({ 2086, 288, 31, 30 });  
 	inky_left.PushBack({ 2121, 288, 31, 30 });  
@@ -165,9 +140,18 @@ ModuleStartScreen::~ModuleStartScreen()
 // Load assets
 bool ModuleStartScreen::Start()
  {
-
-	LOG("Loading ken scene");
 	
+	position_b.x = 448;
+	position_b.y = 371;
+	position_ms.x = 448;
+	position_ms.y = 371;
+	position_s.x = 448;
+	position_s.y = 371;
+	position_p.x = 448;
+	position_p.y = 371;
+	position_i.x = 448;
+	position_i.y = 371;
+
 	graphics = App->textures->Load("start.png");
 	App->audio->PlayMusic("nothing.ogg", 1.0f);
 
@@ -218,13 +202,7 @@ update_status ModuleStartScreen::Update()
 	App->render->Blit(graphics, 90, 167, &(square.GetCurrentFrame()), 0.75f); // square animation
 	App->render->Blit(graphics, 110, 190, &(gname.GetCurrentFrame()), 0.75f); // ghost name animation
 
-	/*App->render->Blit(graphics, 55, 170, &(blinky.GetCurrentFrame()), 0.75f); // blinky
-	App->render->Blit(graphics, 55, 208, &(inky.GetCurrentFrame()), 0.75f); // inky
-	App->render->Blit(graphics, 55, 240, &(pinky.GetCurrentFrame()), 0.75f); // pinky
-	App->render->Blit(graphics, 55, 275, &(sue.GetCurrentFrame()), 0.75f); // sue
-	App->render->Blit(graphics, 210, 325, &(mspacman.GetCurrentFrame()), 0.75f); // mspacman
 
-	*/
 	float speed = 2;
 
 	//BLINKY
@@ -321,9 +299,6 @@ update_status ModuleStartScreen::Update()
 	SDL_Rect r_s = current_animation_s->GetCurrentFrame();
 
 
-	//App->render->Blit(graphics, 0, -20, &ground);
-	//App->render->Blit(graphics, 90, 167, &(squareinit.GetCurrentFrame()), 0.75f); //squareinit animation
-	//App->render->Blit(graphics, 90, 167, &(square.GetCurrentFrame()), 0.75f); // square animation
 
 	//MSPACMAN
 	if (position_ms.x == 120)
