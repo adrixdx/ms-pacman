@@ -93,7 +93,7 @@ bool ModuleLevelFour::Start()
 	pellets = 238;
 	App->player->position.y = 408;
 	App->player->n_map = 3;
-	App->audio->PlayMusic("effect.ogg", 1.0f);
+	App->audio->PlayMusic("Game/effect.ogg", 1.0f);
 
 	App->inky->time = SDL_GetTicks();
 	App->pinky->time = SDL_GetTicks();
