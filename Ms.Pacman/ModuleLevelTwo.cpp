@@ -93,7 +93,7 @@ bool ModuleLevelTwo::Start()
 {
 	App->player->power == false;
 	App->player->position.x = 208;
-	pellets = 244;
+	pellets = 248;
 	App->player->position.y = 408;
 	App->player->n_map = 1;
 	App->audio->PlayMusic("effect.ogg", 1.0f);
