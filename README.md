@@ -41,6 +41,21 @@
 
 ##Releases:
 
+
+
+###Release 1.0
+
+-Bugs fixed
+
+
+###Release 0.8
+
+-Score system
+
+-Now all the files are in a folder called "Game"
+
+-PowerPellets are now in the right place
+
 ###Release 0.7
 
 -3 new mazes
@@ -96,6 +111,12 @@
 -Level one has walls that limit her movements, so she can't go out of the maze
 
 
+##Links:
+
+
+  Website:  http://adrixdx.github.io/ms-pacman
+
+  Video: https://www.youtube.com/watch?v=n74DHWRHheM&feature=youtu.be
 
 
 
