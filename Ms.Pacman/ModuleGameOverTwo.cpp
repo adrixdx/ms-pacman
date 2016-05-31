@@ -31,7 +31,7 @@ ModuleGameOverTwo::~ModuleGameOverTwo()
 bool ModuleGameOverTwo::Start()
 {
 
-	graphics = App->textures->Load("GameOver2.png");
+	graphics = App->textures->Load("Game/GameOver2.png");
 	App->audio->PlayMusic("nothing.ogg", 1.0f);
 
 

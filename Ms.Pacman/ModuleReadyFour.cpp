@@ -34,8 +34,8 @@ ModuleReadyFour::~ModuleReadyFour()
 bool ModuleReadyFour::Start()
 {
 	time = SDL_GetTicks();
-	graphics = App->textures->Load("P4Ready.png");
-	App->audio->PlayMusic("game-start.ogg", 1.0f);
+	graphics = App->textures->Load("Game/P4Ready.png");
+	App->audio->PlayMusic("Game/game-start.ogg", 1.0f);
 
 	App->player->Disable();
 	App->blinky->Disable();

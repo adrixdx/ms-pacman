@@ -98,7 +98,7 @@ bool ModuleSue::Start()
 	position.y = 250;
 	LOG("Loadi ngplayer textures");
 	bool ret = true;
-	graphics = App->textures->Load("characters.png"); // arcade version
+	graphics = App->textures->Load("Game/characters.png"); // arcade version
 
 
 	col = App->collision->AddCollider({ position.x + 8, position.y + 8, 16, 16 }, COLLIDER_SUE, this);

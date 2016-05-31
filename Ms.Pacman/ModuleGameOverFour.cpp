@@ -33,7 +33,7 @@ ModuleGameOverFour::~ModuleGameOverFour()
 bool ModuleGameOverFour::Start()
 {
 
-	graphics = App->textures->Load("GameOver4.png");
+	graphics = App->textures->Load("Game/GameOver4.png");
 	App->audio->PlayMusic("nothing.ogg", 1.0f);
 
 

@@ -127,7 +127,7 @@ bool ModulePlayer::Start()
 	//int s_map[36][28];
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("characters.png");
+	graphics = App->textures->Load("Game/characters.png");
 	
 	// arcade version
 

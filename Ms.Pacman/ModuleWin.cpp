@@ -29,7 +29,7 @@ ModuleWin::~ModuleWin()
 // Load assets
 bool ModuleWin::Start()
 {
-	graphics = App->textures->Load("WinMaze1.png");
+	graphics = App->textures->Load("Game/WinMaze1.png");
 	App->audio->PlayMusic("nothing.ogg", 1.0f);
 
 	App->player->Disable();

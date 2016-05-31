@@ -104,11 +104,11 @@ bool ModuleLevelTwo::Start()
 	LOG("Loading background assets");
 	bool ret = true;
 
-	graphics1 = App->textures->Load("Maze2.png");
+	graphics1 = App->textures->Load("Game/Maze2.png");
 
-	graphics2 = App->textures->Load("puntos.png");
+	graphics2 = App->textures->Load("Game/puntos.png");
 
-	fx = App->audio->LoadFx("starting.wav");
+	fx = App->audio->LoadFx("Game/starting.wav");
 
 
 	for (int i = 0; i < 28; i++){

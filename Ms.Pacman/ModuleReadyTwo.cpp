@@ -33,8 +33,8 @@ ModuleReadyTwo::~ModuleReadyTwo()
 bool ModuleReadyTwo::Start()
 {
 	time = SDL_GetTicks();
-	graphics = App->textures->Load("P2Ready.png");
-	App->audio->PlayMusic("game-start.ogg", 1.0f);
+	graphics = App->textures->Load("Game/P2Ready.png");
+	App->audio->PlayMusic("Game/game-start.ogg", 1.0f);
 
 	App->player->Disable();
 	App->blinky->Disable();

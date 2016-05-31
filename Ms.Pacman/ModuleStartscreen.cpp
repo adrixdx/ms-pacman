@@ -152,7 +152,7 @@ bool ModuleStartScreen::Start()
 	position_i.x = 448;
 	position_i.y = 371;
 
-	graphics = App->textures->Load("start.png");
+	graphics = App->textures->Load("Game/start.png");
 	App->audio->PlayMusic("nothing.ogg", 1.0f);
 
 
